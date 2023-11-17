@@ -1,20 +1,17 @@
 Core = ::RPGR_Core;
 Core.Assets <-
 {
-    Parameters = 
+    Parameters =
     {
-        CombatLootChance = 0.3,
-        RenownRate = 0.8,
-        RenownLossRate = 1.8
     }
-    Settlements = 
+    Settlements =
     {
         BuyPriceMult = 2.3,
         SellPriceMult = 1.2,
         RecruitsMult = 0.2,
     }
     World =
-    { 
+    {
         ContractPaymentMult = 0.7,
         DailyWageMult = 1.6,
         FoodConsumptionMult = 1.4,
@@ -65,6 +62,14 @@ Core.Assets <-
     function getXPMult()
     {
         return this.World.XPMult;
+    }
+
+    function initialiseSettlementParameters( _settlement )
+    {
+        foreach( key, value in this.Settlements )
+        {
+            _settlement.m[key] = this[format("get%s", key)()];
+        }
     }
 
     function initialiseWorldParameters( _world )
