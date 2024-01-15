@@ -33,71 +33,14 @@ Core.Assets <-
 			return this.Settlements[_classAttribute];
 		}
 
-		local attributeValue = Core.Standard.getSetting(_classAttribute);
-
-		if (attributeValue == null)
-		{
-			attributeValue = this.Parameters[_classAttribute];
-		}
-
-		return attributeValue;
-	}
-
-	function getBeastPartsPriceMult()
-	{
-		return this.Settlement.BeastPartsPriceMult;
-	}
-
-	function getBuyPriceMult()
-	{
-		return this.Settlements.BuyPriceMult;
-	}
-
-	function getCombatLootChance()
-	{
-		Core.Standard.getSetting()
-	}
-
-	function getContractPaymentMult()
-	{
-		return this.World.ContractPayMult;
-	}
-
-	function getDailyWageMult()
-	{
-		return this.World.DailyWageMult;
-	}
-
-	function getFoodConsumptionMult()
-	{
-		return this.World.FoodConsumptionMult;
-	}
-
-	function getRecruitsMult()
-	{
-		return this.Settlements.RecruitsMult;
-	}
-
-	function getRepairSpeedMult()
-	{
-		return this.World.RepairSpeedMult;
-	}
-
-	function getSellPriceMult()
-	{
-		return this.Settlements.SellPriceMult;
-	}
-
-	function getXPMult()
-	{
-		return this.World.XPMult;
+		return this.Parameters[_classAttribute];
 	}
 
 	function initialiseSettlementParameters( _settlementObject )
 	{
 		foreach( key, value in this.Settlements )
 		{
-			_settlementObject.m[key] = this[format("get%s", key)()];
+			_settlementObject.m[key] = this.get(key);
 		}
 	}
 
@@ -105,7 +48,7 @@ Core.Assets <-
 	{
 		foreach( key, value in this.World )
 		{
-			_worldObject.m[key] = this[format("get%s", key)()];
+			_worldObject.m[key] = this.get(key);
 		}
 	}
 
