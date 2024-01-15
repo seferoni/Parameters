@@ -1,8 +1,13 @@
 local Core = ::RPGR_Core;
-::mods_hookExactClass("entity/world/settlement", function( _object )
+::mods_hookNewObject("entity/world/settlement_modifiers", function( _object )
 {
-    Core.Standard.wrap(_object, "create", function()
-    {   // TODO: this doesn't work the way you think
-        Core.Assets.initialiseSettlementParameters(this);
-    })
+	Core.Standard.wrapRoot(_object, "create", function()
+	{
+		Core.Assets.initialiseSettlementParameters(this);
+	});
+
+	Core.Standard.wrapRoot(_object, "reset", function()
+	{
+		Core.Assets.initialiseSettlementParameters(this);
+	});
 });
