@@ -1,6 +1,6 @@
 Core = ::RPGR_Core;
 Core.Assets <-
-{
+{	// TODO: stash size should be configurable
 	Parameters =
 	{
 		CombatLootChance = 60
