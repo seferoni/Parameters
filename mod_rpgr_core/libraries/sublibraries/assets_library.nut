@@ -1,44 +1,15 @@
 Core = ::RPGR_Core;
 Core.Assets <-
 {	// TODO: stash size should be configurable
-	Parameters =
-	{
-		CombatLootChance = 60
-	},
-	Settlements =
-	{
-		BeastPartsPriceMult = 1.5,
-		BuyPriceMult = 2.3,
-		SellPriceMult = 1.2,
-		RecruitsMult = 0.2,
-	},
-	World =
-	{
-		ContractPaymentMult = 0.7,
-		DailyWageMult = 1.6,
-		FoodConsumptionMult = 1.4,
-		RepairSpeedMult = 0.3,
-		XPMult = 0.4
-	}
-
+	// TODO: roster size config
 	function get( _classAttribute )
-	{	// TODO
-		if (_classAttribute in this.World)
-		{
-			return this.World[_classAttribute];
-		}
-
-		if (_classAttribute in this.Settlements)
-		{
-			return this.Settlements[_classAttribute];
-		}
-
-		return this.Parameters[_classAttribute];
+	{
+		return Core.Standard.getSetting(_classAttribute);
 	}
 
 	function initialiseSettlementParameters( _settlementObject )
 	{
-		foreach( key, value in this.Settlements )
+		foreach( key, value in Core.Defaults.Settlements )
 		{
 			_settlementObject.m[key] = this.get(key);
 		}
@@ -46,16 +17,59 @@ Core.Assets <-
 
 	function initialiseWorldParameters( _worldObject )
 	{
-		foreach( key, value in this.World )
+		foreach( key, value in Core.Defaults.World )
 		{
 			_worldObject.m[key] = this.get(key);
 		}
 	}
 
+	function isItemViableForRemoval( _item )
+	{
+		if (_item.isItemType(::Const.Items.ItemType.Legendary))
+		{
+			return false;
+		}
+
+		if (_item.m.ItemType == ::Const.Items.ItemType.Misc)
+		{
+			return false;
+		}
+
+		if (_item.getID() == "weapon.player_banner")
+		{
+			return false;
+		}
+
+		return true;
+	}
+
 	function removeLoot( _lootArray )
 	{
-		local retentionChance = this.getCombatLootChance(),
-		newLoot = _lootArray.filter(@(_index, _item) ::Math.rand(1, 100) > retentionChance);
+		local removalChance = this.get("LootRemovalChance");
+
+		if (removalChance == 100)
+		{
+			return;
+		}
+
+		local newLoot = [],
+		skipCurrent = @() ::Math.rand(1, 100) > removalChance;
+
+		foreach( item in _lootArray )
+		{
+			if (!this.isItemViable(item))
+			{
+				continue;
+			}
+
+			if (skipCurrent())
+			{
+				continue;
+			}
+
+			newLoot.push(item);
+		}
+
 		::Tactical.CombatResultLoot.assign(newLoot);
 		::Tactical.CombatResultLoot.sort();
 	}

@@ -1,6 +1,12 @@
 local Core = ::RPGR_Core;
 Core.Standard <-
 {
+	Colour =
+	{
+		Green = "PositiveValue",
+		Red = "NegativeValue"
+	}
+
 	function appendToStringList( _targetString, _string )
 	{
 		local newString = _targetString == "" ? format("%s", _string) : format("%s, %s", _targetString, _string);
@@ -44,7 +50,7 @@ Core.Standard <-
 
 	function getFlag( _string, _object )
 	{
-		local flagValue = _object.getFlags().get(format("mod_rpgr_Core.%s", _string));
+		local flagValue = _object.getFlags().get(format("mod_rpgr_core.%s", _string));
 
 		if (!flagValue)
 		{
@@ -56,7 +62,7 @@ Core.Standard <-
 
 	function getFlagAsInt( _string, _object )
 	{
-		local flagValue = _object.getFlags().getAsInt(format("mod_rpgr_Core.%s", _string));
+		local flagValue = _object.getFlags().getAsInt(format("mod_rpgr_core.%s", _string));
 
 		if (flagValue == 0)
 		{
@@ -78,12 +84,16 @@ Core.Standard <-
 			return Core.Mod.ModSettings.getSetting(_settingID).getValue();
 		}
 
-		if (!(_settingID in Core.Defaults))
+		foreach( tableKey, table in Core.Defaults )
 		{
-			return null;
+			if (_settingID in table)
+			{
+				return Core.Defaults[tableKey][_settingID];
+			}
 		}
 
-		return Core.Defaults[_settingID];
+		this.log(format("Invalid settingID %s passed to getSetting.", _settingID), true);
+		return;
 	}
 
 	function includeFiles( _path )
@@ -98,7 +108,7 @@ Core.Standard <-
 
 	function incrementFlag( _string, _value, _object, _isNative = false )
 	{
-		local flag = _isNative ? format("%s", _string) : format("mod_rpgr_Core.%s", _string);
+		local flag = _isNative ? format("%s", _string) : format("mod_rpgr_core.%s", _string);
 		_object.getFlags().increment(flag, _value);
 	}
 
@@ -195,7 +205,7 @@ Core.Standard <-
 
 	function setFlag( _string, _value, _object, _isNative = false )
 	{
-		local flag = _isNative ? format("%s", _string) : format("mod_rpgr_Core.%s", _string);
+		local flag = _isNative ? format("%s", _string) : format("mod_rpgr_core.%s", _string);
 		_object.getFlags().set(flag, _value);
 	}
 
@@ -228,32 +238,6 @@ Core.Standard <-
 			local originalMethod = cachedMethod == null ? this[parentName][_methodName] : cachedMethod;
 
 			if (!Standard.validateParameters(originalMethod, vargv))
-			{
-				Standard.log(format("An invalid number of parameters were passed to %s, aborting wrap procedure.", _methodName), true);
-				return;
-			}
-
-			local argumentsArray = Standard.prependContextObject(this, vargv);
-			return Standard[_procedure](this, _function, originalMethod, argumentsArray);
-		});
-	}
-
-	function wrapRoot( _object, _methodName, _function, _procedure = "overrideReturn" )
-	{
-		# Declare and assign dummy function.
-		local dummy = function( ... )
-		{
-			return;
-		};
-
-		# Assign non-null variables in local environment.
-		local originalMethod = _methodName in _object ? _object[_methodName] : dummy,
-		Standard = this;
-
-		_object.rawset(_methodName, function( ... )
-		{
-			# Validate arguments if the original method exists.
-			if (originalMethod != dummy && !Standard.validateParameters(originalMethod, vargv))
 			{
 				Standard.log(format("An invalid number of parameters were passed to %s, aborting wrap procedure.", _methodName), true);
 				return;
