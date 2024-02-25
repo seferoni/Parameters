@@ -247,4 +247,22 @@ Core.Standard <-
 			return Standard[_procedure](this, _function, originalMethod, argumentsArray);
 		});
 	}
+
+	function wrapBase( _object, _methodName, _function, _procedure = "overrideReturn" )
+	{
+		local originalMethod =_object[_methodName],
+		Standard = this;
+
+		_object.rawset(_methodName, function( ... )
+		{
+			if (!Standard.validateParameters(originalMethod, vargv))
+			{
+				Standard.log(format("An invalid number of parameters were passed to %s, aborting wrap procedure.", _methodName), true);
+				return;
+			}
+
+			local argumentsArray = Standard.prependContextObject(this, vargv);
+			return Standard[_procedure](this, _function, originalMethod, argumentsArray);
+		});
+	}
 };

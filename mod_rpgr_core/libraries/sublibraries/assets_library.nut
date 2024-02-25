@@ -1,17 +1,39 @@
-Core = ::RPGR_Core;
+local Core = ::RPGR_Core;
 Core.Assets <-
-{	// TODO: stash size should be configurable
-	// TODO: roster size config
-	function get( _classAttribute )
+{
+	function get( _classAttribute, _getPercentage = false )
 	{
+		if (_getPercentage)
+		{
+			return Core.Standard.getPercentageSetting(_classAttribute);
+		}
+
 		return Core.Standard.getSetting(_classAttribute);
 	}
 
-	function initialiseSettlementParameters( _settlementObject )
+	function getViableBrothers()
+	{
+		local candidates = [],
+		roster = ::World.getPlayerRoster().getAll();
+
+		foreach( brother in roster )
+		{
+			if (Core.Standard.getFlag("IsPlayerCharacter", brother))
+			{
+				continue;
+			}
+
+			candidates.push(brother);
+		}
+
+		return candidates;
+	}
+
+	function initialiseSettlementParameters( _settlementModifiers )
 	{
 		foreach( key, value in Core.Defaults.Settlements )
 		{
-			_settlementObject.m[key] = this.get(key);
+			_settlementModifiers[key] = this.get(key, true);
 		}
 	}
 
@@ -19,7 +41,7 @@ Core.Assets <-
 	{
 		foreach( key, value in Core.Defaults.World )
 		{
-			_worldObject.m[key] = this.get(key);
+			_worldObject.m[key] = this.get(key, true);
 		}
 	}
 
@@ -47,7 +69,7 @@ Core.Assets <-
 	{
 		local removalChance = this.get("LootRemovalChance");
 
-		if (removalChance == 100)
+		if (removalChance == 0)
 		{
 			return;
 		}
@@ -72,5 +94,32 @@ Core.Assets <-
 
 		::Tactical.CombatResultLoot.assign(newLoot);
 		::Tactical.CombatResultLoot.sort();
+	}
+
+	function setRosterSize()
+	{
+		local targetSize = this.get("RosterSize"),
+		setSize = @() ::World.Assets.m.BrothersMax = targetSize,
+		roster = ::World.getPlayerRoster();
+
+		if (roster.getSize() <= targetSize)
+		{
+			setSize();
+			return;
+		}
+
+		local brothers = this.getViableBrothers();
+
+		while (roster.getSize() > targetSize)
+		{
+			roster.remove(brothers[::Math.rand(0, brothers.len() - 1)])
+		}
+
+		setSize();
+	}
+
+	function setStashSize()
+	{
+		::World.Assets.getStash().resize(this.get("StashSize"));
 	}
 }
