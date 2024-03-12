@@ -74,23 +74,20 @@ Core.Assets <-
 			return;
 		}
 
-		local newLoot = [],
-		skipCurrent = @() ::Math.rand(1, 100) > removalChance;
-
-		foreach( item in _lootArray )
+		local newLoot = _lootArray.filter(function(_index, _item)
 		{
-			if (!this.isItemViable(item))
+			if (!Core.Assets.isItemViableForRemoval(item))
 			{
-				continue;
+				return false;
 			}
 
-			if (skipCurrent())
+			if (::Math.rand(1, 100) > removalChance)
 			{
-				continue;
+				return false;
 			}
 
-			newLoot.push(item);
-		}
+			return true;
+		});
 
 		::Tactical.CombatResultLoot.assign(newLoot);
 		::Tactical.CombatResultLoot.sort();
