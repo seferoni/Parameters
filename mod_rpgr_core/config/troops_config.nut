@@ -1,8 +1,8 @@
 local Core = ::RPGR_Core;
-Core.Config <-
+Core.Config.Troops <-
 {
 	Tokens =
-	{	// TODO: we're gonna need new troop types lol
+	{
 		Bandits =
 		{
 			Low =
@@ -113,6 +113,6 @@ Core.Config <-
 			[
 				"NomadLeader"
 			]
-		}
+		},
 	}
 };

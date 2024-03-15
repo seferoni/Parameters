@@ -72,6 +72,18 @@ Core.Standard <-
 		return flagValue;
 	}
 
+	function getKeys( _table )
+	{
+		local keys = [];
+
+		foreach( key, value in _table )
+		{
+			keys.push(key);
+		}
+
+		return keys;
+	}
+
 	function getPercentageSetting( _settingID )
 	{
 		return (this.getSetting(_settingID) / 100.0)
