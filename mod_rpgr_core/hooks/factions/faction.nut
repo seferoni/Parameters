@@ -1,13 +1,16 @@
 local Core = ::RPGR_Core;
-::mods_hookExactClass("factions/faction", function( _object )
+::mods_hookBaseClass("factions/faction", function( _object )
 {
 	Core.Standard.wrap(_object, "spawnEntity", function( _party, _tile, _name, _uniqueName, _template, _resources )
 	{
-		if (!Core.Troops.isFactionViable(this.getType()))
+		local factionType = this.getType();
+
+		if (!Core.Troops.isFactionViable(factionType))
 		{
+			::logInfo("not viable")
 			return;
 		}
 
-		Core.Troops.compress(_party);
+		Core.Troops.compress(_party, factionType);
 	});
 });
