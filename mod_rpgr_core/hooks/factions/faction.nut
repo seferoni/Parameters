@@ -7,7 +7,6 @@ local Core = ::RPGR_Core;
 
 		if (!Core.Troops.isFactionViable(factionType))
 		{
-			::logInfo("not viable")
 			return;
 		}
 

@@ -19,8 +19,8 @@ Core.Config.Troops <-
 		{
 			Low =
 			{
-				Medium = 4,
-				High = 7
+				Medium = 3,
+				High = 6
 			},
 			Medium =
 			{
@@ -38,7 +38,19 @@ Core.Config.Troops <-
 			{
 				High = 6
 			}
-		}
+		},
+		OrientalBandits =
+		{
+			Low =
+			{
+				Medium = 2,
+				High = 6
+			},
+			Medium =
+			{
+				High = 4
+			}
+		},
 	},
 	Types =
 	{
@@ -63,7 +75,7 @@ Core.Config.Troops <-
 			]
 		},
 		Barbarians =
-		{
+		{	// TODO: bugged for some reason. keeps picking out bandits
 			Low =
 			[
 				"BarbarianThrall",
