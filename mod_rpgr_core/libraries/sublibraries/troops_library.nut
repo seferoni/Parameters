@@ -24,22 +24,22 @@ Core.Troops <-
 		local ledger = clone this.Template,
 		tokens = this.getTokenTypes(_factionType),
 		types = this.getTroopTypes(_factionType);
-		::MSU.Log.printData(types.Low[0], 2, false)
 		::logInfo("starting loop")
 
-		troops.apply(function( entity )
+		foreach( troop in troops )
 		{
-			::MSU.Log.printData(entity, 2, false);
-			foreach( ledgerKey, tally in ledger )
+			::logInfo(troop.Script)
+			if (types.Medium.find(troop))
 			{
-				local list = types[ledgerKey];
-
-				if (list.find(entity))
-				{
-					tally.push(entity);
-				}
+				ledger.Medium.push(troop);
+				continue;
 			}
-		});
+
+			if (types.Low.find(troop))
+			{
+				ledger.Low.push(troop);
+			}
+		}
 
 		# Process tokens.
 		foreach( tokenType, tally in ledger )
