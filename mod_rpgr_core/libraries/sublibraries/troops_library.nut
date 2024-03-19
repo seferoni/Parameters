@@ -1,21 +1,48 @@
 local Core = ::RPGR_Core;
 Core.Troops <-
 {
-	function addTroops( _troopsArray, _partyObject, _count )
+	Parameters =
 	{
-		local troops = _troopsArray.map(@(_troop) {Type = _troop});
-
-		for( local i = 0; i < _count; i++ )
-		{
-			local troop = troops[::Math.rand(0, troops.len() - 1)];
-			::logInfo("adding " + troop.Type.Script)
-			::Const.World.Common.addTroop(_partyObject, troop, true);
-		}
+		ConversionThresholdFloor = 2
 	}
 
-	function compress( _partyObject, _factionType )
+	function assignTokens( _tokens, _partyObject )
 	{
+		Core.Standard.setFlag("Tokens", _tokens, _partyObject);
+	}
 
+	function compileLedger( _troopArray, _factionType )
+	{
+		local threshold = Core.Config.Thresholds[this.getFactionNameFromType(_factionType)],
+		ledger =
+		{
+			Troops = [],
+			Tokens = 0
+		};
+
+		foreach( troop in _troopArray )
+		{
+			if (troop.Cost <= threshold)
+			{
+				ledger.Troops.push(troop);
+				ledger.Tokens += troop.Cost;
+			}
+		}
+
+		return ledger;
+	}
+
+	function convertToTokens( _partyObject, _factionType )
+	{
+		local ledger = this.compileLedger(_partyObject.getTroops(), _factionType);
+
+		if (ledger.Troops.len() < this.Parameters.ConversionThresholdFloor)
+		{
+			return;
+		}
+
+		this.assignTokens(ledger.Tokens, _partyObject);
+		this.removeTroops(ledger.Troops, _partyObject);
 	}
 
 	function getFactionNameFromType( _factionType )
@@ -32,7 +59,7 @@ Core.Troops <-
 	function isFactionViable( _factionType )
 	{
 		local factionName = this.getFactionNameFromType(_factionType),
-		viableFactions = Core.Standard.getKeys(Core.Config.Troops.Types);
+		viableFactions = Core.Standard.getKeys(Core.Config.Troops.Thresholds);
 
 		if (viableFactions.find(factionName) != null)
 		{
@@ -42,18 +69,13 @@ Core.Troops <-
 		return false;
 	}
 
-	function removeTroops( _culledTroops, _partyObject, _count )
+	function removeTroops( _culledTroops, _partyObject )
 	{
 		::logInfo("removing culledTroops for " + _partyObject.getName())
 		local targetTroops = _partyObject.getTroops();
-		_culledTroops.resize(_count);
 
 		foreach( troop in _culledTroops )
 		{
-			if (troop == null)
-			{
-				continue;
-			}
 			local index = targetTroops.find(troop);
 
 			if (index != null)
@@ -62,11 +84,5 @@ Core.Troops <-
 				targetTroops.remove(index);
 			}
 		}
-	}
-
-	function setName( _partyObject )
-	{
-		local name = _partyObject.getName();
-		_partyObject.setName(format("Compressed %s", name));
 	}
 };

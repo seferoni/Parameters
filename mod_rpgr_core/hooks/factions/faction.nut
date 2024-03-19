@@ -10,6 +10,6 @@ local Core = ::RPGR_Core;
 			return;
 		}
 
-		Core.Troops.compress(_party, factionType);
+		Core.Troops.convertToTokens(_party, factionType);
 	});
 });
