@@ -16,23 +16,23 @@ Core.Config.Entities <-
 					{
 						Cost = 45,
 						Path = "scripts/items/armor/",
-						Strength = 
+						Strength =
 						{
 							Minimimum =	15,
 							Maximum = 20
 						},
 						Scripts =
 						[
-							"noble_mail_armor"
+							"noble_mail_armor",
 							"light_scale_armor",
 							"decayed_reinforced_mail_hauberk",
-							"footman_armor",
+							"footman_armor"
 						]
 					},
 					{
-						Cost = 20,
+						Cost = 18,
 						Path = "scripts/items/armor/",
-						Strength = 
+						Strength =
 						{
 							Minimimum =	15,
 							Maximum = 20
@@ -47,7 +47,7 @@ Core.Config.Entities <-
 					{
 						Cost = 20,
 						Path = "scripts/items/armor/",
-						Strength = 
+						Strength =
 						{
 							Minimimum = 9,
 							Maximum = 12
