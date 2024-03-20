@@ -1,19 +1,32 @@
 local Core = ::RPGR_Core;
 Core.Troops <-
 {
+	Excluded =
+	[
+		::Const.EntityType.CaravanDonkey,
+		::Const.EntityType.MilitaryDonkey,
+		::Const.EntityType.Mortar
+	],
 	Parameters =
 	{
 		ConversionThresholdFloor = 2
+	},
+	Thresholds =
+	{
+		Bandits = 20,
+		Barbarians = 25,
+		OrientalBandits = 25
 	}
 
 	function assignTokens( _tokens, _partyObject )
 	{
+		::logInfo("got tokens " + _tokens + " for " + _partyObject.getName())
 		Core.Standard.setFlag("Tokens", _tokens, _partyObject);
 	}
 
 	function compileLedger( _troopArray, _factionType )
 	{
-		local threshold = Core.Config.Thresholds[this.getFactionNameFromType(_factionType)],
+		local threshold = this.Thresholds[this.getFactionNameFromType(_factionType)],
 		ledger =
 		{
 			Troops = [],
@@ -22,6 +35,11 @@ Core.Troops <-
 
 		foreach( troop in _troopArray )
 		{
+			if (this.Excluded.find(troop.ID))
+			{
+				continue;
+			}
+			
 			if (troop.Cost <= threshold)
 			{
 				ledger.Troops.push(troop);
@@ -59,7 +77,7 @@ Core.Troops <-
 	function isFactionViable( _factionType )
 	{
 		local factionName = this.getFactionNameFromType(_factionType),
-		viableFactions = Core.Standard.getKeys(Core.Config.Troops.Thresholds);
+		viableFactions = Core.Standard.getKeys(this.Thresholds);
 
 		if (viableFactions.find(factionName) != null)
 		{
@@ -70,8 +88,8 @@ Core.Troops <-
 	}
 
 	function removeTroops( _culledTroops, _partyObject )
-	{
-		::logInfo("removing culledTroops for " + _partyObject.getName())
+	{	// TODO: this needs some way to calculate count
+		::logInfo("removing culledTroops for " + _partyObject.getName() + " at a count of " + _culledTroops.len())
 		local targetTroops = _partyObject.getTroops();
 
 		foreach( troop in _culledTroops )

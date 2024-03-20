@@ -1,14 +1,6 @@
 local Core = ::RPGR_Core;
-Core.Config.Troops <-
-{	//TODO: need some way to prevent assigning stuff to eg wardogs
-	Excluded =
-	[
-		::Const.EntityType.CaravanDonkey,
-		::Const.EntityType.MilitaryDonkey,
-		::Const.EntityType.Mortar,
-		::Const.EntityType.Wardog,
-		::Const.EntityType.Warhound
-	],
+Core.Config.Entities <-
+{
 	Equipment =
 	{
 		Bandits =
@@ -22,20 +14,44 @@ Core.Config.Troops <-
 				Armor =
 				[
 					{
-						Cost = 0,
-						Path = "scripts/items/armor/"
-						Strength = 20,
+						Cost = 45,
+						Path = "scripts/items/armor/",
+						Strength = 
+						{
+							Minimimum =	15,
+							Maximum = 20
+						},
 						Scripts =
 						[
-							"decayed_coat_of_plates",
-							"decayed_coat_of_scales",
+							"noble_mail_armor"
+							"light_scale_armor",
 							"decayed_reinforced_mail_hauberk",
 							"footman_armor",
 						]
 					},
 					{
-						Cost = 0,
-						Strength = 9,
+						Cost = 20,
+						Path = "scripts/items/armor/",
+						Strength = 
+						{
+							Minimimum =	15,
+							Maximum = 20
+						},
+						Scripts =
+						[
+							"basic_mail_shirt",
+							"leather_scale_armor",
+							"mail_shirt"
+						]
+					},
+					{
+						Cost = 20,
+						Path = "scripts/items/armor/",
+						Strength = 
+						{
+							Minimimum = 9,
+							Maximum = 12
+						},
 						Scripts =
 						[
 							""
@@ -68,10 +84,4 @@ Core.Config.Troops <-
 			}
 		}
 	},
-	Thresholds =
-	{
-		Bandits = 20,
-		Barbarians = 25,
-		OrientalBandits = 25
-	}
 };
