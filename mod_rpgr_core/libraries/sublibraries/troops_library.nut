@@ -37,7 +37,7 @@ Core.Troops <-
 			{
 				continue;
 			}
-			
+
 			if (troop.Cost <= threshold)
 			{
 				ledger.Troops.push(troop);
@@ -70,6 +70,11 @@ Core.Troops <-
 				return factionName;
 			}
 		}
+	}
+
+	function getRemovalCount( _troopCount )
+	{
+		local count = ::Math.floor(_troopCount / 2);
 	}
 
 	function isFactionViable( _factionType )

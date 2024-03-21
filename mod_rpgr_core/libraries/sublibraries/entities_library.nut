@@ -3,30 +3,40 @@ Core.Entities <-
 {
 	Descriptors =
 	{
-		Stout = 20,
-		Strong = 40,
-		Mighty = 60,
-		Legendary = 80
+		Stout = 0,
+		Strong = 0,
+		Mighty = 0,
+		Legendary = 0
 	},
 	Factions =
 	{
 		Bandits =
 		{
-			Threshold = 25,
+			StrengthThreshold = 25,
 			AttributeExchangeChance = 25,
 			EquipmentExchangeChance = 50,
 			PerkExchangeChance = 25
 		},
 		Barbarians =
 		{
-			Threshold = 35,
+			StrengthThreshold = 35,
 			AttributeExchangeChance = 40,
 			EquipmentExchangeChance = 20,
 			PerkExchangeChance = 40
 		},
 		OrientalBandits =
 		{
-
+			StrengthThreshold = 30,
+			AttributeExchangeChance = 25,
+			EquipmentExchangeChance = 25,
+			PerkExchangeChance = 50
+		},
+		NobleHouse =
+		{
+			StrengthThreshold = 30,
+			AttributeExchangeChance = 60,
+			EquipmentExchangeChance = 20,
+			PerkExchangeChance = 20
 		}
 	},
 	Outlets =
@@ -43,6 +53,7 @@ Core.Entities <-
 
 	function exchange( _entityObject, _combatStyle, _factionName, _allocatedTokens, _outletsArray = null )
 	{
+		::logInfo("token wallet has " + _allocatedTokens);
 		local outlets = _outletsArray == null ? clone this.Outlets : _outletsArray;
 		_allocatedTokens -= this[format("buy%s", this.rollForOutlet(_factionName, outlets))](_entityObject, _combatStyle, _factionName, _allocatedTokens);
 
@@ -61,6 +72,7 @@ Core.Entities <-
 
 	function buyEquipment( _entityObject, _combatStyle, _factionName, _allocatedTokens )
 	{
+		::logInfo("buying stuff with tokens " + _allocatedTokens)
 		local expenditure = 0,
 		strength = _entityObject.getWorldTroop().Strength,
 		isViable = function(_index, _itemTable)
@@ -83,11 +95,11 @@ Core.Entities <-
 			return true;
 		},
 		equipment = Core.Config.Entities.Equipment[_factionName][_combatStyle];
-		
+
 		foreach( itemGroup in equipment )
 		{
 			local viableGroups = itemGroup.filter(isViable);
-			
+
 			if (viableGroups.len() == 0)
 			{
 				::logInfo("found no viable groups")
@@ -123,7 +135,7 @@ Core.Entities <-
 
 		# This variable acquires the name of the entity's faction through ::Const.Faction, rather than through ::Const.FactionTypes.
 		local factionName = Core.Troops.getFactionNameFromType(this.getFactionType(_entityObject));
-		
+
 		# This gauges the combat style of the entity based on the weapons currently equipped.
 		local combatStyle = this.getCombatStyle(_entityObject);
 
@@ -145,7 +157,7 @@ Core.Entities <-
 	function getAllocatedTokens( _troopTable, _factionName, _totalTokens )
 	{
 		local count = _troopTable.Party.getTroops().len(), // TODO: this counts all troops, not just ones eligible for buffing. consider isKindOF("human")
-		threshold = this.Factions[_factionName].Threshold,
+		threshold = this.Factions[_factionName].StrengthThreshold,
 		allocatedTokens = ::Math.ceil(_totalTokens / count);
 
 		# This presumes weaker troops always remain present within the party to benefit from the remaining tokens.
@@ -186,8 +198,8 @@ Core.Entities <-
 	}
 
 	function isPartyViable( _partyObject )
-	{	
-		return Core.Standard.getFlag("Tokens", _partyObject) != false;	
+	{
+		return Core.Standard.getFlag("Tokens", _partyObject) != false;
 	}
 
 	function rollForOutlet( _factionName, _outletsArray )
@@ -211,5 +223,10 @@ Core.Entities <-
 
 		_outletsArray.remove(_outletsArray.find(chosenOutlet));
 		return chosenOutlet;
+	}
+
+	function setName( _entityObject, _allocatedTokens )
+	{
+
 	}
 };
