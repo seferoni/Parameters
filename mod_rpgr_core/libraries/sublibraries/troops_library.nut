@@ -13,9 +13,7 @@ Core.Troops <-
 	},
 	Thresholds =
 	{
-		Bandits = 20,
-		Barbarians = 25,
-		OrientalBandits = 25
+		Bandits = 20
 	}
 
 	function assignTokens( _tokens, _partyObject )
@@ -89,6 +87,7 @@ Core.Troops <-
 
 	function removeTroops( _culledTroops, _partyObject )
 	{	// TODO: this needs some way to calculate count
+		_culledTroops.resize(::Math.floor(_culledTroops.len() / 2));
 		::logInfo("removing culledTroops for " + _partyObject.getName() + " at a count of " + _culledTroops.len())
 		local targetTroops = _partyObject.getTroops();
 

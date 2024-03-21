@@ -1,6 +1,20 @@
 local Core = ::RPGR_Core;
 Core.Config.Entities <-
 {
+	Attributes = 
+	{
+		Bandits = 
+		{
+			Melee = 
+			[
+
+			],
+			Ranged = 
+			[
+
+			]
+		}
+	},
 	Equipment =
 	{
 		Bandits =
@@ -9,16 +23,31 @@ Core.Config.Entities <-
 			{
 				Head =
 				[
-
+					{	
+						
+					},
 				],
 				Armor =
 				[
+					{
+						Cost = 54,
+						Path = "scripts/items/armor/",
+						Strength =
+						{
+							Minimum = 25,
+							Maximum = 30
+						},
+						Scripts =
+						[
+							
+						]
+					},
 					{
 						Cost = 45,
 						Path = "scripts/items/armor/",
 						Strength =
 						{
-							Minimimum =	15,
+							Minimum = 15,
 							Maximum = 20
 						},
 						Scripts =
@@ -34,7 +63,7 @@ Core.Config.Entities <-
 						Path = "scripts/items/armor/",
 						Strength =
 						{
-							Minimimum =	15,
+							Minimum = 15,
 							Maximum = 20
 						},
 						Scripts =
@@ -45,11 +74,24 @@ Core.Config.Entities <-
 						]
 					},
 					{
-						Cost = 20,
+						Cost = 18,
 						Path = "scripts/items/armor/",
 						Strength =
 						{
-							Minimimum = 9,
+							Minimum = 9,
+							Maximum = 12
+						},
+						Scripts =
+						[
+							""
+						]
+					},
+					{
+						Cost = 9,
+						Path = "scripts/items/armor/",
+						Strength =
+						{
+							Minimum = 9,
 							Maximum = 12
 						},
 						Scripts =
@@ -58,30 +100,32 @@ Core.Config.Entities <-
 						]
 					}
 				],
-				Weapons =
-				[
-					{
-
-					},
-					{
-
-					},
-					{
-
-					}
-				],
 			},
 			Ranged =
 			{
+				Head =
+				[
+					
+				],
 				Armor =
 				[
-
-				]
-				Weapons =
-				[
-
+					
 				],
 			}
 		}
 	},
+	Perks = 
+	{
+		Bandits = 
+		{
+			Melee =
+			[
+
+			],
+			Ranged = 
+			[
+
+			]
+		}
+	}
 };

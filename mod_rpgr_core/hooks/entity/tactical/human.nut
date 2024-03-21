@@ -5,12 +5,18 @@ local Core = ::RPGR_Core;
 	{
 		local worldTroop = this.getWorldTroop();
 
-		if (worldTroop == null || troop.Party == null)
+		if (worldTroop == null || worldTroop.Party == null)
 		{
 			::logInfo("world troop empty - how?")
 			return;
 		}
 
-		Core.Entities.disburseTokens(this, troop.Party);
+		if (!Core.Entities.isPartyViable(worldTroop.Party))
+		{
+			return;
+		}
+
+		::logInfo("disbursing tokens for " + this.getName())
+		Core.Entities.disburseTokens(this);
 	});
 });

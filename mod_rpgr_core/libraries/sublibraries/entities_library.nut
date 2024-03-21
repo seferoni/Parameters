@@ -14,7 +14,7 @@ Core.Entities <-
 		{
 			Threshold = 25,
 			AttributeExchangeChance = 25,
-			EquipmentExchangeChancer = 50,
+			EquipmentExchangeChance = 50,
 			PerkExchangeChance = 25
 		},
 		Barbarians =
@@ -56,13 +56,14 @@ Core.Entities <-
 
 	function buyAttributes( _entityObject, _combatStyle, _factionName, _allocatedTokens )
 	{
-
+		// TODO:
 	}
 
 	function buyEquipment( _entityObject, _combatStyle, _factionName, _allocatedTokens )
-	{	// remember that the earliest entry in the filtered array is also the strongest offering
-		local strength = _entityObject.getWorldTroops().Strength,
-		isViable = function(_index, _itemTable) // may want to move this to its own method
+	{
+		local expenditure = 0,
+		strength = _entityObject.getWorldTroop().Strength,
+		isViable = function(_index, _itemTable)
 		{
 			if (_itemTable.Cost > _allocatedTokens)
 			{
@@ -81,18 +82,30 @@ Core.Entities <-
 
 			return true;
 		},
-		equipment = Core.Config.Entities[_factionName];
+		equipment = Core.Config.Entities.Equipment[_factionName][_combatStyle];
+		
+		foreach( itemGroup in equipment )
+		{
+			local viableGroups = itemGroup.filter(isViable);
+			
+			if (viableGroups.len() == 0)
+			{
+				::logInfo("found no viable groups")
+				continue;
+			}
 
-		# Find all affordable headgear groups.
-		local headgear = equipment.Head.filter(isViable);
+			local chosenGroup = viableGroups[0];
+			::logInfo("found with cost " + chosenGroup.Cost + "!");
+			this.equip(_entityObject, chosenGroup);
+			expenditure += chosenGroup.Cost;
+		}
 
-		# Find all affordable armour groups.
-		local armour = equipment.Armour.filter(isViable);
+		return expenditure;
 	}
 
 	function buyPerks( _entityObject, _combatStyle, _factionName, _allocatedTokens )
 	{
-
+		// TODO:
 	}
 
 	function disburseTokens( _entityObject )
@@ -109,21 +122,30 @@ Core.Entities <-
 		}
 
 		# This variable acquires the name of the entity's faction through ::Const.Faction, rather than through ::Const.FactionTypes.
-		local faction = this.getFactionNameFromEnum(worldTroop.Faction);
-
+		local factionName = Core.Troops.getFactionNameFromType(this.getFactionType(_entityObject));
+		
 		# This gauges the combat style of the entity based on the weapons currently equipped.
 		local combatStyle = this.getCombatStyle(_entityObject);
 
 		# Get token allowance for this particular entity, with respect to the other constituents within the party.
-		local allocatedTokens = this.getAllocatedTokens(worldTroop, faction, tokens);
+		local allocatedTokens = this.getAllocatedTokens(worldTroop, factionName, tokens);
 
-		this.exchange(_entityObject, combatStyle, faction, allocatedTokens)
+		this.exchange(_entityObject, combatStyle, factionName, allocatedTokens)
+	}
+
+	function equip( _entityObject, _itemTable )
+	{
+		local equippedItems = _entityObject.getItems(),
+		newItem = ::new(format("%s%s", _itemTable.Path, _itemTable.Scripts[::Math.rand(0, _itemTable.Scripts.len() - 1)]));
+		equippedItems.unequip(equippedItems.getItemAtSlot(newItem.getSlotType()))
+		::logInfo("equipping " + item.getName())
+		equippedItems.equip(item);
 	}
 
 	function getAllocatedTokens( _troopTable, _factionName, _totalTokens )
 	{
-		local count = _troopTable.Party.getTroops().len(),
-		threshold = this.Thresholds[_factionName],
+		local count = _troopTable.Party.getTroops().len(), // TODO: this counts all troops, not just ones eligible for buffing. consider isKindOF("human")
+		threshold = this.Factions[_factionName].Threshold,
 		allocatedTokens = ::Math.ceil(_totalTokens / count);
 
 		# This presumes weaker troops always remain present within the party to benefit from the remaining tokens.
@@ -137,7 +159,7 @@ Core.Entities <-
 
 	function getCombatStyle( _entityObject )
 	{
-		local weapon = _entity.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
+		local weapon = _entityObject.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 
 		if (weapon == null)
 		{
@@ -157,21 +179,15 @@ Core.Entities <-
 		return null;
 	}
 
-	function getFactionNameFromEnum( _factionEnum )
+	function getFactionType( _entityObject )
 	{
-		foreach( factionName, factionEnum in ::Const.Faction )
-		{
-			if (factionEnum == _factionEnum)
-			{
-				return factionName;
-			}
-		}
+		local factionType = ::World.FactionManager.getFaction(_entityObject.getFaction()).getType();
+		return factionType;
 	}
 
-	function getFaction( _entityObject )
-	{
-		local worldTroop = _entityObject.getWorldTroop();
-		return worldTroop.Faction;
+	function isPartyViable( _partyObject )
+	{	
+		return Core.Standard.getFlag("Tokens", _partyObject) != false;	
 	}
 
 	function rollForOutlet( _factionName, _outletsArray )
