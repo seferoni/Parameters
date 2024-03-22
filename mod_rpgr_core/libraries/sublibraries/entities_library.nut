@@ -31,6 +31,13 @@ Core.Entities <-
 			EquipmentExchangeChance = 25,
 			PerkExchangeChance = 50
 		},
+		OrientalCityState = 
+		{	// TODO: plc
+			StrengthThreshold = 30,
+			AttributeExchangeChance = 25,
+			EquipmentExchangeChance = 25,
+			PerkExchangeChance = 50
+		},
 		NobleHouse =
 		{
 			StrengthThreshold = 30,
@@ -54,6 +61,7 @@ Core.Entities <-
 	function exchange( _entityObject, _combatStyle, _factionName, _allocatedTokens, _outletsArray = null )
 	{
 		::logInfo("token wallet has " + _allocatedTokens);
+		::logInfo(_outletsArray == null ? "outlets array is null" : "outletsArray has length " + _outletsArray.len());
 		local outlets = _outletsArray == null ? clone this.Outlets : _outletsArray;
 		_allocatedTokens -= this[format("buy%s", this.rollForOutlet(_factionName, outlets))](_entityObject, _combatStyle, _factionName, _allocatedTokens);
 
@@ -147,10 +155,16 @@ Core.Entities <-
 
 	function equip( _entityObject, _itemTable )
 	{
-		local equippedItems = _entityObject.getItems(),
-		newItem = ::new(format("%s%s", _itemTable.Path, _itemTable.Scripts[::Math.rand(0, _itemTable.Scripts.len() - 1)]));
+		# Get item container from actor.
+		local equippedItems = _entityObject.getItems();
+
+		# Create item by concatenating directory path with random script name.
+		local newItem = ::new(format("%s%s", _itemTable.Path, _itemTable.Scripts[::Math.rand(0, _itemTable.Scripts.len() - 1)]));
+
+		# Unequip item corresponding to newly created item's slot type.
 		equippedItems.unequip(equippedItems.getItemAtSlot(newItem.getSlotType()))
 		::logInfo("equipping " + item.getName())
+		# Equip item.
 		equippedItems.equip(item);
 	}
 

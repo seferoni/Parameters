@@ -72,11 +72,6 @@ Core.Troops <-
 		}
 	}
 
-	function getRemovalCount( _troopCount )
-	{
-		local count = ::Math.floor(_troopCount / 2);
-	}
-
 	function isFactionViable( _factionType )
 	{
 		local factionName = this.getFactionNameFromType(_factionType),
@@ -91,20 +86,18 @@ Core.Troops <-
 	}
 
 	function removeTroops( _culledTroops, _partyObject )
-	{	// TODO: this needs some way to calculate count
-		_culledTroops.resize(::Math.floor(_culledTroops.len() / 2));
-		::logInfo("removing culledTroops for " + _partyObject.getName() + " at a count of " + _culledTroops.len())
-		local targetTroops = _partyObject.getTroops();
+	{	// TODO: please tend to this dumbass
+		local tally = {};
 
 		foreach( troop in _culledTroops )
 		{
-			local index = targetTroops.find(troop);
-
-			if (index != null)
+			if (!(troop.ID in tally))
 			{
-				::logInfo("removing " + troop.Script)
-				targetTroops.remove(index);
+				tally[troop.ID] <- 1;
+				continue;
 			}
+
+			tally[troop.ID]++;
 		}
 	}
 };
