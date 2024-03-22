@@ -9,7 +9,9 @@ Core.Troops <-
 	],
 	Parameters =
 	{
-		ConversionThresholdFloor = 2
+		ConversionThresholdFloor = 2,
+		TroopRemovalCountFloor = 2,
+		TroopRemovalCountPrefactor = 0.6
 	},
 	Thresholds =
 	{
@@ -24,25 +26,33 @@ Core.Troops <-
 
 	function compileLedger( _troopArray, _factionType )
 	{
-		local threshold = this.Thresholds[this.getFactionNameFromType(_factionType)],
-		ledger =
+		# Get faction-specific troop cost threshold to prevent high-value troops from being culled.
+		local costThreshold = this.Thresholds[this.getFactionNameFromType(_factionType)];
+
+		# Get viable troops only.
+		local troops = _troopArray.filter(@(_index, _troop) Core.Troops.Excluded.find(_troop.ID) == null && _troop.Cost <= costThreshold);
+
+		# Tally up individual troop types by ID.
+		local tally = this.tallyTroops(troops);
+
+		# Prepare ledger template.
+		local ledger =
 		{
 			Troops = [],
 			Tokens = 0
 		};
 
-		foreach( troop in _troopArray )
+		foreach( troop in troops )
 		{
-			if (this.Excluded.find(troop.ID))
+			# Ensure tokenisation does not lead to adverse effects on troop diversity.
+			if (tally[troop.ID] <= this.Parameters.TroopRemovalCountFloor)
 			{
 				continue;
 			}
 
-			if (troop.Cost <= threshold)
-			{
-				ledger.Troops.push(troop);
-				ledger.Tokens += troop.Cost;
-			}
+			ledger.Troops.push(troop);
+			ledger.Tokens += troop.Cost;
+			tally[troop.ID]--;
 		}
 
 		return ledger;
@@ -86,10 +96,27 @@ Core.Troops <-
 	}
 
 	function removeTroops( _culledTroops, _partyObject )
-	{	// TODO: please tend to this dumbass
-		local tally = {};
+	{
+		::logInfo("removing culledTroops for " + _partyObject.getName() + " at a count of " + _culledTroops.len())
+		local targetTroops = _partyObject.getTroops();
 
 		foreach( troop in _culledTroops )
+		{
+			local index = targetTroops.find(troop);
+
+			if (index != null)
+			{
+				::logInfo("removing " + troop.Script)
+				targetTroops.remove(index);
+			}
+		}
+	}
+
+	function tallyTroops( _troopArray )
+	{
+		local tally = {};
+
+		foreach( troop in _troopArray )
 		{
 			if (!(troop.ID in tally))
 			{
@@ -99,5 +126,17 @@ Core.Troops <-
 
 			tally[troop.ID]++;
 		}
+
+		foreach( troopTally in tally )
+		{
+			if (troopTally <= this.Parameters.TroopRemovalCountFloor)
+			{
+				continue;
+			}
+
+			troopTally = ::Math.rand(::Math.floor(troopTally * this.Parameters.TroopRemovalCountPrefactor), troopTally);
+		}
+
+		return tally;
 	}
 };
