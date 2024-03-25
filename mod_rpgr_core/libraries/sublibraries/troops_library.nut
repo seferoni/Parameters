@@ -1,21 +1,11 @@
 local Core = ::RPGR_Core;
 Core.Troops <-
 {
-	Excluded =
-	[
-		::Const.EntityType.CaravanDonkey,
-		::Const.EntityType.MilitaryDonkey,
-		::Const.EntityType.Mortar
-	],
 	Parameters =
 	{
 		ConversionThresholdFloor = 2,
 		TroopRemovalCountFloor = 2,
 		TroopRemovalCountPrefactor = 0.6
-	},
-	Thresholds =
-	{
-		Bandits = 20
 	}
 
 	function assignTokens( _tokens, _partyObject )
@@ -27,10 +17,10 @@ Core.Troops <-
 	function compileLedger( _troopArray, _factionType )
 	{
 		# Get faction-specific troop cost threshold to prevent high-value troops from being culled.
-		local costThreshold = this.Thresholds[this.getFactionNameFromType(_factionType)];
+		local costThreshold = Core.Config.Troops.Thresholds[this.getFactionNameFromType(_factionType)];
 
 		# Get viable troops only.
-		local troops = _troopArray.filter(@(_index, _troop) Core.Troops.Excluded.find(_troop.ID) == null && _troop.Cost <= costThreshold);
+		local troops = _troopArray.filter(@(_index, _troop) Core.Troops.isTroopViable(_troop.ID) && _troop.Cost <= costThreshold);
 
 		# Tally up individual troop types by ID.
 		local tally = this.tallyTroops(troops);
@@ -85,7 +75,7 @@ Core.Troops <-
 	function isFactionViable( _factionType )
 	{
 		local factionName = this.getFactionNameFromType(_factionType),
-		viableFactions = Core.Standard.getKeys(this.Thresholds);
+		viableFactions = Core.Standard.getKeys(Core.Config.Troops.Thresholds);
 
 		if (viableFactions.find(factionName) != null)
 		{
@@ -93,6 +83,11 @@ Core.Troops <-
 		}
 
 		return false;
+	}
+
+	function isTroopViable( _troopID )
+	{
+		return Core.Config.Troops.Excluded.find(_troopID) != null;
 	}
 
 	function removeTroops( _culledTroops, _partyObject )
@@ -134,7 +129,7 @@ Core.Troops <-
 				continue;
 			}
 
-			troopTally = ::Math.rand(::Math.floor(troopTally * this.Parameters.TroopRemovalCountPrefactor), troopTally);
+			troopTally = ::Math.rand(::Math.ceil(troopTally * this.Parameters.TroopRemovalCountPrefactor), troopTally);
 		}
 
 		return tally;

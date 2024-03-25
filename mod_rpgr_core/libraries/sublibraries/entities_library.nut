@@ -1,6 +1,7 @@
 local Core = ::RPGR_Core;
 Core.Entities <-
-{
+{	// TODO: need to watch out for mercs. they're kinda odd
+	// we want noble troops, but we don't want eg caravan hands, mercs, etc. maybe create an excluded list here as well?
 	Descriptors =
 	{
 		Stout = 0,
@@ -31,7 +32,7 @@ Core.Entities <-
 			EquipmentExchangeChance = 25,
 			PerkExchangeChance = 50
 		},
-		OrientalCityState = 
+		OrientalCityState =
 		{	// TODO: plc
 			StrengthThreshold = 30,
 			AttributeExchangeChance = 25,
@@ -215,6 +216,7 @@ Core.Entities <-
 	{
 		local outlets = clone this.Outlets;
 
+		# Ensuring non-human entities aren't selected for token conversion into new equipment.
 		if (!::isKindOf(_entityObject, "human"))
 		{
 			outlets.remove(outlets.find("Equipment"));

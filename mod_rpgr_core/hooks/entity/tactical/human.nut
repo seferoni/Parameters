@@ -10,6 +10,11 @@ local Core = ::RPGR_Core;
 			return;
 		}
 
+		if (!Core.Troops.isTroopViable(worldTroop.ID))
+		{
+			return;
+		}
+
 		if (!Core.Entities.isPartyViable(worldTroop.Party))
 		{
 			return;
