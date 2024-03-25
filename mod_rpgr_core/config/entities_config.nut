@@ -1,6 +1,6 @@
 local Core = ::RPGR_Core;
 Core.Config.Entities <-
-{
+{	// TODO: add mercs here
 	Attributes =
 	{
 		Bandits =

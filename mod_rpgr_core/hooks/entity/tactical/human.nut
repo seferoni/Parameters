@@ -7,7 +7,6 @@ local Core = ::RPGR_Core;
 
 		if (worldTroop == null || worldTroop.Party == null)
 		{
-			::logInfo("world troop empty - how?")
 			return;
 		}
 

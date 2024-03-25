@@ -58,21 +58,6 @@ Core.Entities <-
 		TokenExchangeFloor = 20
 	}
 
-	function exchange( _entityObject, _combatStyle, _factionName, _allocatedTokens, _outletsArray = null )
-	{
-		::logInfo("token wallet has " + _allocatedTokens);
-		::logInfo(_outletsArray == null ? "outlets array is null" : "outletsArray has length " + _outletsArray.len());
-		local outlets = _outletsArray == null ? clone this.Outlets : _outletsArray;
-		_allocatedTokens -= this[format("buy%s", this.rollForOutlet(_factionName, outlets))](_entityObject, _combatStyle, _factionName, _allocatedTokens);
-
-		if (_allocatedTokens < this.Parameters.TokenExchangeFloor || outlets.len() == 0)
-		{
-			return;
-		}
-
-		this.exchange(_entityObject, _combatStyle, _factionName, _allocatedTokens, outlets);
-	}
-
 	function buyAttributes( _entityObject, _combatStyle, _factionName, _allocatedTokens )
 	{
 		// TODO:
@@ -168,9 +153,24 @@ Core.Entities <-
 		equippedItems.equip(item);
 	}
 
+	function exchange( _entityObject, _combatStyle, _factionName, _allocatedTokens, _outletsArray = null )
+	{
+		::logInfo("token wallet has " + _allocatedTokens);
+		::logInfo(_outletsArray == null ? "outlets array is null" : "outletsArray has length " + _outletsArray.len());
+		local outlets = _outletsArray == null ? this.getOutlets(_entityObject) : _outletsArray;
+		_allocatedTokens -= this[format("buy%s", this.rollForOutlet(_factionName, outlets))](_entityObject, _combatStyle, _factionName, _allocatedTokens);
+
+		if (_allocatedTokens < this.Parameters.TokenExchangeFloor || outlets.len() == 0)
+		{
+			return;
+		}
+
+		this.exchange(_entityObject, _combatStyle, _factionName, _allocatedTokens, outlets);
+	}
+
 	function getAllocatedTokens( _troopTable, _factionName, _totalTokens )
 	{
-		local count = _troopTable.Party.getTroops().len(), // TODO: this counts all troops, not just ones eligible for buffing. consider isKindOF("human")
+		local count = _troopTable.Party.getTroops().len(),
 		threshold = this.Factions[_factionName].StrengthThreshold,
 		allocatedTokens = ::Math.ceil(_totalTokens / count);
 
@@ -209,6 +209,18 @@ Core.Entities <-
 	{
 		local factionType = ::World.FactionManager.getFaction(_entityObject.getFaction()).getType();
 		return factionType;
+	}
+
+	function getOutlets( _entityObject )
+	{
+		local outlets = clone this.Outlets;
+
+		if (!::isKindOf(_entityObject, "human"))
+		{
+			outlets.remove(outlets.find("Equipment"));
+		}
+
+		return outlets;
 	}
 
 	function isPartyViable( _partyObject )
