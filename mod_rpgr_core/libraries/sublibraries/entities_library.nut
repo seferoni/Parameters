@@ -61,7 +61,14 @@ Core.Entities <-
 
 	function buyAttributes( _entityObject, _combatStyle, _factionName, _allocatedTokens )
 	{
-		// TODO:
+		local masterTable = Core.Config.Entities.Attributes[_factionName];
+
+		local baseProperties = _entityObject.getBaseProperties();
+
+		foreach( attribute in masterTable.Shared )
+		{
+
+		}
 	}
 
 	function buyEquipment( _entityObject, _combatStyle, _factionName, _allocatedTokens )

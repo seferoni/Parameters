@@ -1,46 +1,93 @@
 local Core = ::RPGR_Core;
 Core.Config.Entities <-
-{	// TODO: add mercs here
+{
 	Attributes =
 	{
 		Bandits =
 		{
+			Shared =
+			{
+				ActionPoints = 1
+			},
 			Melee =
-			[
-				"ActionPoints",
-				"MeleeSkill"
-			],
+			{
+				MeleeSkill = 8
+			},
 			Ranged =
-			[
-				"ActionPoints",
-				"RangedSkill"
-			]
+			{
+				RangedSkill = 12
+			}
 		},
 		Barbarians =
-		{	// TODO: lots of barbos are hybrids
+		{
+			Shared =
+			{
+				Bravery = 8,
+				Hitpoints = 15,
+				Initiative = 20
+			}
+		},
+		Goblins =
+		{
+			Shared =
+			{
+				Initiative = 25,
+				RangedDefense = 7
+			},
 			Melee =
+			{
+				Bravery = 9
+			},
+			Ranged =
+			{
+				MeleeDefense = 7
+			}
+		},
+		Orcs =
+		{
+			Shared =
 			[
 				"Bravery",
 				"Hitpoints"
 			],
-			Ranged =
-			[
-				"Bravery",
-				"Initiative"
-			]
+			Melee = [],
+			Ranged = []
 		},
 		OrientalBandits =
 		{
+			Shared =
+			[
+				"Initiative"
+			],
 			Melee =
 			[
 				"MeleeDefense",
-				"Initiative"
 			],
 			Ranged =
 			[
 				"RangedSkill",
-				"Initiative"
 			]
+		},
+		Undead =
+		{
+			Shared =
+			[
+				"Bravery",
+				"MeleeSkill",
+				"Hitpoints"
+			],
+			Melee =	[],
+			Ranged = []
+		},
+		Zombies =
+		{
+			Shared =
+			[
+				"MeleeSkill",
+				"Hitpoints"
+			],
+			Melee = [],
+			Ranged = []
 		}
 	},
 	Equipment =
@@ -174,6 +221,10 @@ Core.Config.Entities <-
 	{
 		Bandits =
 		{
+			Shared =
+			[
+
+			],
 			Melee =
 			[
 
@@ -182,6 +233,72 @@ Core.Config.Entities <-
 			[
 
 			]
+		},
+		Barbarians =
+		{
+			Shared =
+			[
+
+			],
+			Melee = [],
+			Ranged = []
+		},
+		Goblins =
+		{
+			Shared =
+			[
+
+			],
+			Melee =
+			[
+
+			],
+			Ranged =
+			[
+
+			]
+		},
+		Orcs =
+		{
+			Shared =
+			[
+
+			],
+			Melee = [],
+			Ranged = []
+		},
+		OrientalBandits =
+		{
+			Shared =
+			[
+
+			],
+			Melee =
+			[
+
+			],
+			Ranged =
+			[
+
+			]
+		},
+		Undead =
+		{
+			Shared =
+			[
+
+			],
+			Melee = [],
+			Ranged = []
+		},
+		Zombies =
+		{
+			Shared =
+			[
+
+			],
+			Melee = [],
+			Ranged = []
 		}
 	}
 };
