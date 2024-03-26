@@ -1,7 +1,7 @@
 local Core = ::RPGR_Core;
 Core.Config.Troops <-
 {
-	Excluded =
+	Excluded = // TODO: get rid of noble, settlement, and mercos
 	[	# These troops are neither eligible for tokenisation nor for token disbursement.
 		::Const.EntityType.BarbarianBeastmaster,
 		::Const.EntityType.BountyHunter,
@@ -25,10 +25,8 @@ Core.Config.Troops <-
 		Bandits = 20,
 		Barbarians = 25,
 		Goblins = 20,
-		NobleHouse = 20,
 		Orcs = 14,
 		OrientalBandits = 30,
-		OrientalCityState = 20,
 		Undead = 20,
 		Zombies = 10
 	}
