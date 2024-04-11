@@ -61,14 +61,26 @@ Core.Entities <-
 
 	function buyAttributes( _entityObject, _combatStyle, _factionName, _allocatedTokens )
 	{
+		local expenditure = 0;
+
 		local masterTable = Core.Config.Entities.Attributes[_factionName];
 
 		local baseProperties = _entityObject.getBaseProperties();
 
-		foreach( attribute in masterTable.Shared )
+		local attributeTable = clone masterTable.Shared;
+		
+		if (_combatStyle in masterTable)
 		{
-
+			Core.Standard.extendTable(masterTable[_attribute], attributeTable);
 		}
+
+		foreach( attribute, attributeOffset in masterTable.Shared )
+		{
+			baseProperties[attribute] += attributeOffset;
+		}
+
+		// TODO: how to calculate expenditure here?
+		return expenditure;
 	}
 
 	function buyEquipment( _entityObject, _combatStyle, _factionName, _allocatedTokens )

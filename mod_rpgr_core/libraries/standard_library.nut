@@ -37,6 +37,14 @@ Core.Standard <-
 		return format("[color=%s]%s[/color]", ::Const.UI.Color[_colour], string)
 	}
 
+	function extendTable( _table, _targetTable )
+	{
+		foreach( key, value in _table )
+		{
+			_targetTable[key] <- value;
+		}
+	}
+
 	function getDescriptor( _valueToMatch, _referenceTable )
 	{
 		foreach( descriptor, value in _referenceTable )
@@ -198,14 +206,14 @@ Core.Standard <-
 		return array;
 	}
 
-	function removeFromArray( _object, _target )
+	function removeFromArray( _object, _targetArray )
 	{
 		local culledObjects = typeof _object == "array" ? _object : [_object];
 
 		foreach( entry in culledObjects )
 		{
-			local index = _target.find(entry);
-			if (index != null) _target.remove(index);
+			local index = _targetArray.find(entry);
+			if (index != null) _targetArray.remove(index);
 		}
 	}
 
