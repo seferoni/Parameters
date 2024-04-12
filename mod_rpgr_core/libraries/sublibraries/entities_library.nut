@@ -10,7 +10,7 @@ Core.Entities <-
 		Legendary = 0
 	},
 	Factions =
-	{
+	{	// TODO: add goblins, orcses, etc
 		Bandits =
 		{
 			StrengthThreshold = 25,
@@ -63,23 +63,34 @@ Core.Entities <-
 	{
 		local expenditure = 0;
 
+		# Get attributes dictionary by faction name.
 		local masterTable = Core.Config.Entities.Attributes[_factionName];
 
+		# All attributes stored within the dictionary correspond to fields within the base properties table.
 		local baseProperties = _entityObject.getBaseProperties();
 
+		# Take the combat style-agnostic attribute table as template.
 		local attributeTable = clone masterTable.Shared;
 		
+		# Extend attribute table with combat style-specific attributes and corresponding offsets.
 		if (_combatStyle in masterTable)
 		{
 			Core.Standard.extendTable(masterTable[_attribute], attributeTable);
 		}
 
-		foreach( attribute, attributeOffset in masterTable.Shared )
+		foreach( attribute, propertiesTable in attributeTable )
 		{
-			baseProperties[attribute] += attributeOffset;
+			if (propertiesTable.Cost >= _allocatedTokens)
+			{
+				continue;
+			}
+
+			::logInfo("adding " + attribute + " at " + propertiesTable.Offset);
+			baseProperties[attribute] += propertiesTable.Offset;
+			expenditure += propertiesTable.Cost;
 		}
 
-		// TODO: how to calculate expenditure here?
+		::logInfo("concluding attributes purchase with expenditure " + expenditure);
 		return expenditure;
 	}
 
@@ -194,7 +205,7 @@ Core.Entities <-
 		threshold = this.Factions[_factionName].StrengthThreshold,
 		allocatedTokens = ::Math.ceil(_totalTokens / count);
 
-		# This presumes weaker troops always remain present within the party to benefit from the remaining tokens.
+		# This serves as a restraint on further gains in strength by already formidable troop types.
 		if (_troopTable.Strength >= threshold)
 		{
 			allocatedTokens = ::Math.ceil(allocatedTokens * this.Parameters.TokenAllocationPrefactor);

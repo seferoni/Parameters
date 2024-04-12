@@ -7,77 +7,133 @@ Core.Config.Entities <-
 		{
 			Shared =
 			{
-				ActionPoints = 1
+				ActionPoints = 
+				{
+					Offset = 3,
+					Cost = 30
+				}
 			},
 			Melee =
 			{
-				MeleeSkill = 8
+				MeleeSkill =
+				{
+					Offset = 8,
+					Cost = 18
+				}
 			},
 			Ranged =
 			{
-				RangedSkill = 12
+				RangedSkill = 
+				{
+					Offset = 12,
+					Cost = 18
+				}
 			}
 		},
 		Barbarians =
 		{
 			Shared =
 			{
-				Bravery = 8,
-				Hitpoints = 15,
-				Initiative = 20
+				Bravery = 
+				{
+					Offset = 8,
+					Cost = 10
+				},
+				Hitpoints =
+				{
+					Offset = 15,
+					Cost = 18
+				},
+				Initiative = 
+				{
+					Offset = 12,
+					Cost = 10
+				}
 			}
 		},
 		Goblins =
 		{
 			Shared =
 			{
-				Initiative = 25,
-				RangedDefense = 7
+				Initiative = 
+				{
+					Offset = 25,
+					Cost = 20
+				},
+				RangedDefense = 
+				{
+					Offset = 7,
+					Cost = 10
+				}
 			},
 			Melee =
 			{
-				Bravery = 9
+				Bravery = 
+				{
+					Offset = 15,
+					Cost = 10
+				}
 			},
 			Ranged =
 			{
-				MeleeDefense = 7
+				MeleeDefense =
+				{
+					Offset = 8,
+					Cost = 10
+				}
 			}
 		},
 		Orcs =
 		{
 			Shared =
-			[
-				"Bravery",
-				"Hitpoints"
-			],
-			Melee = [],
-			Ranged = []
+			{
+				Bravery = 
+				{
+					Offset = 15,
+					Cost = 25
+				},
+				Hitpoints = 
+				{
+					Offset = 30,
+					Cost = 30
+				}
+			}
 		},
 		OrientalBandits =
 		{
 			Shared =
-			[
-				"Initiative"
-			],
+			{
+				Initiative = 
+				{
+					Offset = 20,
+					Cost = 15
+				}
+			},
 			Melee =
-			[
-				"MeleeDefense",
-			],
+			{
+				MeleeDefense =
+				{
+					Offset = 8,
+					Cost = 20
+				}
+			},
 			Ranged =
-			[
-				"RangedSkill",
-			]
+			{
+				RangedSkill =
+				{
+					Offset = 15,
+					Cost = 20
+				}
+			}
 		},
 		Undead =
-		{
+		{	// TODO:
 			Shared =
 			[
 				"Bravery",
 				"MeleeSkill",
 				"Hitpoints"
-			],
-			Melee =	[],
-			Ranged = []
+			]
 		},
 		Zombies =
 		{
@@ -85,9 +141,7 @@ Core.Config.Entities <-
 			[
 				"MeleeSkill",
 				"Hitpoints"
-			],
-			Melee = [],
-			Ranged = []
+			]
 		}
 	},
 	Equipment =
