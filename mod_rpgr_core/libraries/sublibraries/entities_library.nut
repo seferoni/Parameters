@@ -64,14 +64,14 @@ Core.Entities <-
 		local expenditure = 0;
 
 		# Get attributes dictionary by faction name.
-		local masterTable = Core.Config.Entities.Attributes[_factionName];
+		local masterTable = Core.Config.Attributes[_factionName];
 
 		# All attributes stored within the dictionary correspond to fields within the base properties table.
 		local baseProperties = _entityObject.getBaseProperties();
 
 		# Take the combat style-agnostic attribute table as template.
 		local attributeTable = clone masterTable.Shared;
-		
+
 		# Extend attribute table with combat style-specific attributes and corresponding offsets.
 		if (_combatStyle in masterTable)
 		{
@@ -118,7 +118,7 @@ Core.Entities <-
 
 			return true;
 		},
-		equipment = Core.Config.Entities.Equipment[_factionName][_combatStyle];
+		equipment = Core.Config.Equipment[_factionName][_combatStyle];
 
 		foreach( itemGroup in equipment )
 		{
