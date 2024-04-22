@@ -95,5 +95,5 @@ if (!Core.Internal.MSUFound)
 	repairSpeedMult.setDescription("Determines how quickly damaged equipment is repaired.");
 
 	local XPMult = pageWorld.addRangeSetting("XPMult", Defaults.World.XPMult, 25, 150, 1, "XP Multiplier");
-	XPMult.setDescription("Determines how quickly damaged equipment is repaired.");
+	XPMult.setDescription("Determines the percentage multiplier for global XP gains.");
 });
