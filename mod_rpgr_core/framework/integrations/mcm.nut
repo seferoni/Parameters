@@ -25,33 +25,28 @@
 		return ::Core.Mod.ModSettings.addPage(_string);
 	}
 
-	function assignDescriptions()
-	{
-
-	}
-
 	function build()
 	{
 		local pages = this.buildPages();
 
 		foreach( category, table in ::Core.Defaults )
 		{
-			this.buildExplicitly(table, category, pages[category]);
+			this.buildImplicitly(table, category, pages[category]);
 		}
 	}
 
-	function buildDescription( _setting )
+	function buildDescription( _setting, _key )
 	{
-		local description = ""; // TODO:
+		local description = ::Core.Localisation.getSettingString(_key);
 		_setting.setDescription(description);
 	}
 
-	function buildExplicitly( _propertyTable, _page )
+	function buildImplicitly( _propertyTable, _page )
 	{
 		foreach( property, propertyValue in _propertyTable )
 		{
 			local setting = this.addSetting(property, propertyValue, _page);
-			this.buildDescription(_setting);
+			this.buildDescription(_setting, property);
 		}
 	}
 
@@ -65,6 +60,11 @@
 		}
 
 		return pages;
+	}
+
+	function createMSUClass()
+	{
+		::Core.Mod <- ::MSU.Class.Mod(::Core.ID, ::Core.Version, ::Core.Name);
 	}
 
 	function getDescription()
