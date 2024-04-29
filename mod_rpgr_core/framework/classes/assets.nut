@@ -1,6 +1,7 @@
 local Core = ::RPGR_Core;
 Core.Assets <-
 {	// TODO: difficulty mults for faction action stuff
+	// TODO: heal rate mult
 	function get( _classAttribute, _getPercentage = false )
 	{
 		if (_getPercentage)
