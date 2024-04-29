@@ -1,7 +1,6 @@
-local Core = ::RPGR_Core;
 ::mods_hookExactClass("scripts/states/tactical_state", function( _object )
 {
-	Core.Standard.wrap(_object, "gatherLoot", function()
+	::Core.Standard.wrap(_object, "gatherLoot", function()
 	{
 		if (this.isScenarioMode())
 		{
@@ -13,6 +12,6 @@ local Core = ::RPGR_Core;
 			return;
 		}
 
-		Core.Assets.removeLoot(this.m.CombatResultLoot.getItems());
+		::Core.Assets.removeLoot(this.m.CombatResultLoot.getItems());
 	});
 });

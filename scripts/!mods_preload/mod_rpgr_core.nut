@@ -1,4 +1,4 @@
-::RPGR_Core <-
+::Core <-
 {
 	ID = "mod_rpgr_core",
 	Name = "RPG Rebalance - Core",
@@ -33,30 +33,31 @@
 	}
 }
 
-local Core = ::RPGR_Core;
-Core.Internal.MSUFound <- "MSU" in ::getroottable();
+::Core.Internal.MSUFound <- "MSU" in ::getroottable();
 ::include("mod_rpgr_core/libraries/standard_library.nut");
 
-if (!Core.Internal.MSUFound)
+if (!::Core.Internal.MSUFound)
 {
-	Core.Version = Core.Standard.parseSemVer(Core.Version);
+	::Core.Version = ::Core.Standard.parseSemVer(::Core.Version);
 }
 
-::mods_registerMod(Core.ID, Core.Version, Core.Name);
-::mods_queue(Core.ID, ">mod_msu", function()
+::mods_registerMod(::Core.ID, ::Core.Version, ::Core.Name);
+::mods_queue(::Core.ID, ">mod_msu", function()
 {
-	if (!Core.Internal.MSUFound)
+	::Core.Standard.initialise();
+
+	if (!::Core.Internal.MSUFound)
 	{
 		return;
 	}
 
-	Core.Mod <- ::MSU.Class.Mod(Core.ID, Core.Version, Core.Name);
-	local Defaults = Core.Defaults;
+	::Core.Mod <- ::MSU.Class.Mod(::Core.ID, ::Core.Version, ::Core.Name);
+	local Defaults = ::Core.Defaults;
 
 	# Create pages.
-	local pageAssets = Core.Mod.ModSettings.addPage("Assets"),
-	pageWorld = Core.Mod.ModSettings.addPage("World"),
-	pageSettlements = Core.Mod.ModSettings.addPage("Settlements");
+	local pageAssets = ::Core.Mod.ModSettings.addPage("Assets"),
+	pageWorld = ::Core.Mod.ModSettings.addPage("World"),
+	pageSettlements = ::Core.Mod.ModSettings.addPage("Settlements");
 
 	# Assign assets settings.
 	local lootRemovalChance = pageAssets.addRangeSetting("LootRemovalChance", Defaults.Assets.LootRemovalChance, 0, 100, 1, "Loot Removal Chance");

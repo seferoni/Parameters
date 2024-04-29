@@ -1,5 +1,4 @@
-local Core = ::RPGR_Core;
-Core.Standard <-
+::Core.Standard <-
 {
 	Colour =
 	{
@@ -99,21 +98,34 @@ Core.Standard <-
 
 	function getSetting( _settingID )
 	{
-		if (Core.Internal.MSUFound)
+		if (::Core.Internal.MSUFound)
 		{
-			return Core.Mod.ModSettings.getSetting(_settingID).getValue();
+			return ::Core.Mod.ModSettings.getSetting(_settingID).getValue();
 		}
 
-		foreach( tableKey, table in Core.Defaults )
+		foreach( tableKey, table in ::Core.Defaults )
 		{
 			if (_settingID in table)
 			{
-				return Core.Defaults[tableKey][_settingID];
+				return ::Core.Defaults[tableKey][_settingID];
 			}
 		}
 
 		this.log(format("Invalid settingID %s passed to getSetting.", _settingID), true);
 		return;
+	}
+
+	function initialise()
+	{
+		this.initialiseTables();
+		this.loadFiles();
+	}
+
+	function initialiseTables()
+	{
+		::Core.Database <- {};
+		::Core.Localisation <- {};
+		::Core.Classes <- {};
 	}
 
 	function includeFiles( _path )
@@ -147,15 +159,22 @@ Core.Standard <-
 		return true;
 	}
 
+	function loadFiles()
+	{
+		this.includeFiles("mod_rpgr_core/framework/localisation");
+		this.includeFiles("mod_rpgr_core/framework/classes");
+		this.includeFiles("mod_rpgr_core/hooks");
+	}
+
 	function log( _string, _isError = false )
 	{
 		if (_isError)
 		{
-			::logError(format("[Core] %s", _string));
+			::logError(format("[::Core] %s", _string));
 			return;
 		}
 
-		::logInfo(format("[Core] %s", _string));
+		::logInfo(format("[::Core] %s", _string));
 	}
 
 	function overrideArguments( _object, _function, _originalMethod, _argumentsArray )
@@ -169,7 +188,7 @@ Core.Standard <-
 	function overrideMethod( _object, _function, _originalMethod, _argumentsArray )
 	{	# Calls and returns new method; if return value is null, calls and returns original method.
 		local returnValue = _function.acall(_argumentsArray);
-		return returnValue == null ? _originalMethod.acall(_argumentsArray) : (returnValue == Core.Internal.TERMINATE ? null : returnValue);
+		return returnValue == null ? _originalMethod.acall(_argumentsArray) : (returnValue == ::Core.Internal.TERMINATE ? null : returnValue);
 	}
 
 	function overrideReturn( _object, _function, _originalMethod, _argumentsArray )
@@ -178,7 +197,7 @@ Core.Standard <-
 		local originalValue = _originalMethod.acall(_argumentsArray);
 		if (originalValue != null) _argumentsArray.insert(1, originalValue);
 		local returnValue = _function.acall(_argumentsArray);
-		return returnValue == null ? originalValue : (returnValue == Core.Internal.TERMINATE ? null : returnValue);
+		return returnValue == null ? originalValue : (returnValue == ::Core.Internal.TERMINATE ? null : returnValue);
 	}
 
 	function parseSemVer( _version )

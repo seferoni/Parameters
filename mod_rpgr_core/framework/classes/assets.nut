@@ -1,15 +1,14 @@
-local Core = ::RPGR_Core;
-Core.Assets <-
+::Core.Classes.Assets <-
 {	// TODO: difficulty mults for faction action stuff
 	// TODO: heal rate mult
 	function get( _classAttribute, _getPercentage = false )
 	{
 		if (_getPercentage)
 		{
-			return Core.Standard.getPercentageSetting(_classAttribute);
+			return ::Core.Standard.getPercentageSetting(_classAttribute);
 		}
 
-		return Core.Standard.getSetting(_classAttribute);
+		return ::Core.Standard.getSetting(_classAttribute);
 	}
 
 	function getViableBrothers()
@@ -19,7 +18,7 @@ Core.Assets <-
 
 		foreach( brother in roster )
 		{
-			if (Core.Standard.getFlag("IsPlayerCharacter", brother))
+			if (::Core.Standard.getFlag("IsPlayerCharacter", brother))
 			{
 				continue;
 			}
@@ -32,7 +31,7 @@ Core.Assets <-
 
 	function initialiseSettlementParameters( _settlementModifiers )
 	{
-		foreach( key, value in Core.Defaults.Settlements )
+		foreach( key, value in ::Core.Defaults.Settlements )
 		{
 			_settlementModifiers[key] = this.get(key, true);
 		}
@@ -40,7 +39,7 @@ Core.Assets <-
 
 	function initialiseWorldParameters( _worldObject )
 	{
-		foreach( key, value in Core.Defaults.World )
+		foreach( key, value in ::Core.Defaults.World )
 		{
 			_worldObject.m[key] = this.get(key, true);
 		}
@@ -77,7 +76,7 @@ Core.Assets <-
 
 		local newLoot = _lootArray.filter(function(_index, _item)
 		{
-			if (!Core.Assets.isItemViableForRemoval(item))
+			if (!::Core.Assets.isItemViableForRemoval(item))
 			{
 				return false;
 			}
