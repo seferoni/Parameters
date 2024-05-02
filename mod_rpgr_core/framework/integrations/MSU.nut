@@ -1,4 +1,4 @@
-::Core.Integrations.MCM <-
+::Core.Integrations.MSU <-
 {
 	function addSetting( _string, _value, _page )
 	{
@@ -15,7 +15,7 @@
 
 	}
 
-	function addNumericalSetting()
+	function addNumericalSetting( _string, _value, _page )
 	{
 
 	}
@@ -26,10 +26,15 @@
 	}
 
 	function build()
-	{	// TODO: incorrect impl. could get a database helper that collects only settings that should be built implicitly
+	{
+		# Build all page objects through MSU API.
 		local pages = this.buildPages();
 
-		foreach( category, table in ::Core.Defaults )
+		# Get eligible data tables to be exposed as settings through the MSU settings panel.
+		local implicitTables = this.getSettingsToBeBuiltImplicitly();
+
+		# Build.
+		foreach( category, table in implicitTables )
 		{
 			this.buildImplicitly(table, category, pages[category]);
 		}
@@ -54,7 +59,9 @@
 	{
 		local pages = {};
 
-		foreach( category, table in ::Core.Defaults )
+		local parameters = ::Core.Database.Helper.getParameters();
+
+		foreach( category, table in parameters )
 		{
 			pages.category <- this.addPage(category);
 		}
@@ -70,5 +77,10 @@
 	function getDescription()
 	{
 
+	}
+
+	function getSettingsToBeBuiltImplicitly()
+	{
+		return ::Core.Database.Helper.getParameters();
 	}
 }

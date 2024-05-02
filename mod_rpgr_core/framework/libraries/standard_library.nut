@@ -133,13 +133,15 @@
 	function initialise()
 	{
 		this.initialiseTables();
+		this.loadHelpers();
 		this.loadFiles();
-		this.initialiseModules();
+		this.initialiseHelpers();
 	}
 
-	function initialiseModules()
+	function initialiseHelpers()
 	{
 		::Core.Localisation.Helper.initialise();
+		::Core.Database.Helper.initialise();
 	}
 
 	function initialiseTables()
@@ -181,9 +183,14 @@
 		return true;
 	}
 
-	function loadFiles()
+	function loadHelpers()
 	{
 		::include("mod_rpgr_core/framework/localisation/helper.nut");
+		::include("mod_rpgr_core/framework/database/helper.nut");
+	}
+
+	function loadFiles()
+	{
 		this.includeFiles("mod_rpgr_core/framework/integrations");
 		this.includeFiles("mod_rpgr_core/framework/classes");
 		this.includeFiles("mod_rpgr_core/hooks");

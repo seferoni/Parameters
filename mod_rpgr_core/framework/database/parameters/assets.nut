@@ -1,4 +1,4 @@
-::Core.Database.Assets <-
+::Core.Database.Parameters.Assets <-
 {
 	LootRemovalChance =
 	{
