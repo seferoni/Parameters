@@ -6,47 +6,19 @@
 	Internal =
 	{
 		TERMINATE = "__end"
-	},
-	Defaults =
-	{
-		Assets =
-		{
-			LootRemovalChance = 60,
-			StashSize = 30,
-			RosterSize = 9
-		},
-		Settlements =
-		{
-			BeastPartsPriceMult = 150,
-			BuyPriceMult = 230,
-			SellPriceMult = 120,
-			RecruitsMult = 20,
-		},
-		World =
-		{
-			ContractPaymentMult = 140,
-			DailyWageMult = 160,
-			FoodConsumptionMult = 140,
-			RepairSpeedMult = 30,
-			XPMult = 40
-		}
 	}
 }
 
-::Core.Internal.MSUFound <- "MSU" in ::getroottable();
 ::include("mod_rpgr_core/libraries/standard_library.nut");
-
-if (!::Core.Internal.MSUFound)
-{
-	::Core.Version = ::Core.Standard.parseSemVer(::Core.Version);
-}
+::Core.Standard.setMSUState();
+::Core.Standard.formatVersion();
 
 ::mods_registerMod(::Core.ID, ::Core.Version, ::Core.Name);
 ::mods_queue(::Core.ID, ">mod_msu", function()
 {
 	::Core.Standard.initialise();
 
-	if (!::Core.Internal.MSUFound)
+	if (!::Core.Standard.getMSUState())
 	{
 		return;
 	}

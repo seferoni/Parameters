@@ -44,6 +44,16 @@
 		}
 	}
 
+	function formatVersion()
+	{
+		if (::Core.Internal.MSUFound)
+		{
+			return;
+		}
+
+		::Core.Version = this.parseSemVer(::Core.Version);
+	}
+
 	function getDescriptor( _valueToMatch, _referenceTable )
 	{
 		foreach( descriptor, value in _referenceTable )
@@ -91,6 +101,11 @@
 		return keys;
 	}
 
+	function getMSUState()
+	{
+		return ::Core.Internal.MSUFound;
+	}
+
 	function getPercentageSetting( _settingID )
 	{
 		return (this.getSetting(_settingID) / 100.0)
@@ -98,16 +113,16 @@
 
 	function getSetting( _settingID )
 	{
-		if (::Core.Internal.MSUFound)
+		if (this.getMSUState())
 		{
 			return ::Core.Mod.ModSettings.getSetting(_settingID).getValue();
 		}
 
-		foreach( tableKey, table in ::Core.Defaults )
+		foreach( tableKey, table in ::Core.Database )
 		{
 			if (_settingID in table)
 			{
-				return ::Core.Defaults[tableKey][_settingID];
+				return ::Core.Database[tableKey][_settingID];
 			}
 		}
 
@@ -119,11 +134,18 @@
 	{
 		this.initialiseTables();
 		this.loadFiles();
+		this.initialiseModules();
+	}
+
+	function initialiseModules()
+	{
+		::Core.Localisation.Helper.initialise();
 	}
 
 	function initialiseTables()
 	{
 		::Core.Database <- {};
+		::Core.Integrations <- {};
 		::Core.Localisation <- {};
 		::Core.Classes <- {};
 	}
@@ -161,7 +183,8 @@
 
 	function loadFiles()
 	{
-		this.includeFiles("mod_rpgr_core/framework/localisation");
+		::include("mod_rpgr_core/framework/localisation/helper.nut");
+		this.includeFiles("mod_rpgr_core/framework/integrations");
 		this.includeFiles("mod_rpgr_core/framework/classes");
 		this.includeFiles("mod_rpgr_core/hooks");
 	}
@@ -240,6 +263,11 @@
 	{
 		local character = _string[0].tochar()[_case]();
 		return format("%s%s", character, _string.slice(1));
+	}
+
+	function setMSUState()
+	{
+		::Core.Internal.MSUFound <- "MSU" in ::getroottable();
 	}
 
 	function setFlag( _string, _value, _object, _isNative = false )

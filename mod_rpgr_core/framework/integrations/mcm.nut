@@ -1,4 +1,4 @@
-::Core.MCM <-
+::Core.Integrations.MCM <-
 {
 	function addSetting( _string, _value, _page )
 	{
@@ -26,7 +26,7 @@
 	}
 
 	function build()
-	{
+	{	// TODO: incorrect impl. could get a database helper that collects only settings that should be built implicitly
 		local pages = this.buildPages();
 
 		foreach( category, table in ::Core.Defaults )
