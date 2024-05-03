@@ -92,4 +92,10 @@
 	{
 		return ::Core.Database.Helper.getParameters();
 	}
+
+	function initialise()
+	{
+		this.createMSUClass();
+		this.build();
+	}
 };
