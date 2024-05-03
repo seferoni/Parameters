@@ -1,23 +1,25 @@
 ::Core.Integrations.MSU <-
 {
-	function addSetting( _string, _value, _page )
+	function addSetting( _settingID, _dataTable, _pageObject )
 	{
-		switch (typeof _value)
+		switch (typeof _dataTable.Default)
 		{
-			case ("boolean"): return this.addBooleanSetting(_string, _value, _page);
+			case ("boolean"): return this.addBooleanSetting(_settingID, _dataTable, _pageObject);
 			case ("float"):
-			case ("integer"): return this.addNumericalSetting(_string, _value, _page);
+			case ("integer"): return this.addNumericalSetting(_settingID, _dataTable, _pageObject);
 		}
 	}
 
-	function addBooleanSetting( _string, _value, _page )
+	function addBooleanSetting( _settingID, _dataTable, _pageObject )
 	{
-
+		local properName = this.formatSettingName(_settingID);
+		_pageObject.addBooleanSetting(_settingID, _dataTable.Default, properName);
 	}
 
-	function addNumericalSetting( _string, _value, _page )
+	function addNumericalSetting( _settingID, _dataTable, _pageObject )
 	{
-
+		local properName = this.formatSettingName(_settingID);
+		_pageObject.addRangeSetting(_settingID, _dataTable.Default, _dataTable.Range[0], _dataTable.Range[1], _dataTable.Interval, properName);
 	}
 
 	function addPage( _string )
@@ -27,31 +29,32 @@
 
 	function build()
 	{
-		# Build all page objects through MSU API.
+		# Build all page objects through the MSU API.
 		local pages = this.buildPages();
 
 		# Get eligible data tables to be exposed as settings through the MSU settings panel.
-		local implicitTables = this.getSettingsToBeBuiltImplicitly();
+		local parameters = this.getSettingsToBeBuiltImplicitly();
 
-		# Build.
-		foreach( category, table in implicitTables )
+		# Loop through the Assets, World, and Settlements parameter tables.
+		foreach( parameterType, parameterTable in parameters )
 		{
-			this.buildImplicitly(table, category, pages[category]);
+			this.buildImplicitly(parameterTable, pages[category]);
 		}
 	}
 
-	function buildDescription( _setting, _key )
+	function buildDescription( _settingObject, _dataKey )
 	{
-		local description = ::Core.Localisation.getSettingString(_key);
-		_setting.setDescription(description);
+		local description = this.getSettingDescription(_dataKey);
+		_settingObject.setDescription(description);
 	}
 
-	function buildImplicitly( _propertyTable, _page )
+	function buildImplicitly( _parameterTable, _pageObject )
 	{
-		foreach( property, propertyValue in _propertyTable )
+		# Loop through individual data tables within each parameter type. Each data structure corresponds to an individual MSU setting.
+		foreach( dataKey, dataTable in _parameterTable )
 		{
-			local setting = this.addSetting(property, propertyValue, _page);
-			this.buildDescription(_setting, property);
+			local setting = this.addSetting(dataKey, dataTable, _pageObject);
+			this.buildDescription(setting, dataKey);
 		}
 	}
 
@@ -59,6 +62,7 @@
 	{
 		local pages = {};
 
+		# Internal database structuring for game parameter data is to be reflected in page segregation.
 		local parameters = ::Core.Database.Helper.getParameters();
 
 		foreach( category, table in parameters )
@@ -74,13 +78,18 @@
 		::Core.Mod <- ::MSU.Class.Mod(::Core.ID, ::Core.Version, ::Core.Name);
 	}
 
-	function getDescription()
+	function getSettingDescription( _key )
 	{
+		return ::Core.Localisation.Helper.getSettingString(format("%sDescription", _key));
+	}
 
+	function getSettingName( _key )
+	{
+		return ::Core.Localisation.Helper.getSettingString(_key);
 	}
 
 	function getSettingsToBeBuiltImplicitly()
 	{
 		return ::Core.Database.Helper.getParameters();
 	}
-}
+};
