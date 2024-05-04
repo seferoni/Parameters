@@ -1,7 +1,5 @@
 ::Core.Internal.Manager <-
 {
-	Mod = null,
-
 	function createTables()
 	{
 		::Core.Database <- {};
@@ -13,6 +11,11 @@
 	function formatVersion()
 	{
 		if (this.isMSUInstalled())
+		{
+			return;
+		}
+
+		if (this.isModernHooksInstalled())
 		{
 			return;
 		}
@@ -86,6 +89,19 @@
 		return format("%s.%s%s", stringArray[0], stringArray[1], stringArray[2]).tofloat();
 	}
 
+	function queue()
+	{
+		local queued = @() ::Core.getManager().initialise();
+		
+		if (this.isModernHooksInstalled())
+		{
+			::Core.getModernHooksInterface().queue(">mod_msu", queued);
+			return;
+		}
+
+		::mods_queue(::Core.ID, ">mod_msu", queued);
+	}
+
 	function register()
 	{
 		this.updateMSUState();
@@ -97,7 +113,7 @@
 	{
 		if (this.isModernHooksInstalled())
 		{
-			this.Mod = ::Hooks.register(::Core.ID, ::Core.Version, ::Core.Name);
+			::Core.Interfaces.ModernHooks = ::Hooks.register(::Core.ID, ::Core.Version, ::Core.Name);
 			return;
 		}
 

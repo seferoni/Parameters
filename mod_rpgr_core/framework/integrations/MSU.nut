@@ -1,6 +1,6 @@
 ::Core.Integrations.MSU <-
 {
-	function addSetting( _settingID, _dataTable, _pageObject )
+	function addSettingByExtrapolation( _settingID, _dataTable, _pageObject )
 	{
 		switch (typeof _dataTable.Default)
 		{
@@ -53,7 +53,7 @@
 		# Loop through individual data tables within each parameter type. Each data structure corresponds to an individual MSU setting.
 		foreach( dataKey, dataTable in _parameterTable )
 		{
-			local setting = this.addSetting(dataKey, dataTable, _pageObject);
+			local setting = this.addSettingByExtrapolation(dataKey, dataTable, _pageObject);
 			this.buildDescription(setting, dataKey);
 		}
 	}
@@ -73,9 +73,9 @@
 		return pages;
 	}
 
-	function createMSUClass()
+	function createMSUInterface()
 	{
-		::Core.Mod <- ::MSU.Class.Mod(::Core.ID, ::Core.Version, ::Core.Name);
+		::Core.Interfaces.MSU <- ::MSU.Class.Mod(::Core.ID, ::Core.Version, ::Core.Name);
 	}
 
 	function getSettingDescription( _key )
@@ -95,7 +95,7 @@
 
 	function initialise()
 	{
-		this.createMSUClass();
+		this.createMSUInterface();
 		this.build();
 	}
 };

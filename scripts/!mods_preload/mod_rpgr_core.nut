@@ -7,6 +7,11 @@
 	{
 		ManagerPath = "mod_rpgr_core/internal/manager.nut",
 		TERMINATE = "__end"
+	},
+	Interfaces = 
+	{
+		MSU = null,
+		ModernHooks = null
 	}
 
 	function loadManager()
@@ -18,11 +23,18 @@
 	{
 		return this.Internal.Manager;
 	}
+
+	function getModernHooksInterface()
+	{
+		return this.Interfaces.ModernHooks;
+	}
+
+	function getMSUInterface()
+	{
+		return this.Interfaces.MSU;
+	}
 };
 
 ::Core.loadManager();
 ::Core.getManager().register();
-::mods_queue(::Core.ID, ">mod_msu", function()
-{
-	::Core.getManager().initialise();
-});
+::Core.getManager().queue();
