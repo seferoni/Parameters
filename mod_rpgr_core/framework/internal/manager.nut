@@ -39,13 +39,6 @@
 		this.loadHelpers();
 		this.loadFiles();
 		this.initialiseHelpers();
-
-		if (!this.isMSUInstalled())
-		{
-			return;
-		}
-
-		::Core.Integrations.MSU.initialise();
 	}
 
 	function initialiseHelpers()
@@ -68,11 +61,11 @@
 	{
 		::include("mod_rpgr_core/framework/localisation/helper.nut");
 		::include("mod_rpgr_core/framework/database/helper.nut");
+		::include("mod_rpgr_core/framework/integrations/helper.nut");
 	}
 
 	function loadFiles()
 	{
-		this.includeFiles("mod_rpgr_core/framework/integrations");
 		this.includeFiles("mod_rpgr_core/framework/classes");
 		this.includeFiles("mod_rpgr_core/hooks");
 	}

@@ -1,15 +1,5 @@
 ::Core.Integrations.MSU <-
 {
-	function addSettingByExtrapolation( _settingID, _dataTable, _pageObject )
-	{
-		switch (typeof _dataTable.Default)
-		{
-			case ("boolean"): return this.addBooleanSetting(_settingID, _dataTable, _pageObject);
-			case ("float"):
-			case ("integer"): return this.addNumericalSetting(_settingID, _dataTable, _pageObject);
-		}
-	}
-
 	function addBooleanSetting( _settingID, _dataTable, _pageObject )
 	{
 		local properName = this.formatSettingName(_settingID);
@@ -31,31 +21,13 @@
 	{
 		# Build all page objects through the MSU API.
 		local pages = this.buildPages();
-
-		# Get eligible data tables to be exposed as settings through the MSU settings panel.
-		local parameters = this.getSettingsToBeBuiltImplicitly();
-
-		# Loop through the Assets, World, and Settlements parameter tables.
-		foreach( parameterType, parameterTable in parameters )
-		{
-			this.buildImplicitly(parameterTable, pages[category]);
-		}
+		this.Builders.Implicit.build();
 	}
 
 	function buildDescription( _settingObject, _dataKey )
 	{
 		local description = this.getSettingDescription(_dataKey);
 		_settingObject.setDescription(description);
-	}
-
-	function buildImplicitly( _parameterTable, _pageObject )
-	{
-		# Loop through individual data tables within each parameter type. Each data structure corresponds to an individual MSU setting.
-		foreach( dataKey, dataTable in _parameterTable )
-		{
-			local setting = this.addSettingByExtrapolation(dataKey, dataTable, _pageObject);
-			this.buildDescription(setting, dataKey);
-		}
 	}
 
 	function buildPages()
@@ -88,14 +60,16 @@
 		return ::Core.Localisation.Helper.getSettingString(_key);
 	}
 
-	function getSettingsToBeBuiltImplicitly()
-	{
-		return ::Core.Database.Helper.getParameters();
-	}
-
 	function initialise()
 	{
+		this.createTables();
 		this.createMSUInterface();
+		this.loadBuilders();
 		this.build();
+	}
+
+	function loadBuilders()
+	{
+		::Core.getManager().includeFiles("mod_rpgr_core/framework/integrations/MSU/builders");
 	}
 };
