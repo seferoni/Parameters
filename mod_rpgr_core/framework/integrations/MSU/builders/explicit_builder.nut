@@ -1,7 +1,29 @@
 ::Core.Integrations.MSU.Builders.Explicit <-
 {
+	function addPages()
+	{
+		local helper = ::Core.Integrations.Helper.getMSUHelper();
+		helper.addPage("Presets");
+		helper.addPage("Localisation");
+	}
+
 	function build()
 	{
-		// TODO: need to handle localisation and presets here
+		this.addPages();
+	}
+
+	function buildLocalisationSetting()
+	{
+
+	}
+
+	function onLanguageChangeCallback()
+	{
+		// TODO: this callback resets all other chosen options?
+	}
+
+	function onPresetChangeCallback()
+	{
+
 	}
 };

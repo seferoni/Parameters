@@ -6,6 +6,11 @@
 		::Core.Integrations.MSU.Builders <- {};
 	}
 
+	function getMSUHelper()
+	{
+		return ::Core.Integrations.MSU;
+	}
+
 	function initialise()
 	{
 		if (!::Core.getManager().isMSUInstalled())
