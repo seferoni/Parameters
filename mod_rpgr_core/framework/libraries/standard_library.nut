@@ -7,8 +7,8 @@
 	},
 	Colour =
 	{
-		Green = "PositiveValue",
-		Red = "NegativeValue"
+		Green = "#2a5424",
+		Red = "#691a1a"
 	}
 
 	function appendToStringList( _targetString, _string )
@@ -26,7 +26,15 @@
 			string = _text.tostring();
 		}
 
-		return format("[color=%s]%s[/color]", ::Const.UI.Color[_colour], string)
+		return format("[color=%s]%s[/color]", _colour, string)
+	}
+
+	function extendArrayWithTableValues( _table, _targetArray )
+	{
+		foreach( key, value in _table )
+		{
+			_targetArray.push(value);
+		}
 	}
 
 	function extendTable( _table, _targetTable )
@@ -41,7 +49,7 @@
 	{
 		local flagValue = _object.getFlags().get(format("mod_rpgr_core.%s", _string));
 
-		if (!flagValue)
+		if (flagValue == false)
 		{
 			flagValue = _object.getFlags().get(format("%s", _string));
 		}
@@ -86,21 +94,23 @@
 
 	function getPercentageParameter( _settingID )
 	{
-		return (this.getSetting(_settingID) / 100.0)
+		return (this.getSetting(_settingID) / 100.0);
 	}
 
 	function getParameter( _settingID )
 	{
-		if (::Core.Internal.Manager.isMSUInstalled())
+		if (::Core.getManager().isMSUInstalled())
 		{
 			return ::Core.Mod.ModSettings.getSetting(_settingID).getValue();
 		}
 
-		foreach( tableKey, table in ::Core.Database )
+		local parameters = ::Core.Database.Helper.getParametersAggregated();
+
+		foreach( parameterKey, parameterTable in parameters )
 		{
-			if (_settingID in table)
+			if (parameterKey == _settingID)
 			{
-				return ::Core.Database[tableKey][_settingID];
+				return parameterTable.Default;
 			}
 		}
 
