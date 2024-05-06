@@ -45,6 +45,7 @@
 	{
 		::Core.Localisation.Helper.initialise();
 		::Core.Database.Helper.initialise();
+		::Core.Integrations.Helper.initialise();
 	}
 
 	function includeFiles( _path )
@@ -78,14 +79,14 @@
 		{
 			stringArray.resize(3);
 		}
-		
+
 		return format("%s.%s%s", stringArray[0], stringArray[1], stringArray[2]).tofloat();
 	}
 
 	function queue()
 	{
 		local queued = @() ::Core.getManager().initialise();
-		
+
 		if (this.isModernHooksInstalled())
 		{
 			::Core.getModernHooksInterface().queue(">mod_msu", queued);
@@ -97,6 +98,7 @@
 
 	function register()
 	{
+		this.updateModernHooksState();
 		this.updateMSUState();
 		this.formatVersion();
 		this.registerMod();
