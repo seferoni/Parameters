@@ -1,15 +1,17 @@
 ::Core.Integrations.MSU <-
 {
-	function addBooleanSetting( _settingID, _dataTable, _pageObject )
+	Pages = {},
+
+	function addBooleanSetting( _settingID, _dataTable, _pageString )
 	{
 		local properName = this.formatSettingName(_settingID);
-		_pageObject.addBooleanSetting(_settingID, _dataTable.Default, properName);
+		this.getPage(_pageString).addBooleanSetting(_settingID, _dataTable.Default, properName);
 	}
 
-	function addNumericalSetting( _settingID, _dataTable, _pageObject )
+	function addNumericalSetting( _settingID, _dataTable, _pageString )
 	{
 		local properName = this.formatSettingName(_settingID);
-		_pageObject.addRangeSetting(_settingID, _dataTable.Default, _dataTable.Range[0], _dataTable.Range[1], _dataTable.Interval, properName);
+		this.getPage(_pageString).addRangeSetting(_settingID, _dataTable.Default, _dataTable.Range[0], _dataTable.Range[1], _dataTable.Interval, properName);
 	}
 
 	function addPage( _string )
@@ -20,7 +22,8 @@
 	function build()
 	{
 		# Build all page objects through the MSU API.
-		local pages = this.buildPages();
+		this.buildPages();
+		this.Builders.Explicit.build();
 		this.Builders.Implicit.build();
 	}
 
@@ -32,22 +35,31 @@
 
 	function buildPages()
 	{
-		local pages = {};
+		this.Pages.Preset <- this.addPage("Presets");
+		this.Pages.Languages <- this.addPage("Localisation");
 
 		# Internal database structuring for game parameter data is to be reflected in page segregation.
 		local parameters = ::Core.Database.Helper.getParameters();
 
 		foreach( category, table in parameters )
 		{
-			pages.category <- this.addPage(category);
+			this.Pages[category] <- this.addPage(category);
 		}
-
-		return pages;
 	}
 
 	function createMSUInterface()
 	{
 		::Core.Interfaces.MSU <- ::MSU.Class.Mod(::Core.ID, ::Core.Version, ::Core.Name);
+	}
+
+	function getPage( _pageString )
+	{
+		return this.Pages[_pageString];
+	}
+
+	function getPages()
+	{
+		return this.Pages;
 	}
 
 	function getSettingDescription( _key )

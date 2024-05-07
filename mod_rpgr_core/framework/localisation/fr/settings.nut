@@ -1,4 +1,4 @@
-::Core.Localisation.Settings <-
+::Core.Localisation.French.Settings <-
 {
 	LootRemovalChance = "Loot Removal Chance",
 	LootRemovalChanceDescription = "Determines the percentage chance for loot removal on combat end. Legendary items are not affected.",

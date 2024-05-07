@@ -1,25 +1,62 @@
 ::Core.Integrations.MSU.Builders.Explicit <-
 {
-	function addPages()
+	function addLanguageChangeCallbacks( _settingElement )
 	{
-		local helper = ::Core.Integrations.Helper.getMSUHelper();
-		helper.addPage("Presets");
-		helper.addPage("Localisation");
+		_settingElement.addBeforeChangeCallback(this.onBeforeLanguageChangeCallback);
+		_settingElement.addAfterChangeCallback(this.onAfterLanguageChangeCallback);
+	}
+
+	function addLanguageSetting( _settingElement )
+	{
+		this.getLocalisationPage().addElement(_settingElement);
 	}
 
 	function build()
 	{
-		this.addPages();
+		this.buildPresets();
+		this.buildLocalisation();
 	}
 
-	function buildLocalisationSetting()
+	function buildLanguageSetting( _settingID )
+	{
+		local setting = ::MSU.Class.BooleanSetting(_settingID, false);
+		this.addLanguageChangeCallbacks(setting);
+		this.addLanguageSetting(setting);
+	}
+
+	function buildLocalisation()
 	{
 
 	}
 
-	function onLanguageChangeCallback()
+	function buildPresets()
 	{
-		// TODO: this callback resets all other chosen options?
+
+	}
+
+	function getAllLanguageSettings()
+	{
+		return this.getLocalisationPage().getAllElementsAsArray();
+	}
+
+	function getLocalisationPage()
+	{
+		return ::Core.Integrations.getMSUHelper().getPage("Localisation");
+	}
+
+	function onBeforeLanguageChangeCallback( _newValue )
+	{
+		local settings = this.getAllLanguageSettings();
+
+		foreach( setting in settings )
+		{
+			setting.set(false);
+		}
+	}
+
+	function onAfterLanguageChangeCallback( _newValue )
+	{
+		// TODO: this should change whatever references the language folder
 	}
 
 	function onPresetChangeCallback()
