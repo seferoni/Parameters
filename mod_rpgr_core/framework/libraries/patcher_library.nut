@@ -12,6 +12,11 @@
 		return naiveMethod;
 	}
 
+	function hook( _object )
+	{
+
+	}
+
 	# Calls new method and passes result onto original method; if null, calls original method with original arguments.
 	# It is the responsibility of the overriding function to return appropriate arguments.
 	function overrideArguments( _object, _function, _originalMethod, _argumentsArray )
