@@ -2,7 +2,7 @@
 {
 	function hook( _path, _function )
 	{
-		::Core.getModernHooksInterface().hook(_path, @(q) _function(q));
+		::Core.getModernHooksInterface().hook(_path, function(q) _function(q));
 	}
 
 	function overrideArguments()
@@ -20,8 +20,8 @@
 
 	}
 
-	function wrap( q, _function )
+	function wrap( _object, _methodName, _function )
 	{
-		
+		_object[_methodName] = @( __original ) _function();
 	}
 }
