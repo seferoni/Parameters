@@ -10,7 +10,7 @@
 		::Core.getModernHooksInterface().hookTree(_path, function(q) _function(q));
 	}
 
-	function wrap( q, _methodName, _function )
+	function wrap( q, _methodName, _function, _procedure )
 	{
 		q[_methodName] = @(__original) function( ... )
 		{

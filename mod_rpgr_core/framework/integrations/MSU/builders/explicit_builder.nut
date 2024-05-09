@@ -26,10 +26,15 @@
 
 	function buildLocalisation()
 	{
-
+		// TODO: build language settings
 	}
 
 	function buildPresets()
+	{
+
+	}
+
+	function getLanguageTables()
 	{
 
 	}

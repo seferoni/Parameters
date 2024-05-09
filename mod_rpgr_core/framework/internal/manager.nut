@@ -124,5 +124,4 @@
 	{
 		::Core.Internal.ModernHooksFound <- "Hooks" in ::getroottable();
 	}
-
 };
