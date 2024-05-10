@@ -14,12 +14,6 @@
 	{
 		q[_methodName] = @(__original) function( ... )
 		{
-			if (!::Core.Patcher.validateParameters(__original, vargv))
-			{
-				::Core.Standard.log(format("An invalid number of parameters were passed to %s, aborting wrap procedure.", _methodName), true);
-				return;
-			}
-
 			local argumentsArray = ::Core.Patcher.prependContextObject(this, vargv);
 			return ::Core.Patcher[_procedure](this, _function, __original, argumentsArray);
 		}
