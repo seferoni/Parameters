@@ -4,8 +4,15 @@
 	{
 		::Core.Database <- {};
 		::Core.Integrations <- {};
+		::Core.Interfaces <- {};
 		::Core.Localisation <- {};
 		::Core.Classes <- {};
+	}
+
+	function createInterfaces()
+	{
+		::Core.Interfaces.MSU <- null;
+		::Core.Interfaces.ModernHooks <- null;
 	}
 
 	function formatVersion()
@@ -23,6 +30,16 @@
 		::Core.Version = this.parseSemVer(::Core.Version);
 	}
 
+	function getModernHooksInterface()
+	{
+		return ::Core.Interfaces.ModernHooks;
+	}
+
+	function getMSUInterface()
+	{
+		return ::Core.Interfaces.MSU;
+	}
+
 	function isMSUInstalled()
 	{
 		return ::Core.Internal.MSUFound;
@@ -36,6 +53,7 @@
 	function initialise()
 	{
 		this.createTables();
+		this.createInterfaces();
 		this.loadHelpers();
 		this.loadFiles();
 		this.initialiseHelpers();
@@ -93,7 +111,7 @@
 			return;
 		}
 
-		::mods_queue(::Core.ID, ">mod_msu", queued);
+		::Core.Integrations.Helper.getModdingScriptHooksAPI().queue(">mod_msu", queued);
 	}
 
 	function register()
@@ -112,7 +130,7 @@
 			return;
 		}
 
-		::mods_registerMod(::Core.ID, ::Core.Version, ::Core.Name);
+		::Core.Integrations.Helper.getModdingScriptHooksAPI().register();
 	}
 
 	function updateMSUState()

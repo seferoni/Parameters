@@ -1,4 +1,4 @@
-::Core.Integrations.MSU <-
+::Core.Integrations.MSU.API <-
 {
 	Pages = {},
 
@@ -21,7 +21,6 @@
 
 	function build()
 	{
-		# Build all page objects through the MSU API.
 		this.buildPages();
 		this.Builders.Explicit.build();
 		this.Builders.Implicit.build();

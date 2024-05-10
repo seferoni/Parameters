@@ -1,5 +1,15 @@
-::Core.Integrations.ModdingScriptHooks <-
+::Core.Integrations.ModdingScriptHooks.API <-
 {
+	function queue( _expressionString, _function )
+	{
+		::mods_queue(::Core.ID, _expressionString, _function);
+	}
+
+	function register()
+	{
+		::mods_registerMod(::Core.ID, ::Core.Version, ::Core.Name);
+	}
+
 	function wrap( _object, _methodName, _function, _procedure )
 	{
 		# Assign reference to the name of the parent of the target object.

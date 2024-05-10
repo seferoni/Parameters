@@ -6,35 +6,64 @@
 		::Core.Integrations.MSU.Builders <- {};
 	}
 
-	function getMSUHelper()
+	function createModdingScriptHooksTables()
 	{
-		return ::Core.Integrations.MSU;
+		::Core.Integrations.ModdingScriptHooks <- {};
+	}
+
+	function createModernHooksTables()
+	{
+		::Core.Integrations.ModernHooks <- {};
+	}
+
+	function createTables()
+	{
+		this.createMSUTables();
+		this.createModdingScriptHooksTables();
+		this.createModernHooksTables();
+	}
+
+	function getMSUAPI()
+	{
+		return ::Core.Integrations.MSU.API;
+	}
+
+	function getModdingScriptHooksAPI()
+	{
+		return ::Core.Integrations.ModdingScriptHooks.API;
 	}
 
 	function initialise()
+	{
+		this.createTables();
+		this.loadAPI();
+		this.initialiseAPI();
+	}
+
+	function initialiseAPI()
+	{
+		this.initialiseMSUAPI();
+	}
+
+	function initialiseMSUAPI()
 	{
 		if (!::Core.getManager().isMSUInstalled())
 		{
 			return;
 		}
 
-		this.loadMSU();
-	}
-
-	function initialiseMSUHelper()
-	{
 		::Core.Integrations.MSU.initialise();
 	}
 
-	function loadMSU()
+	function loadFile( _filePath )
 	{
-		this.createMSUTables();
-		this.loadMSUHelper();
-		this.initialiseMSUHelper();
+		::include(format("mod_rpgr_core/framework/integrations/%s", _filePath));
 	}
 
-	function loadHelpers()
+	function loadAPI()
 	{
-		::include("mod_rpgr_core/framework/integrations/MSU/MSU.nut");
+		this.loadFile("msu/msu_api.nut");
+		this.loadFile("modern_hooks/modern_hooks_api.nut");
+		this.loadFile("modding_script_hooks/modding_script_hooks_api.nut");
 	}
 };

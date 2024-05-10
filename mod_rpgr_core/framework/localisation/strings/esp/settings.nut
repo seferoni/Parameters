@@ -1,38 +1,38 @@
 ::Core.Localisation.Spanish.Settings <-
 {
-	LootRemovalChance = "Loot Removal Chance",
-	LootRemovalChanceDescription = "Determines the percentage chance for loot removal on combat end. Legendary items are not affected.",
+	LootRemovalChance = "Probabilidad de eliminación del botín",
+	LootRemovalChanceDescription = "Determina el porcentaje de probabilidad de eliminación del botín al final del combate. Los objetos legendarios no se ven afectados.",
 
-	StashSize = "Stash Size",
-	StashSizeDescription = "Determines the starting stash size. Has no effect on ongoing playthroughs.",
+	StashSize = "Tamaño del alijo",
+	StashSizeDescription = "Determina el tamaño del alijo inicial. No tiene ningún efecto en las partidas en curso.",
 
-	RosterSize = "Roster Size",
-	RosterSizeDescription = "Determines the starting roster size. Has no effect on ongoing playthroughs."
+	RosterSize = "Tamaño de la lista",
+	RosterSizeDescription = "Determina el tamaño de la lista inicial. No tiene ningún efecto en las partidas en curso."
 
-	BeastPartsPriceMult = "Beast Parts Price Multiplier",
-	BeastPartsPriceMultDescription = "Determines the percentage multiplier for the price of beast parts.",
+	BeastPartsPriceMult = "Multiplicador de precio de piezas de bestia",
+	BeastPartsPriceMultDescription = "Determina el porcentaje multiplicador del precio de las piezas de bestia.",
 
-	BuyPriceMult = "Buy Price Multiplier",
-	BuyPriceMultDescription = "Determines the percentage multiplier for the purchase prices of goods sold at settlements.",
+	BuyPriceMult = "Multiplicador de precio de compra",
+	BuyPriceMultDescription = "Determina el multiplicador porcentual de los precios de compra de los bienes vendidos en los asentamientos.",
 
-	SellPriceMult = "Sell Price Multiplier",
-	SellPriceMultDescription = "Determines the percentage multiplier for the purchase prices of goods sold at settlements.",
+	SellPriceMult = "Multiplicador de precio de venta",
+	SellPriceMultDescription = "Determina el multiplicador porcentual de los precios de venta de los bienes vendidos en los asentamientos.",
 
-	RecruitsMult = "Recruits Multiplier",
-	RecruitsMultDescription = "Determines the percentage multiplier for the number of prospective recruits found at settlements.",
+	RecruitsMult = "Multiplicador de reclutas",
+	RecruitsMultDescription = "Determina el multiplicador porcentual del número de posibles reclutas encontrados en los asentamientos.",
 
-	ContractPaymentMult = "Contract Payment Multiplier",
-	ContractPaymentMultDescription = "Determines the percentage multiplier for contract payment.",
+	ContractPaymentMult = "Multiplicador de pago del contrato",
+	ContractPaymentMultDescription = "Determina el multiplicador porcentual para el pago del contrato.",
 
-	DailyWageMult = "Daily Wage Multiplier",
-	DailyWageMultDescription = "Determines the percentage multiplier for the daily wages paid out to currently hired brothers.",
+	DailyWageMult = "Multiplicador de salario diario",
+	DailyWageMultDescription = "Determina el multiplicador porcentual de los salarios diarios pagados a los hermanos actualmente contratados.",
 
-	FoodConsumptionMult = "Food Consumption Multiplier",
-	FoodConsumptionMultDescription = "Determines how quickly food is consumed. Stacks with retinue bonuses.",
+	FoodConsumptionMult = "Multiplicador del consumo de alimentos",
+	FoodConsumptionMultDescription = "Determina la rapidez con la que se consumen los alimentos. Se acumula con bonificaciones de séquito.",
 
-	RepairSpeedMult = "Repair Speed Multiplier",
-	RepairSpeedMultDescription = "Determines how quickly gear items are repaired. Stacks with retinue bonuses.",
+	RepairSpeedMult = "Multiplicador de tasa de reparación",
+	RepairSpeedMultDescription = "Determina la rapidez con la que se reparan los elementos del equipo. Se acumula con bonificaciones de séquito.",
 
-	XPMult = "XP Multiplier",
-	XPMultDescription = "Determines the percentage multiplier for global XP gains."
+	XPMult = "Multiplicador de XP",
+	XPMultDescription = "Determina el porcentaje multiplicador de ganancias de XP globales."
 }

@@ -35,4 +35,4 @@
 
 	XPMult = "XP Multiplier",
 	XPMultDescription = "Determines the percentage multiplier for global XP gains."
-}
+};

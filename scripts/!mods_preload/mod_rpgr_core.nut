@@ -7,11 +7,6 @@
 	{
 		ManagerPath = "mod_rpgr_core/internal/manager.nut",
 		TERMINATE = "__end"
-	},
-	Interfaces = 
-	{
-		MSU = null,
-		ModernHooks = null
 	}
 
 	function loadManager()
@@ -22,16 +17,6 @@
 	function getManager()
 	{
 		return this.Internal.Manager;
-	}
-
-	function getModernHooksInterface()
-	{
-		return this.Interfaces.ModernHooks;
-	}
-
-	function getMSUInterface()
-	{
-		return this.Interfaces.MSU;
 	}
 };
 

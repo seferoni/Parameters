@@ -1,6 +1,6 @@
 ::Core.Standard <-
 {
-	Case = 
+	Case =
 	{
 		Upper = "toupper",
 		Lower = "tolower"
@@ -101,7 +101,7 @@
 	{
 		if (::Core.getManager().isMSUInstalled())
 		{
-			return ::Core.Mod.ModSettings.getSetting(_settingID).getValue();
+			return ::Core.getManager().getMSUInterface().ModSettings.getSetting(_settingID).getValue();
 		}
 
 		local parameters = ::Core.Database.Helper.getParametersAggregated();

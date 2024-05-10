@@ -1,4 +1,4 @@
-::Core.Integrations.ModernHooks <-
+::Core.Integrations.ModernHooks.API <-
 {
 	function hook( _path, _function )
 	{
