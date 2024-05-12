@@ -19,7 +19,7 @@
 			::Core.Integrations.ModernHooks.hook(_path, _function);
 		}
 
-		::mods_hookExactClass(_path, _function);
+		::Core.Integrations.ModdingScriptHooks.hook(_path, _function);
 	}
 
 	function hookBase( _path, _function )
@@ -29,7 +29,7 @@
 			::Core.Integrations.ModernHooks.hook(_path, _function);
 		}
 
-		::mods_hookNewObject(_path, _function);
+		::Core.ModdingScriptHooks.hookBase(_path, _function);
 	}
 
 	function hookTree( _path, _function )

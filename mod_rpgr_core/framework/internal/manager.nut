@@ -5,7 +5,7 @@
 		::Core.Database <- {};
 		::Core.Integrations <- {};
 		::Core.Interfaces <- {};
-		::Core.Localisation <- {};
+		::Core.Strings <- {};
 		::Core.Classes <- {};
 	}
 
@@ -61,7 +61,6 @@
 
 	function initialiseHelpers()
 	{
-		::Core.Localisation.Helper.initialise();
 		::Core.Database.Helper.initialise();
 		::Core.Integrations.Helper.initialise();
 	}
@@ -78,7 +77,6 @@
 
 	function loadHelpers()
 	{
-		::include("mod_rpgr_core/framework/localisation/helper.nut");
 		::include("mod_rpgr_core/framework/database/helper.nut");
 		::include("mod_rpgr_core/framework/integrations/helper.nut");
 	}

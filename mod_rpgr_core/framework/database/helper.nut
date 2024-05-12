@@ -5,6 +5,11 @@
 		return ::Core.Database.Parameters;
 	}
 
+	function getParameter()
+	{
+		// TODO: remember, we have a presets based system. figure it out
+	}
+
 	function getParametersAggregated()
 	{
 		local aggregate = {};

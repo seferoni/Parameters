@@ -35,7 +35,6 @@
 	function buildPages()
 	{
 		this.Pages.Preset <- this.addPage("Presets");
-		this.Pages.Languages <- this.addPage("Localisation");
 
 		# Internal database structuring for game parameter data is to be reflected in page segregation.
 		local parameters = ::Core.Database.Helper.getParameters();
@@ -63,12 +62,12 @@
 
 	function getSettingDescription( _key )
 	{
-		return ::Core.Localisation.Helper.getSettingString(format("%sDescription", _key));
+		return ::Core.Strings[format("%sDescription", _key)];
 	}
 
 	function getSettingName( _key )
 	{
-		return ::Core.Localisation.Helper.getSettingString(_key);
+		return ::Core.Standard.getKey(_key, ::Core.Strings.Settings);
 	}
 
 	function initialise()

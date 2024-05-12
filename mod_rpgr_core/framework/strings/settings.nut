@@ -1,4 +1,4 @@
-::Core.Localisation.German.Settings <-
+::Core.Strings.Settings <-
 {
 	LootRemovalChance = "Loot Removal Chance",
 	LootRemovalChanceDescription = "Determines the percentage chance for loot removal on combat end. Legendary items are not affected.",
@@ -35,4 +35,4 @@
 
 	XPMult = "XP Multiplier",
 	XPMultDescription = "Determines the percentage multiplier for global XP gains."
-}
+};
