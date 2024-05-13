@@ -32,8 +32,19 @@
 		}
 	}
 
-	function getSettingsToBeBuiltImplicitly()
+	function buildSettingsTable()
 	{
-		return ::Core.Database.Helper.getParameters();
+		// TODO:
+	}
+
+	function getDefault( _parameterKey )
+	{
+
+	}
+
+	function getSettingsToBeBuiltImplicitly()
+	{	// TODO: needs to take into account that the default value is not stored in the same tables as MSU setting constructor information
+		local parameters = clone ::Core.Database.Manager.getParameters();
+		// TODO:
 	}
 };

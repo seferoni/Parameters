@@ -1,4 +1,4 @@
-::Core.Integrations.Helper <-
+::Core.Integrations.Manager <-
 {
 	function createMSUTables()
 	{

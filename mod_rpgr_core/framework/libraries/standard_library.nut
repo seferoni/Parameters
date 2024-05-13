@@ -104,7 +104,7 @@
 			return ::Core.getManager().getMSUInterface().ModSettings.getSetting(_settingID).getValue();
 		}
 
-		local parameters = ::Core.Database.Helper.getParametersAggregated();
+		local parameters = ::Core.Database.Manager.getParametersAggregated();
 
 		foreach( parameterKey, parameterTable in parameters )
 		{

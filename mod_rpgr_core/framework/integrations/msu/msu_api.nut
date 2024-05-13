@@ -1,5 +1,6 @@
 ::Core.Integrations.MSU.API <-
 {
+	Preset = "RPGR",
 	Pages = {},
 
 	function addBooleanSetting( _settingID, _dataTable, _pageString )
@@ -37,7 +38,7 @@
 		this.Pages.Preset <- this.addPage("Presets");
 
 		# Internal database structuring for game parameter data is to be reflected in page segregation.
-		local parameters = ::Core.Database.Helper.getParameters();
+		local parameters = ::Core.Database.Manager.getParameters();
 
 		foreach( category, table in parameters )
 		{
@@ -48,6 +49,11 @@
 	function createMSUInterface()
 	{
 		::Core.Interfaces.MSU <- ::MSU.Class.Mod(::Core.ID, ::Core.Version, ::Core.Name);
+	}
+
+	function formatPresetValue( _settingID )
+	{
+		return _settingID.slice("Presets".len());
 	}
 
 	function getPage( _pageString )
@@ -81,5 +87,10 @@
 	function loadBuilders()
 	{
 		::Core.getManager().includeFiles("mod_rpgr_core/framework/integrations/MSU/builders");
+	}
+
+	function setPreset( _newValue )
+	{
+		this.Preset = this.formatPresetValue(_newValue);
 	}
 };

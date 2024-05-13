@@ -56,13 +56,13 @@
 		this.createInterfaces();
 		this.loadHelpers();
 		this.loadFiles();
-		this.initialiseHelpers();
+		this.initialiseBackend();
 	}
 
-	function initialiseHelpers()
+	function initialiseBackend()
 	{
-		::Core.Database.Helper.initialise();
-		::Core.Integrations.Helper.initialise();
+		::Core.Database.Manager.initialise();
+		::Core.Integrations.Manager.initialise();
 	}
 
 	function includeFiles( _path )
@@ -109,7 +109,7 @@
 			return;
 		}
 
-		::Core.Integrations.Helper.getModdingScriptHooksAPI().queue(">mod_msu", queued);
+		::Core.Integrations.Manager.getModdingScriptHooksAPI().queue(">mod_msu", queued);
 	}
 
 	function register()
@@ -128,7 +128,7 @@
 			return;
 		}
 
-		::Core.Integrations.Helper.getModdingScriptHooksAPI().register();
+		::Core.Integrations.Manager.getModdingScriptHooksAPI().register();
 	}
 
 	function updateMSUState()
