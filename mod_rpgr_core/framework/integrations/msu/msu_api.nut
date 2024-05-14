@@ -3,16 +3,9 @@
 	Preset = "RPGR",
 	Pages = {},
 
-	function addBooleanSetting( _settingID, _dataTable, _pageString )
+	function appendElementToPage( _settingElement, _pageString )
 	{
-		local properName = this.formatSettingName(_settingID);
-		this.getPage(_pageString).addBooleanSetting(_settingID, _dataTable.Default, properName);
-	}
-
-	function addNumericalSetting( _settingID, _dataTable, _pageString )
-	{
-		local properName = this.formatSettingName(_settingID);
-		this.getPage(_pageString).addRangeSetting(_settingID, _dataTable.Default, _dataTable.Range[0], _dataTable.Range[1], _dataTable.Interval, properName);
+		this.getPage(_pageString).addElement(_settingElement);
 	}
 
 	function addPage( _string )
@@ -23,8 +16,8 @@
 	function build()
 	{
 		this.buildPages();
-		this.Builders.Explicit.build();
-		this.Builders.Implicit.build();
+		this.getExplicitBuilder().build();
+		this.getImplicitBuilder().build();
 	}
 
 	function buildDescription( _settingObject, _dataKey )
@@ -54,6 +47,16 @@
 	function formatPresetValue( _settingID )
 	{
 		return _settingID.slice("Presets".len());
+	}
+
+	function getExplicitBuilder()
+	{
+		return ::Core.Integrations.MSU.Builders.Explicit;
+	}
+
+	function getImplicitBuilder()
+	{
+		return ::Core.Integrations.MSU.Builders.Implicit;
 	}
 
 	function getPage( _pageString )

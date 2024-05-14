@@ -1,5 +1,11 @@
 ::Core.Strings.Settings <-
 {
+	PresetRPGR = "RPGR",
+	PresetRPGRDescription = "The default parameter configuration for RPG Rebalance. This preset is designed to make the game experience significantly harder and slower-paced by inducing scarcity upon key strategic layer resources.",
+
+	PresetVanilla = "Vanilla",
+	PresetVanillaDescription = "The default parameter configuration for the vanilla game.",
+
 	LootRemovalChance = "Loot Removal Chance",
 	LootRemovalChanceDescription = "Determines the percentage chance for loot removal on combat end. Legendary items are not affected.",
 

@@ -2,49 +2,51 @@
 {
 	function addSettingImplicitly( _settingID, _dataTable, _pageObject )
 	{
+		local settingElement = null;
+
 		switch (typeof _dataTable.Default)
 		{
-			case ("boolean"): return ::Core.Integrations.MSU.addBooleanSetting(_settingID, _dataTable, _pageObject);
+			case ("boolean"): settingElement = this.createBooleanSetting(_settingID, _dataTable, _pageObject); break;
 			case ("float"):
-			case ("integer"): return ::Core.Integrations.MSU.addNumericalSetting(_settingID, _dataTable, _pageObject);
+			case ("integer"): settingElement = this.createNumericalSetting(_settingID, _dataTable, _pageObject); break;
 		}
+
+		if (settingElement == null)
+		{
+			::Core.Standard.log(format("Passed element with ID %s had an unexpected default value type, skipping for implicit construction.", _settingID), true);
+			return;
+		}
+
+		::Core.Integrations.getMSUAPI().appendElementToPage(settingElement, _pageObject.getName());
 	}
 
 	function build()
 	{
-		# Get eligible data tables to be exposed as settings through the MSU settings panel.
-		local parameters = this.getSettingsToBeBuiltImplicitly();
 
-		# Loop through the Assets, World, and Settlements parameter tables.
-		foreach( parameterType, parameterTable in parameters )
-		{
-			this.buildImplicitly(parameterTable, pages[category]);
-		}
 	}
 
 	function buildImplicitly( _parameterTable, _pageObject )
 	{
-		# Loop through individual data tables within each parameter type. Each data structure corresponds to an individual MSU setting.
-		foreach( dataKey, dataTable in _parameterTable )
-		{
-			local setting = this.addSettingImplicitly(dataKey, dataTable, _pageObject);
-			::Core.Integrations.MSU.buildDescription(setting, dataKey);
-		}
+
 	}
 
 	function buildSettingsTable()
 	{
-		// TODO:
+		// TODO: this needs to add the correct default field to the settings table (make a shallow copy)
 	}
 
-	function getDefault( _parameterKey )
+	function createBooleanSetting( _settingID, _dataTable )
 	{
+		return ::MSU.Class.BooleanSetting(_settingID, _dataTable.Default, this.getSettingName(_settingID));
+	}
 
+	function createNumericalSetting( _settingID, _dataTable )
+	{
+		return ::MSU.Class.RangeSetting(_settingID, _dataTable.Default, _dataTable.Range[0], _dataTable.Range[1], _dataTable.Interval, this.getSettingName(_settingID));
 	}
 
 	function getSettingsToBeBuiltImplicitly()
-	{	// TODO: needs to take into account that the default value is not stored in the same tables as MSU setting constructor information
-		local parameters = clone ::Core.Database.Manager.getParameters();
-		// TODO:
+	{
+
 	}
 };
