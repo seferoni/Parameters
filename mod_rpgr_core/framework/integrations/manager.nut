@@ -52,7 +52,7 @@
 			return;
 		}
 
-		::Core.Integrations.MSU.initialise();
+		this.getMSUAPI().initialise();
 	}
 
 	function loadFile( _filePath )

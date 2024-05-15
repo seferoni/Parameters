@@ -13,31 +13,41 @@
 		::Core.Database.Parameters.Defaults.Vanilla <- {};
 	}
 
-	function load( _path )
+	function loadFolder( _path )
 	{
 		::Core.getManager().includeFiles(format("mod_rpgr_core/framework/database/%s", _path));
 	}
 
 	function loadFiles()
 	{
-		this.load("parameters/defaults/rpgr");
-		this.load("parameters/defaults/vanilla");
-		this.load("parameters/settings");
+		this.loadFolder("parameters/defaults/rpgr");
+		this.loadFolder("parameters/defaults/vanilla");
+		this.loadFolder("parameters/settings");
 	}
 
-	function getParameters()
+	function getDefaults( _presetKey )
+	{
+		return ::Core.Database.Parameters.Defaults[_presetKey];
+	}
+
+	function getParameter( _key )
 	{
 
 	}
 
-	function getParameter()
+	function getParameterCategories()
 	{
-
+		return ::Core.Standard.getKeys(::Core.Database.Parameters);
 	}
 
 	function getParametersAggregated()
 	{
 
+	}
+
+	function getSettingTables()
+	{
+		return ::Core.Database.Parameters.Settings;
 	}
 
 	function initialise()

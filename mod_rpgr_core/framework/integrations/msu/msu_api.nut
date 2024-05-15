@@ -3,14 +3,14 @@
 	Preset = "RPGR",
 	Pages = {},
 
-	function appendElementToPage( _settingElement, _pageString )
-	{
-		this.getPage(_pageString).addElement(_settingElement);
-	}
-
 	function addPage( _string )
 	{
 		return ::Core.Mod.ModSettings.addPage(_string);
+	}
+
+	function appendElementToPage( _settingElement, _pageString )
+	{
+		this.getPage(_pageString).addElement(_settingElement);
 	}
 
 	function build()
@@ -20,10 +20,10 @@
 		this.getImplicitBuilder().build();
 	}
 
-	function buildDescription( _settingObject, _dataKey )
+	function buildDescription( _settingElement, _dataKey )
 	{
 		local description = this.getSettingDescription(_dataKey);
-		_settingObject.setDescription(description);
+		_settingElement.setDescription(description);
 	}
 
 	function buildPages()
@@ -31,9 +31,9 @@
 		this.Pages.Preset <- this.addPage("Presets");
 
 		# Internal database structuring for game parameter data is to be reflected in page segregation.
-		local parameters = ::Core.Database.Manager.getParameters();
+		local parameterCategories = ::Core.Database.Manager.getParameterCategories();
 
-		foreach( category, table in parameters )
+		foreach( category in parameterCategories )
 		{
 			this.Pages[category] <- this.addPage(category);
 		}
@@ -47,6 +47,16 @@
 	function formatPresetValue( _settingID )
 	{
 		return _settingID.slice("Presets".len());
+	}
+
+	function getActivePreset()
+	{
+		return this.Preset;
+	}
+
+	function getDefaultValue( _settingKey )
+	{
+		return ::Core.Database.getDefaults(this.getActivePreset())[_settingKey];
 	}
 
 	function getExplicitBuilder()
