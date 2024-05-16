@@ -18,8 +18,13 @@
 	{
 		return this.Internal.Manager;
 	}
+
+	function initialise()
+	{
+		this.loadManager();
+		this.getManager().register();
+		this.getManager().queue();
+	}
 };
 
-::Core.loadManager();
-::Core.getManager().register();
-::Core.getManager().queue();
+::Core.initialise();

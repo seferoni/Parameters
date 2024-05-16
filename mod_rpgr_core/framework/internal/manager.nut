@@ -48,7 +48,7 @@
 	{
 		this.createTables();
 		this.createInterfaces();
-		this.loadManagers();
+		this.loadBackend();
 		this.initialiseBackend();
 		this.loadFiles();
 	}
@@ -69,7 +69,7 @@
 		}
 	}
 
-	function loadManagers()
+	function loadBackend()
 	{
 		::include("mod_rpgr_core/framework/database/manager.nut");
 		::include("mod_rpgr_core/framework/integrations/manager.nut");
