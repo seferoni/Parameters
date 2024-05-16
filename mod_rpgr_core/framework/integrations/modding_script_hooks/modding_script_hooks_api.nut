@@ -31,7 +31,7 @@
 		local parentName = _object.SuperName;
 
 		# Attempt to store a reference to the original method (which may be inherited), to preserve functionality when wrapped (if applicable).
-		local cachedMethod = this.cacheHookedMethod(_object, _methodName);
+		local cachedMethod = ::Core.Patcher.cacheHookedMethod(_object, _methodName);
 
 		_object.rawset(_methodName, function( ... )
 		{
@@ -63,7 +63,7 @@
 				return;
 			}
 
-			local argumentsArray = self.prependContextObject(this, vargv);
+			local argumentsArray = ::Core.Patcher.prependContextObject(this, vargv);
 			return ::Core.Patcher[_procedure](this, _function, originalMethod, argumentsArray);
 		});
 	}
