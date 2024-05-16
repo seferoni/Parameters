@@ -9,12 +9,6 @@
 		::Core.Classes <- {};
 	}
 
-	function createInterfaces()
-	{
-		::Core.Interfaces.MSU <- null;
-		::Core.Interfaces.ModernHooks <- null;
-	}
-
 	function formatVersion()
 	{
 		if (this.isMSUInstalled())
@@ -30,14 +24,14 @@
 		::Core.Version = this.parseSemVer(::Core.Version);
 	}
 
-	function getModernHooksInterface()
-	{
-		return ::Core.Interfaces.ModernHooks;
-	}
-
 	function getMSUInterface()
 	{
 		return ::Core.Interfaces.MSU;
+	}
+
+	function getModernHooksInterface()
+	{
+		return ::Core.Interfaces.ModernHooks;
 	}
 
 	function isMSUInstalled()
@@ -54,9 +48,9 @@
 	{
 		this.createTables();
 		this.createInterfaces();
-		this.loadHelpers();
-		this.loadFiles();
+		this.loadManagers();
 		this.initialiseBackend();
+		this.loadFiles();
 	}
 
 	function initialiseBackend()
@@ -75,10 +69,10 @@
 		}
 	}
 
-	function loadHelpers()
+	function loadManagers()
 	{
-		::include("mod_rpgr_core/framework/database/helper.nut");
-		::include("mod_rpgr_core/framework/integrations/helper.nut");
+		::include("mod_rpgr_core/framework/database/manager.nut");
+		::include("mod_rpgr_core/framework/integrations/manager.nut");
 	}
 
 	function loadFiles()
@@ -105,30 +99,40 @@
 
 		if (this.isModernHooksInstalled())
 		{
-			::Core.getModernHooksInterface().queue(">mod_msu", queued);
+			this.getModernHooksInterface().queue(">mod_msu", queued);
 			return;
 		}
 
-		::Core.Integrations.Manager.getModdingScriptHooksAPI().queue(">mod_msu", queued);
+		::mods_queue(::Core.ID, ">mod_msu", queued);
 	}
 
 	function register()
 	{
-		this.updateModernHooksState();
-		this.updateMSUState();
+		this.updateIntegrationRegistry();
 		this.formatVersion();
 		this.registerMod();
 	}
 
 	function registerMod()
 	{
+		if (this.isMSUInstalled())
+		{
+			::Core.Interfaces.MSU <- ::MSU.Class.Mod(::Core.ID, ::Core.Version, ::Core.Name);
+		}
+
 		if (this.isModernHooksInstalled())
 		{
 			::Core.Interfaces.ModernHooks = ::Hooks.register(::Core.ID, ::Core.Version, ::Core.Name);
 			return;
 		}
 
-		::Core.Integrations.Manager.getModdingScriptHooksAPI().register();
+		::mods_registerMod(::Core.ID, ::Core.Version, ::Core.Name);
+	}
+
+	function updateIntegrationRegistry()
+	{
+		this.updateMSUState();
+		this.updateModernHooksState();
 	}
 
 	function updateMSUState()

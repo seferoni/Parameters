@@ -30,19 +30,21 @@
 		return ::Core.Database.Parameters.Defaults[_presetKey];
 	}
 
-	function getParameter( _key )
-	{
-
-	}
-
 	function getParameterCategories()
 	{
 		return ::Core.Standard.getKeys(::Core.Database.Parameters);
 	}
 
-	function getParametersAggregated()
+	function getDefaultsAggregated()
 	{
+		local defaults = {};
 
+		foreach( dataTable in ::Core.Database.Parameters.Defaults.RPGR )
+		{
+			::Core.Standard.extendTable(dataTable, defaults);
+		}
+
+		return defaults;
 	}
 
 	function getSettingTables()

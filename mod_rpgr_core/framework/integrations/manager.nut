@@ -23,7 +23,7 @@
 		this.createModernHooksTables();
 	}
 
-	function getMSUAPI()
+	function getMSUSettingsAPI()
 	{
 		return ::Core.Integrations.MSU.API;
 	}
@@ -52,7 +52,7 @@
 			return;
 		}
 
-		this.getMSUAPI().initialise();
+		this.getMSUSettingsAPI().initialise();
 	}
 
 	function loadFile( _filePath )

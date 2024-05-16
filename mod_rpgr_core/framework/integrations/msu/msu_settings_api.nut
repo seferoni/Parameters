@@ -39,14 +39,9 @@
 		}
 	}
 
-	function createMSUInterface()
-	{
-		::Core.Interfaces.MSU <- ::MSU.Class.Mod(::Core.ID, ::Core.Version, ::Core.Name);
-	}
-
 	function formatPresetValue( _settingID )
 	{
-		return _settingID.slice("Presets".len());
+		return _settingID.slice(this.getExplicitBuilder().getPresetsKey().len());
 	}
 
 	function getActivePreset()
@@ -92,7 +87,6 @@
 	function initialise()
 	{
 		this.createTables();
-		this.createMSUInterface();
 		this.loadBuilders();
 		this.build();
 	}

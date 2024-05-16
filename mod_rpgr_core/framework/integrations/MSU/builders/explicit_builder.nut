@@ -8,7 +8,7 @@
 
 	function appendToPresetsPage( _settingElement )
 	{
-		::Core.Integrations.Manager.getMSUAPI().appendElementToPage(_settingElement, "Presets");
+		::Core.Integrations.Manager.getMSUSettingsAPI().appendElementToPage(_settingElement, this.getPresetsKey());
 	}
 
 	function build()
@@ -32,7 +32,7 @@
 
 	function createBooleanSetting( _settingID, _defaultValue )
 	{
-		return ::MSU.Class.BooleanSetting(_settingID, _defaultValue, ::Core.Integrations.Manager.getMSUAPI().getSettingDescription(_settingName));
+		return ::MSU.Class.BooleanSetting(_settingID, _defaultValue, ::Core.Integrations.Manager.getMSUSettingsAPI().getSettingDescription(_settingName));
 	}
 
 	function getAllPresetSettings()
@@ -42,19 +42,24 @@
 
 	function getPagesForReset()
 	{
-		local pages = clone ::Core.Integrations.Manager.getMSUAPI().getPages();
-		pages.rawdelete("Presets");
+		local pages = clone ::Core.Integrations.Manager.getMSUSettingsAPI().getPages();
+		pages.rawdelete(this.getPresetsKey());
 		return pages;
+	}
+
+	function getPresetsKey()
+	{
+		return "Presets";
 	}
 
 	function getPresetsPage()
 	{
-		return ::Core.Integrations.Manager.getMSUAPI().getPage("Presets");
+		return ::Core.Integrations.Manager.getMSUSettingsAPI().getPage(this.getPresetsKey());
 	}
 
 	function onBeforePresetChangeCallback( _newValue )
 	{
-		local settings = ::Core.Integrations.Manager.getMSUAPI().getExplicitBuilder().getAllPresetSettings();
+		local settings = ::Core.Integrations.Manager.getMSUSettingsAPI().getExplicitBuilder().getAllPresetSettings();
 
 		foreach( setting in setting )
 		{
@@ -64,8 +69,8 @@
 
 	function onAfterPresetChangeCallback( _oldValue )
 	{
-		::Core.Integrations.Manager.getMSUAPI().setPreset(this.getID());
-		::Core.Integrations.Manager.getMSUAPI().getExplicitBuilder().resetSettings();
+		::Core.Integrations.Manager.getMSUSettingsAPI().setPreset(this.getID());
+		::Core.Integrations.Manager.getMSUSettingsAPI().getExplicitBuilder().resetSettings();
 	}
 
 	function resetSettings()
@@ -80,7 +85,7 @@
 
 	function setPresetSettingDescription( _settingElement )
 	{	// TODO: shouldn't the MSU API handle this?
-		local description = ::Core.Integrations.Manager.getMSUAPI().getSettingDescription(_settingElement.getID());
+		local description = ::Core.Integrations.Manager.getMSUSettingsAPI().getSettingDescription(_settingElement.getID());
 		_settingElement.setDescription(description);
 	}
 };

@@ -92,31 +92,29 @@
 		return keys;
 	}
 
-	function getPercentageParameter( _settingID )
+	function getNormalisedParameter( _parameterKey, _normalisationFactor = 100.0 )
 	{
-		return (this.getSetting(_settingID) / 100.0);
+		return (this.getParameter(_parameterKey) / _normalisationFactor);
 	}
 
-	function getParameter( _settingID )
+	function getParameter( _parameterKey )
 	{
 		if (::Core.getManager().isMSUInstalled())
 		{
-			return ::Core.getManager().getMSUInterface().ModSettings.getSetting(_settingID).getValue();
+			return ::Core.Integrations.Manager.getMSUAPI().getMSUInterface().ModSettings.getSetting(_parameterKey).getValue();
 		}
 
-		// TODO: remember, this should be retrieving defaults!
-		local parameters = ::Core.Database.Manager.getParametersAggregated();
+		local parameters = ::Core.Database.Manager.getDefaultsAggregated();
 
-		foreach( parameterKey, parameterTable in parameters )
+		foreach( key, value in parameters )
 		{
-			if (parameterKey == _settingID)
+			if (key == _parameterKey)
 			{
-				return parameterTable.Default;
+				return value;
 			}
 		}
 
-		this.log(format("Invalid settingID %s passed to getSetting.", _settingID), true);
-		return;
+		this.log(format("Invalid parameter key %s passed to getParameter.", _parameterKey), true);
 	}
 
 	function incrementFlag( _string, _value, _object, _isNative = false )
@@ -158,7 +156,11 @@
 		foreach( entry in culledObjects )
 		{
 			local index = _targetArray.find(entry);
-			if (index != null) _targetArray.remove(index);
+
+			if (index != null)
+			{
+				_targetArray.remove(index);
+			}
 		}
 	}
 

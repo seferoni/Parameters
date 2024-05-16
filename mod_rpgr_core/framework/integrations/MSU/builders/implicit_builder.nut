@@ -17,8 +17,8 @@
 			return;
 		}
 
-		::Core.Integrations.Manager.getMSUAPI().buildDescription(settingElement, dataKey);
-		::Core.Integrations.Manager.getMSUAPI().appendElementToPage(settingElement, _pageID);
+		::Core.Integrations.Manager.getMSUSettingsAPI().buildDescription(settingElement, dataKey);
+		::Core.Integrations.Manager.getMSUSettingsAPI().appendElementToPage(settingElement, _pageID);
 	}
 
 	function build()
@@ -38,7 +38,7 @@
 		# Loop through individual data tables within each parameter type. Each data structure corresponds to an individual MSU setting.
 		foreach( dataKey, dataTable in _parameterTable )
 		{
-			dataTable.Default <- ::Core.Integrations.Manager.getMSUAPI().getDefaultValue(dataKey);
+			dataTable.Default <- ::Core.Integrations.Manager.getMSUSettingsAPI().getDefaultValue(dataKey);
 			this.addSettingImplicitly(dataKey, dataTable, _pageName);
 		}
 	}
