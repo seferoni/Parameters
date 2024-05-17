@@ -1,11 +1,11 @@
-::Core.Integrations.MSU.API <-
+::Core.Integrations.MSU <-
 {
 	Preset = "RPGR",
 	Pages = {},
 
-	function addPage( _string )
+	function addPage( _pageID )
 	{
-		return ::Core.Mod.ModSettings.addPage(_string);
+		return this.getMSUInterface().ModSettings.addPage(_pageID);
 	}
 
 	function appendElementToPage( _settingElement, _pageString )
@@ -20,23 +20,29 @@
 		this.getImplicitBuilder().build();
 	}
 
-	function buildDescription( _settingElement, _dataKey )
+	function buildDescription( _settingElement )
 	{
-		local description = this.getSettingDescription(_dataKey);
+		local description = this.getSettingDescription(_settingElement.getID());
 		_settingElement.setDescription(description);
 	}
 
+	# This method is to be handled explicitly.
 	function buildPages()
 	{
-		this.Pages.Preset <- this.addPage("Presets");
+		this.Pages.Preset <- this.addPage(this.getExplicitBuilder().Parameters.PresetsPageID);
 
 		# Internal database structuring for game parameter data is to be reflected in page segregation.
-		local parameterCategories = ::Core.Database.Manager.getParameterCategories();
+		local parameterCategories = ::Core.Database.getParameterCategories();
 
 		foreach( category in parameterCategories )
 		{
 			this.Pages[category] <- this.addPage(category);
 		}
+	}
+
+	function createTables()
+	{
+		this.Builders <- {};
 	}
 
 	function formatPresetValue( _settingID )
@@ -56,12 +62,17 @@
 
 	function getExplicitBuilder()
 	{
-		return ::Core.Integrations.MSU.Builders.Explicit;
+		return this.Builders.Explicit;
+	}
+
+	function getMSUInterface()
+	{
+		return ::Core.getManager().getMSUInterface();
 	}
 
 	function getImplicitBuilder()
 	{
-		return ::Core.Integrations.MSU.Builders.Implicit;
+		return this.Builders.Implicit;
 	}
 
 	function getPage( _pageString )

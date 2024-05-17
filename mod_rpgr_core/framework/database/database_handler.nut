@@ -1,4 +1,4 @@
-::Core.Database.Manager <-
+::Core.Database <-
 {
 	function createTables()
 	{

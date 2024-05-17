@@ -1,4 +1,4 @@
-::Core.Integrations.ModdingScriptHooks.API <-
+::Core.Integrations.ModdingScriptHooks <-
 {
 	function hook( _path, _function )
 	{

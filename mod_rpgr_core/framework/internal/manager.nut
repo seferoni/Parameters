@@ -55,8 +55,8 @@
 
 	function initialiseBackend()
 	{
-		::Core.Database.Manager.initialise();
-		::Core.Integrations.Manager.initialise();
+		::Core.Database.initialise();
+		::Core.Integrations.initialise();
 	}
 
 	function includeFiles( _path )
@@ -71,8 +71,8 @@
 
 	function loadBackend()
 	{
-		::include("mod_rpgr_core/framework/database/manager.nut");
-		::include("mod_rpgr_core/framework/integrations/manager.nut");
+		::include("mod_rpgr_core/framework/database/database_handler.nut");
+		::include("mod_rpgr_core/framework/integrations/mod_integration.nut");
 	}
 
 	function loadFiles()

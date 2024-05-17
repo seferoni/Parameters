@@ -1,41 +1,17 @@
-::Core.Integrations.Manager <-
+::Core.Integrations <-
 {
-	function createMSUTables()
-	{
-		::Core.Integrations.MSU <- {};
-		::Core.Integrations.MSU.Builders <- {};
-	}
-
-	function createModdingScriptHooksTables()
-	{
-		::Core.Integrations.ModdingScriptHooks <- {};
-	}
-
-	function createModernHooksTables()
-	{
-		::Core.Integrations.ModernHooks <- {};
-	}
-
-	function createTables()
-	{
-		this.createMSUTables();
-		this.createModdingScriptHooksTables();
-		this.createModernHooksTables();
-	}
-
 	function getMSUSettingsAPI()
 	{
-		return ::Core.Integrations.MSU.API;
+		return this.MSU;
 	}
 
 	function getModdingScriptHooksAPI()
 	{
-		return ::Core.Integrations.ModdingScriptHooks.API;
+		return this.ModdingScriptHooks;
 	}
 
 	function initialise()
 	{
-		this.createTables();
 		this.loadAPI();
 		this.initialiseAPI();
 	}
