@@ -2,8 +2,6 @@
 {
 	function createTables()
 	{
-		::Core.Database <- {};
-		::Core.Integrations <- {};
 		::Core.Interfaces <- {};
 		::Core.Strings <- {};
 		::Core.Classes <- {};
