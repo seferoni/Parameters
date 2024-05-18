@@ -1,6 +1,6 @@
 ::Core.Integrations.MSU <-
 {
-	Preset = "RPGR",
+	Preset = "RPGRPreset",
 	Pages = {},
 
 	function addPage( _pageID )
@@ -29,7 +29,7 @@
 	# This method is to be handled explicitly.
 	function buildPages()
 	{
-		this.Pages.Preset <- this.addPage(this.getExplicitBuilder().Parameters.PresetsPageID);
+		this.Pages.Preset <- this.addPage(this.getExplicitBuilder().IDs.PresetsPage);
 
 		# Internal database structuring for game parameter data is to be reflected in page segregation.
 		local parameterCategories = ::Core.Database.getParameterCategories();
@@ -43,11 +43,6 @@
 	function createTables()
 	{
 		this.Builders <- {};
-	}
-
-	function formatPresetValue( _settingID )
-	{
-		return _settingID.slice(this.getExplicitBuilder().getPresetsKey().len());
 	}
 
 	function getActivePreset()
@@ -87,7 +82,7 @@
 
 	function getSettingDescription( _key )
 	{
-		return ::Core.Strings[format("%sDescription", _key)];
+		return ::Core.Strings.Settings[format("%sDescription", _key)];
 	}
 
 	function getSettingName( _key )
@@ -104,11 +99,11 @@
 
 	function loadBuilders()
 	{
-		::Core.getManager().includeFiles("mod_rpgr_core/framework/integrations/MSU/builders");
+		::Core.getManager().includeFiles("mod_rpgr_core/framework/integrations/msu/builders");
 	}
 
 	function setPreset( _newValue )
 	{
-		this.Preset = this.formatPresetValue(_newValue);
+		this.Preset = this.getExplicitBuilder().getPresetKeyBySettingID(_newValue);
 	}
 };

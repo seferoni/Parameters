@@ -1,10 +1,10 @@
 ::Core.Integrations.MSU.Builders.Explicit <-
 {
-	Parameters =
+	IDs =
 	{
-		PresetsPageID = "Presets",
-		RPGRPresetID = "PresetsRPGR",
-		VanillaPresetID = "PresetsVanilla"
+		PresetsPage = "Presets",
+		RPGRPreset = "RPGRPreset",
+		VanillaPreset = "VanillaPreset"
 	}
 
 	function addPresetChangeCallbacks( _settingElement )
@@ -15,7 +15,7 @@
 
 	function appendToPresetsPage( _settingElement )
 	{
-		::Core.Integrations.getMSUSettingsAPI().appendElementToPage(_settingElement, this.Parameters.PresetsPageID);
+		::Core.Integrations.getMSUSettingsAPI().appendElementToPage(_settingElement, this.IDs.PresetsPage);
 	}
 
 	function build()
@@ -25,8 +25,8 @@
 
 	function buildPresets()
 	{
-		this.buildPresetSetting(this.Parameters.RPGRPresetID, true);
-		this.buildPresetSetting(this.Parameters.VanillaPresetID, false);
+		this.buildPresetSetting(this.IDs.RPGRPreset, true);
+		this.buildPresetSetting(this.IDs.VanillaPreset, false);
 	}
 
 	function buildPresetSetting( _settingID, _defaultValue )
@@ -39,7 +39,7 @@
 
 	function buildPresetSettingDescription( _settingElement )
 	{
-		::Core.Integrations.getMSUSettingsAPI().buildSettingDescription(_settingElement);
+		::Core.Integrations.getMSUSettingsAPI().buildDescription(_settingElement);
 	}
 
 	function createBooleanSetting( _settingID, _defaultValue )
@@ -55,13 +55,18 @@
 	function getPagesForReset()
 	{
 		local pages = clone ::Core.Integrations.getMSUSettingsAPI().getPages();
-		pages.rawdelete(this.Parameters.PresetsPageID);
+		pages.rawdelete(this.IDs.PresetsPage);
 		return pages;
+	}
+
+	function getPresetKeyBySettingID( _settingID )
+	{
+		return ::Core.Standard.getKey(_settingID, this.IDs);
 	}
 
 	function getPresetsPage()
 	{
-		return ::Core.Integrations.getMSUSettingsAPI().getPage(this.Parameters.PresetsPageID);
+		return ::Core.Integrations.getMSUSettingsAPI().getPage(this.IDs.PresetsPage);
 	}
 
 	function onBeforePresetChangeCallback( _newValue )

@@ -31,14 +31,14 @@
 		this.getMSUSettingsAPI().initialise();
 	}
 
-	function loadFile( _filePath )
+	function loadFile( _fileName )
 	{
-		::include(format("mod_rpgr_core/framework/integrations/%s", _filePath));
+		::include(format("mod_rpgr_core/framework/integrations/%s", _fileName));
 	}
 
 	function loadAPI()
 	{
-		this.loadFile("msu/msu_api.nut");
+		this.loadFile("msu/msu_settings_api.nut");
 		this.loadFile("modern_hooks/modern_hooks_api.nut");
 		this.loadFile("modding_script_hooks/modding_script_hooks_api.nut");
 	}

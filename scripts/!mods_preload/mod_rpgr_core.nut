@@ -5,7 +5,7 @@
 	Version = "1.0.0",
 	Internal =
 	{
-		ManagerPath = "mod_rpgr_core/internal/manager.nut",
+		ManagerPath = "mod_rpgr_core/framework/internal/manager.nut",
 		TERMINATE = "__end"
 	}
 
@@ -22,7 +22,7 @@
 	function initialise()
 	{
 		this.loadManager();
-		this.getManager().register();
+		this.getManager().awake();
 		this.getManager().queue();
 	}
 };

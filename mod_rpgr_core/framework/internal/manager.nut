@@ -1,5 +1,22 @@
 ::Core.Internal.Manager <-
 {
+	function awake()
+	{
+		this.createTables();
+		this.updateIntegrationRegistry();
+		this.register();
+	}
+
+	function createMSUInterface()
+	{
+		if (!this.isMSUInstalled())
+		{
+			return;
+		}
+
+		::Core.Interfaces.MSU <- ::MSU.Class.Mod(::Core.ID, ::Core.Version, ::Core.Name);
+	}
+
 	function createTables()
 	{
 		::Core.Interfaces <- {};
@@ -44,14 +61,15 @@
 
 	function initialise()
 	{
-		this.createTables();
-		this.createInterfaces();
-		this.loadBackend();
-		this.initialiseBackend();
+		this.createMSUInterface();
+		this.loadLibraries();
+		this.loadStrings();
+		this.loadHandlers();
+		this.initialiseHandlers();
 		this.loadFiles();
 	}
 
-	function initialiseBackend()
+	function initialiseHandlers()
 	{
 		::Core.Database.initialise();
 		::Core.Integrations.initialise();
@@ -67,11 +85,22 @@
 		}
 	}
 
-	function loadBackend()
+	function loadHandlers()
 	{
 		::include("mod_rpgr_core/framework/database/database_handler.nut");
 		::include("mod_rpgr_core/framework/integrations/mod_integration.nut");
 	}
+
+	function loadStrings()
+	{
+		this.includeFiles("mod_rpgr_core/framework/strings");
+	}
+
+	function loadLibraries()
+	{
+		::include("mod_rpgr_core/framework/libraries/standard_library.nut");
+		::include("mod_rpgr_core/framework/libraries/patcher_library.nut");
+	} 
 
 	function loadFiles()
 	{
@@ -106,18 +135,12 @@
 
 	function register()
 	{
-		this.updateIntegrationRegistry();
 		this.formatVersion();
 		this.registerMod();
 	}
 
 	function registerMod()
 	{
-		if (this.isMSUInstalled())
-		{
-			::Core.Interfaces.MSU <- ::MSU.Class.Mod(::Core.ID, ::Core.Version, ::Core.Name);
-		}
-
 		if (this.isModernHooksInstalled())
 		{
 			::Core.Interfaces.ModernHooks = ::Hooks.register(::Core.ID, ::Core.Version, ::Core.Name);
