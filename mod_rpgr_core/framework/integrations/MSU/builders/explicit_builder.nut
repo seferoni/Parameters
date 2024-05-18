@@ -1,10 +1,16 @@
 ::Core.Integrations.MSU.Builders.Explicit <-
 {
 	IDs =
-	{
-		PresetsPage = "Presets",
-		RPGRPreset = "RPGRPreset",
-		VanillaPreset = "VanillaPreset"
+	{	// TODO: kinda icky feeling. is this rlly consistent w what we do in implicit builder?
+		Pages = 
+		{
+			Presets = "PresetsPage",
+		},
+		Settings = 
+		{
+			RPGR = "RPGRPreset",
+			Vanilla = "VanillaPreset"
+		}
 	}
 
 	function addPresetChangeCallbacks( _settingElement )
@@ -15,18 +21,24 @@
 
 	function appendToPresetsPage( _settingElement )
 	{
-		::Core.Integrations.getMSUSettingsAPI().appendElementToPage(_settingElement, this.IDs.PresetsPage);
+		::Core.Integrations.getMSUSettingsAPI().appendElementToPage(_settingElement, this.IDs.Pages.Presets);
 	}
 
 	function build()
 	{
+		this.buildPages();
 		this.buildPresets();
+	}
+
+	function buildPages()
+	{
+		::Core.Integrations.getMSUSettingsAPI().addPage(this.IDs.Pages.Presets);
 	}
 
 	function buildPresets()
 	{
-		this.buildPresetSetting(this.IDs.RPGRPreset, true);
-		this.buildPresetSetting(this.IDs.VanillaPreset, false);
+		this.buildPresetSetting(this.IDs.Settings.RPGR, true);
+		this.buildPresetSetting(this.IDs.Settings.Vanilla, false);
 	}
 
 	function buildPresetSetting( _settingID, _defaultValue )
@@ -55,18 +67,18 @@
 	function getPagesForReset()
 	{
 		local pages = clone ::Core.Integrations.getMSUSettingsAPI().getPages();
-		pages.rawdelete(this.IDs.PresetsPage);
+		delete pages[this.IDs.Pages.Presets];
 		return pages;
 	}
 
 	function getPresetKeyBySettingID( _settingID )
 	{
-		return ::Core.Standard.getKey(_settingID, this.IDs);
+		return ::Core.Standard.getKey(_settingID, this.IDs.Settings);
 	}
 
 	function getPresetsPage()
 	{
-		return ::Core.Integrations.getMSUSettingsAPI().getPage(this.IDs.PresetsPage);
+		return ::Core.Integrations.getMSUSettingsAPI().getPage(this.IDs.Pages.Presets);
 	}
 
 	function onBeforePresetChangeCallback( _newValue )

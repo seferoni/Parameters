@@ -23,6 +23,7 @@
 
 	function build()
 	{
+		this.buildPages();
 		# Get eligible data tables to be exposed as settings through the MSU settings panel.
 		local parameters = this.getSettingsToBeBuiltImplicitly();
 
@@ -30,6 +31,17 @@
 		foreach( parameterType, parameterTable in parameters )
 		{
 			this.buildImplicitly(parameterTable, parameterType);
+		}
+	}
+
+	function buildPages()
+	{
+		# Internal database structuring for game parameter data is to be reflected in page segregation.
+		local parameterCategories = ::Core.Database.getParameterCategories();
+
+		foreach( category in parameterCategories )
+		{
+			::Core.Integrations.getMSUSettingsAPI().addPage(category);
 		}
 	}
 
