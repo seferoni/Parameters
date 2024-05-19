@@ -1,7 +1,7 @@
 ::Core.Integrations.MSU.Builders.Explicit <-
 {
 	IDs =
-	{	// TODO: kinda icky feeling. is this rlly consistent w what we do in implicit builder?
+	{
 		Pages = 
 		{
 			Presets = "PresetsPage",
@@ -43,7 +43,7 @@
 
 	function buildPresetSetting( _settingID, _defaultValue )
 	{
-		local setting = ::MSU.Class.BooleanSetting(_settingID, _defaultValue);
+		local setting = ::MSU.Class.BooleanSetting(_settingID, _defaultValue, ::Core.Integrations.getMSUSettingsAPI().getSettingName(_settingID));
 		this.addPresetChangeCallbacks(setting);
 		this.buildPresetSettingDescription(setting);
 		this.appendToPresetsPage(setting);

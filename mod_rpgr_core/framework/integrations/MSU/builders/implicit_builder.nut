@@ -6,9 +6,9 @@
 
 		switch (typeof _dataTable.Default)
 		{
-			case ("boolean"): settingElement = this.createBooleanSetting(_settingID, _dataTable, _pageID); break;
+			case ("boolean"): settingElement = this.createBooleanSetting(_settingID, _dataTable); break;
 			case ("float"):
-			case ("integer"): settingElement = this.createNumericalSetting(_settingID, _dataTable, _pageID); break;
+			case ("integer"): settingElement = this.createNumericalSetting(_settingID, _dataTable); break;
 		}
 
 		if (settingElement == null)
@@ -17,13 +17,14 @@
 			return;
 		}
 
-		::Core.Integrations.getMSUSettingsAPI().buildDescription(settingElement, dataKey);
+		::Core.Integrations.getMSUSettingsAPI().buildDescription(settingElement);
 		::Core.Integrations.getMSUSettingsAPI().appendElementToPage(settingElement, _pageID);
 	}
 
 	function build()
 	{
 		this.buildPages();
+		
 		# Get eligible data tables to be exposed as settings through the MSU settings panel.
 		local parameters = this.getSettingsToBeBuiltImplicitly();
 
@@ -57,12 +58,12 @@
 
 	function createBooleanSetting( _settingID, _dataTable )
 	{
-		return ::MSU.Class.BooleanSetting(_settingID, _dataTable.Default, this.getSettingName(_settingID));
+		return ::MSU.Class.BooleanSetting(_settingID, _dataTable.Default, ::Core.Integrations.getMSUSettingsAPI().getSettingName(_settingID));
 	}
 
 	function createNumericalSetting( _settingID, _dataTable )
 	{
-		return ::MSU.Class.RangeSetting(_settingID, _dataTable.Default, _dataTable.Range[0], _dataTable.Range[1], _dataTable.Interval, this.getSettingName(_settingID));
+		return ::MSU.Class.RangeSetting(_settingID, _dataTable.Default, _dataTable.Range[0], _dataTable.Range[1], _dataTable.Interval, ::Core.Integrations.getMSUSettingsAPI().getSettingName(_settingID));
 	}
 
 	function getSettingsToBeBuiltImplicitly()

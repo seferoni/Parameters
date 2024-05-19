@@ -101,10 +101,10 @@
 	{
 		if (::Core.getManager().isMSUInstalled())
 		{
-			return ::Core.Integrations.getMSUAPI().getMSUInterface().ModSettings.getSetting(_parameterKey).getValue();
+			return ::Core.Integrations.getMSUSettingsAPI().getMSUInterface().ModSettings.getSetting(_parameterKey).getValue();
 		}
 
-		local parameters = ::Core.Database.getDefaultsAggregated();
+		local parameters = ::Core.Database.getDefaults();
 
 		foreach( key, value in parameters )
 		{

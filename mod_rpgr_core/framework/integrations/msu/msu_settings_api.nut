@@ -36,7 +36,7 @@
 
 	function getDefaultValue( _settingKey )
 	{
-		return ::Core.Database.getDefaults(this.getActivePreset())[_settingKey];
+		return ::Core.Database.getDefaultValue(this.getActivePreset(), _settingKey);
 	}
 
 	function getExplicitBuilder()
@@ -64,14 +64,14 @@
 		return ::Core.getManager().getMSUInterface().ModSettings.getPanel().getPages();
 	}
 
-	function getSettingDescription( _key )
+	function getSettingDescription( _settingID )
 	{
-		return ::Core.Strings.Settings[format("%sDescription", _key)];
+		return ::Core.Strings.Settings[format("%sDescription", _settingID)];
 	}
 
-	function getSettingName( _key )
+	function getSettingName( _settingID )
 	{
-		return ::Core.Standard.getKey(_key, ::Core.Strings.Settings);
+		return ::Core.Strings.Settings[format("%s", _settingID)];
 	}
 
 	function initialise()

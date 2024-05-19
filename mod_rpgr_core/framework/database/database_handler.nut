@@ -20,12 +20,16 @@
 
 	function loadFiles()
 	{
-		this.loadFolder("parameters/defaults/rpgr");
-		this.loadFolder("parameters/defaults/vanilla");
+		this.loadFolder("parameters/defaults");
 		this.loadFolder("parameters/settings");
 	}
 
-	function getDefaults( _presetKey )
+	function getDefaultValue( _presetKey, _defaultKey )
+	{
+		return this.getDefaults(_presetKey)[_defaultKey];
+	}
+
+	function getDefaults( _presetKey = "RPGR" )
 	{
 		return ::Core.Database.Parameters.Defaults[_presetKey];
 	}
@@ -33,18 +37,6 @@
 	function getParameterCategories()
 	{
 		return ::Core.Standard.getKeys(::Core.Database.Parameters);
-	}
-
-	function getDefaultsAggregated()
-	{
-		local defaults = {};
-
-		foreach( dataTable in ::Core.Database.Parameters.Defaults.RPGR )
-		{
-			::Core.Standard.extendTable(dataTable, defaults);
-		}
-
-		return defaults;
 	}
 
 	function getSettingTables()
