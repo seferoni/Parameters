@@ -1,6 +1,6 @@
 ::Core.Integrations.MSU <-
 {
-	Preset = "RPGR",
+	Preset = null,
 
 	function addPage( _pageID )
 	{
@@ -31,6 +31,11 @@
 
 	function getActivePreset()
 	{
+		if (this.Preset == null)
+		{
+			return "RPGR";
+		}
+
 		return this.Preset;
 	}
 
@@ -86,8 +91,8 @@
 		::Core.getManager().includeFiles("mod_rpgr_core/framework/integrations/msu/builders");
 	}
 
-	function setPreset( _newValue )
+	function setPreset( _settingID )
 	{
-		this.Preset = this.getExplicitBuilder().getPresetKeyBySettingID(_newValue);
+		this.Preset = this.getExplicitBuilder().getPresetKeyBySettingID(_settingID);
 	}
 };
