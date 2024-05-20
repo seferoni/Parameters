@@ -2,21 +2,25 @@
 {
 	IDs =
 	{
-		Pages = 
+		Pages =
 		{
 			Presets = "PresetsPage",
 		},
-		Settings = 
+		Settings =
 		{
 			RPGR = "RPGRPreset",
 			Vanilla = "VanillaPreset"
 		}
 	}
 
-	function addPresetChangeCallbacks( _settingElement )
+	function addPresetChangeCallback( _settingElement )
 	{
-		_settingElement.addBeforeChangeCallback(this.onBeforePresetChangeCallback);
-		_settingElement.addAfterChangeCallback(this.onAfterPresetChangeCallback);
+		_settingElement.addCallback(function( _newValue )
+		{
+			this.setBaseValue(_newValue);
+			::Core.Integrations.getMSUSettingsAPI().setPreset(_newValue);
+			::Core.getManager().getMSUInterface().ModSettings.resetSettings();
+		});
 	}
 
 	function appendToPresetsPage( _settingElement )
@@ -42,9 +46,9 @@
 	}
 
 	function buildPresetSetting( _settingID, _defaultValue )
-	{	// TODO: change this to a slider
-		local setting = ::MSU.Class.BooleanSetting(_settingID, _defaultValue, ::Core.Integrations.getMSUSettingsAPI().getSettingName(_settingID));
-		this.addPresetChangeCallbacks(setting);
+	{
+		local setting = this.createPresetSetting(_settingID, _defaultValue);
+		this.addPresetChangeCallback(setting);
 		this.buildPresetSettingDescription(setting);
 		this.appendToPresetsPage(setting);
 	}
@@ -54,12 +58,17 @@
 		::Core.Integrations.getMSUSettingsAPI().buildDescription(_settingElement);
 	}
 
-	function createBooleanSetting( _settingID, _defaultValue )
+	function createPresetSetting( _settingID, _defaultValue )
 	{
-		return ::MSU.Class.BooleanSetting(_settingID, _defaultValue, ::Core.Integrations.getMSUSettingsAPI().getSettingDescription(_settingName));
+		return ::MSU.Class.EnumSetting(_settingID, _defaultValue, this.getPresetKeys(), ::Core.Integrations.getMSUSettingsAPI().getSettingName(_settingID));
 	}
 
-	function getAllPresetSettings()
+	function getPresetKeys()
+	{
+		return ::Core.Database.getPresetKeys();
+	}
+
+	function getPresetSettings()
 	{
 		return this.getPresetsPage().getAllElementsAsArray();
 	}
@@ -79,22 +88,6 @@
 	function getPresetsPage()
 	{
 		return ::Core.Integrations.getMSUSettingsAPI().getPage(this.IDs.Pages.Presets);
-	}
-
-	function onBeforePresetChangeCallback( _newValue )
-	{
-		local settings = ::Core.Integrations.getMSUSettingsAPI().getExplicitBuilder().getAllPresetSettings();
-
-		foreach( setting in settings )
-		{
-			setting.set(false);
-		}
-	}
-
-	function onAfterPresetChangeCallback( _oldValue )
-	{
-		::Core.Integrations.getMSUSettingsAPI().setPreset(this.getID());
-		::Core.Integrations.getMSUSettingsAPI().getExplicitBuilder().resetSettings();
 	}
 
 	function resetSettings()

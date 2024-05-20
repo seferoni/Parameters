@@ -2,15 +2,15 @@
 {
 	function createTables()
 	{
-		::Core.Database.Parameters <- {};
-		::Core.Database.Parameters.Defaults <- {};
-		::Core.Database.Parameters.Settings <- {};
+		this.Parameters <- {};
+		this.Parameters.Defaults <- {};
+		this.Parameters.Settings <- {};
 	}
 
 	function createDefaultsTables()
 	{
-		::Core.Database.Parameters.Defaults.RPGR <- {};
-		::Core.Database.Parameters.Defaults.Vanilla <- {};
+		this.Parameters.Defaults.RPGR <- {};
+		this.Parameters.Defaults.Vanilla <- {};
 	}
 
 	function loadFolder( _path )
@@ -31,17 +31,22 @@
 
 	function getDefaults( _presetKey = "RPGR" )
 	{
-		return ::Core.Database.Parameters.Defaults[_presetKey];
+		return this.Parameters.Defaults[_presetKey];
+	}
+
+	function getPresetKeys()
+	{
+		return ::Core.Standard.getKeys(this.Defaults);
 	}
 
 	function getParameterCategories()
 	{
-		return ::Core.Standard.getKeys(::Core.Database.Parameters.Settings);
+		return ::Core.Standard.getKeys(this.Parameters.Settings);
 	}
 
 	function getSettingTables()
 	{
-		return ::Core.Database.Parameters.Settings;
+		return this.Parameters.Settings;
 	}
 
 	function initialise()
