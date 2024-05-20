@@ -1,18 +1,5 @@
 ::Core.Integrations.MSU.Builders.Explicit <-
 {
-	IDs =
-	{
-		Pages =
-		{
-			Presets = "PresetsPage",
-		},
-		Settings =
-		{
-			RPGR = "RPGRPreset",
-			Vanilla = "VanillaPreset"
-		}
-	}
-
 	function addPresetChangeCallback( _settingElement )
 	{
 		_settingElement.addCallback(function( _newValue )
@@ -31,7 +18,7 @@
 	function build()
 	{
 		this.buildPages();
-		this.buildPresets();
+		this.buildPresetSetting();
 	}
 
 	function buildPages()
@@ -39,15 +26,9 @@
 		::Core.Integrations.getMSUSettingsAPI().addPage(this.IDs.Pages.Presets);
 	}
 
-	function buildPresets()
+	function buildPresetSetting()
 	{
-		this.buildPresetSetting(this.IDs.Settings.RPGR, true);
-		this.buildPresetSetting(this.IDs.Settings.Vanilla, false);
-	}
-
-	function buildPresetSetting( _settingID, _defaultValue )
-	{
-		local setting = this.createPresetSetting(_settingID, _defaultValue);
+		local setting = this.createPresetSetting();
 		this.addPresetChangeCallback(setting);
 		this.buildPresetSettingDescription(setting);
 		this.appendToPresetsPage(setting);
@@ -58,19 +39,15 @@
 		::Core.Integrations.getMSUSettingsAPI().buildDescription(_settingElement);
 	}
 
-	function createPresetSetting( _settingID, _defaultValue )
+	function createPresetSetting()
 	{
+		// TODO: fill in settingID and defaultValue
 		return ::MSU.Class.EnumSetting(_settingID, _defaultValue, this.getPresetKeys(), ::Core.Integrations.getMSUSettingsAPI().getSettingName(_settingID));
 	}
 
 	function getPresetKeys()
 	{
 		return ::Core.Database.getPresetKeys();
-	}
-
-	function getPresetSettings()
-	{
-		return this.getPresetsPage().getAllElementsAsArray();
 	}
 
 	function getPagesForReset()

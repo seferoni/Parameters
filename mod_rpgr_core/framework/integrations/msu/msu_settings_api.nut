@@ -1,7 +1,5 @@
 ::Core.Integrations.MSU <-
 {
-	Preset = null,
-
 	function addPage( _pageID )
 	{
 		return this.getMSUInterface().ModSettings.addPage(_pageID);
@@ -31,12 +29,12 @@
 
 	function getActivePreset()
 	{
-		if (this.Preset == null)
+		if (this.Parameters.ActivePreset == null)
 		{
-			return "RPGR";
+			return this.Parameters.DefaultPreset;
 		}
 
-		return this.Preset;
+		return this.Parameters.ActivePreset;
 	}
 
 	function getDefaultValue( _settingKey )
@@ -64,6 +62,11 @@
 		return ::Core.getManager().getMSUInterface().ModSettings.getPage(_pageID);
 	}
 
+	function getPageIByKey( _pageKey )
+	{
+		return this.ElementIDs.Pages[_pageKey];
+	}
+
 	function getPages()
 	{
 		return ::Core.getManager().getMSUInterface().ModSettings.getPanel().getPages();
@@ -72,6 +75,11 @@
 	function getSettingDescription( _settingID )
 	{
 		return ::Core.Strings.Settings[format("%sDescription", _settingID)];
+	}
+
+	function getSettingIDByKey( _settingKey )
+	{
+		return this.ElementIDs.Settings[_settingKey];
 	}
 
 	function getSettingName( _settingID )
@@ -91,8 +99,8 @@
 		::Core.getManager().includeFiles("mod_rpgr_core/framework/integrations/msu/builders");
 	}
 
-	function setPreset( _settingID )
+	function setPreset( _newValue )
 	{
-		this.Preset = this.getExplicitBuilder().getPresetKeyBySettingID(_settingID);
+		this.Parameters.ActivePreset = _newValue;
 	}
 };

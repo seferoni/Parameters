@@ -36,7 +36,7 @@
 
 	function getPresetKeys()
 	{
-		return ::Core.Standard.getKeys(this.Defaults);
+		return ::Core.Standard.getKeys(this.Parameters.Defaults);
 	}
 
 	function getParameterCategories()
