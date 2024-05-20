@@ -5,6 +5,11 @@
 		this.getModernHooksInterface().hook(_path, function(q) _function(q));
 	}
 
+	function hookBase( _path, _function )
+	{
+		this.hook(_path, _function);
+	}
+
 	function hookTree( _path, _function )
 	{
 		this.getModernHooksInterface().hookTree(_path, function(q) _function(q));

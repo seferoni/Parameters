@@ -42,7 +42,7 @@
 	}
 
 	function buildPresetSetting( _settingID, _defaultValue )
-	{
+	{	// TODO: change this to a slider
 		local setting = ::MSU.Class.BooleanSetting(_settingID, _defaultValue, ::Core.Integrations.getMSUSettingsAPI().getSettingName(_settingID));
 		this.addPresetChangeCallbacks(setting);
 		this.buildPresetSettingDescription(setting);
@@ -85,7 +85,7 @@
 	{
 		local settings = ::Core.Integrations.getMSUSettingsAPI().getExplicitBuilder().getAllPresetSettings();
 
-		foreach( setting in setting )
+		foreach( setting in settings )
 		{
 			setting.set(false);
 		}

@@ -36,7 +36,7 @@
 
 	function getParameterCategories()
 	{
-		return ::Core.Standard.getKeys(::Core.Database.Parameters);
+		return ::Core.Standard.getKeys(::Core.Database.Parameters.Settings);
 	}
 
 	function getSettingTables()

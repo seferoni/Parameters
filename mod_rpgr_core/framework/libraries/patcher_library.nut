@@ -26,10 +26,10 @@
 	{
 		if (::Core.getManager().isModernHooksInstalled())
 		{
-			::Core.Integrations.ModernHooks.hook(_path, _function);
+			::Core.Integrations.ModernHooks.hookBase(_path, _function);
 		}
 
-		::Core.ModdingScriptHooks.hookBase(_path, _function);
+		::Core.Integrations.ModdingScriptHooks.hookBase(_path, _function);
 	}
 
 	function hookTree( _path, _function )
@@ -39,7 +39,7 @@
 			::Core.Integrations.ModernHooks.hookTree(_path, _function);
 		}
 
-		::mods_hookBaseClass(_path, _function);
+		::Core.Integrations.ModdingScriptHooks.hookTree(_path, _function);
 	}
 
 	# Calls new method and passes result onto original method; if null, calls original method with original arguments.
