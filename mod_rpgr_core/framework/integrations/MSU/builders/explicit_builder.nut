@@ -2,10 +2,11 @@
 {
 	function addPresetChangeCallback( _settingElement )
 	{	// TODO: enum setting needs to update description after every change!
-		_settingElement.addCallback(function( _newValue )
+		_settingElement.addBeforeChangeCallback(function( _newValue )
 		{
 			this.setBaseValue(_newValue);
 			::Core.Integrations.getMSUSettingsAPI().setPreset(_newValue);
+			::Core.Integrations.getMSUSettingsAPI().getExplicitBuilder().buildPresetSettingDescription(this); // TODO: settings are not being updated appropriately
 			::Core.Integrations.getMSUSettingsAPI().getExplicitBuilder().resetPages();
 		});
 	}
@@ -23,7 +24,8 @@
 
 	function buildPages()
 	{
-		::Core.Integrations.getMSUSettingsAPI().addPage(this.getPresetsPageID());
+		local presetsPage = ::Core.Integrations.getMSUSettingsAPI().addPage(this.getPresetsPageID(), this.getPresetsPageName());
+		presetsPage.addTitle(this.getPresetTitleID(), this.getPresetTitleName());
 	}
 
 	function buildPresetSetting()
@@ -36,7 +38,8 @@
 
 	function buildPresetSettingDescription( _settingElement )
 	{
-		::Core.Integrations.getMSUSettingsAPI().buildDescription(_settingElement);
+		local currentValue = _settingElement.getValue();
+		_settingElement.setDescription(this.getPresetDescription(currentValue));
 	}
 
 	function createPresetSetting()
@@ -46,14 +49,39 @@
 
 	function getDefaultPreset()
 	{
-		return ::Core.Integrations.getMSUSettingsAPI().Parameters.DefaultPreset;
+		return this.getParameters().DefaultPreset;
+	}
+
+	function getElementIDs()
+	{
+		return ::Core.Integrations.getMSUSettingsAPI().ElementIDs;
+	}
+
+	function getElementName( _settingID )
+	{
+		return ::Core.Integrations.getMSUSettingsAPI().getElementName(_settingID);
+	}
+
+	function getParameters()
+	{
+		return ::Core.Integrations.getMSUSettingsAPI().Parameters;
+	}
+
+	function getPageIDs()
+	{
+		return ::Core.Integrations.getMSUSettingsAPI().PageIDs;
 	}
 
 	function getPagesForReset()
 	{
 		local pages = clone ::Core.Integrations.getMSUSettingsAPI().getPages();
-		delete pages[::Core.Integrations.getMSUSettingsAPI().ElementIDs.Pages.Presets];
+		delete pages[this.getPageIDs().Presets];
 		return pages;
+	}
+
+	function getPresetDescription( _presetValue )
+	{
+		return ::Core.Integrations.getMSUSettingsAPI().getElementDescription(format("%sPreset", _presetValue));
 	}
 
 	function getPresetKeys()
@@ -68,17 +96,32 @@
 
 	function getPresetsPageID()
 	{
-		return ::Core.Integrations.getMSUSettingsAPI().ElementIDs.Pages.Presets;
+		return this.getPageIDs().Presets;
 	}
 
 	function getPresetSettingID()
 	{
-		return ::Core.Integrations.getMSUSettingsAPI().ElementIDs.Settings.Presets;
+		return this.getElementIDs().Settings.Presets;
+	}
+
+	function getPresetTitleID()
+	{
+		return this.getElementIDs().Titles.Presets;
+	}
+
+	function getPresetsPageName()
+	{
+		return this.getElementName(this.getPresetsPageID());
 	}
 
 	function getPresetSettingName()
 	{
-		return ::Core.Integrations.getMSUSettingsAPI().getSettingName(this.getPresetSettingID());
+		return this.getElementName(this.getPresetSettingID());
+	}
+
+	function getPresetTitleName()
+	{
+		return this.getElementName(this.getPresetTitleID());
 	}
 
 	function resetPages()

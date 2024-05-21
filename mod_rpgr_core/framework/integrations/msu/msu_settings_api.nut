@@ -1,14 +1,18 @@
 ::Core.Integrations.MSU <-
 {
+	PageIDs = 
+	{
+		Presets = "PresetsPage"
+	},
 	ElementIDs =
 	{
-		Pages = 
-		{
-			Presets = "PresetsPage"
-		},
 		Settings =
 		{
 			Presets = "PresetsSetting"
+		},
+		Titles = 
+		{
+			Presets = "PresetsTitle"
 		}
 	},
 	Parameters = 
@@ -17,9 +21,9 @@
 		DefaultPreset = "RPGR"
 	}
 
-	function addPage( _pageID )
-	{
-		return this.getMSUInterface().ModSettings.addPage(_pageID);
+	function addPage( _pageID, _pageName = null )
+	{	// TODO: consider enforcing pageName requirement for implicit builder for consistency
+		return this.getMSUInterface().ModSettings.addPage(_pageID, _pageName);
 	}
 
 	function appendElementToPage( _settingElement, _pageID )
@@ -35,7 +39,7 @@
 
 	function buildDescription( _settingElement )
 	{
-		local description = this.getSettingDescription(_settingElement.getID());
+		local description = this.getElementDescription(_settingElement.getID());
 		_settingElement.setDescription(description);
 	}
 
@@ -84,14 +88,14 @@
 		return ::Core.getManager().getMSUInterface().ModSettings.getPanel().getPages();
 	}
 
-	function getSettingDescription( _settingID )
+	function getElementDescription( _elementKey )
 	{
-		return ::Core.Strings.Settings[format("%sDescription", _settingID)];
+		return ::Core.Strings.Settings[format("%sDescription", _elementKey)];
 	}
 
-	function getSettingName( _settingID )
+	function getElementName( _elementKey )
 	{
-		return ::Core.Strings.Settings[format("%s", _settingID)];
+		return ::Core.Strings.Settings[format("%s", _elementKey)];
 	}
 
 	function initialise()

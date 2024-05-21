@@ -5,6 +5,8 @@
 	PresetsSetting = "",
 	PresetsSettingDescription = "",
 
+	PresetsTitle = "Presets",
+
 	RPGRPreset = "RPGR",
 	RPGRPresetDescription = "The default parameter configuration for RPG Rebalance. This preset is designed to make the game experience significantly harder and slower-paced by inducing scarcity upon key strategic layer resources.",
 
