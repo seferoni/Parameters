@@ -12,7 +12,7 @@
 		}
 	},
 	Parameters = 
-	{
+	{	// TODO: do we rlly need an active preset field?
 		ActivePreset = null,
 		DefaultPreset = "RPGR"
 	}

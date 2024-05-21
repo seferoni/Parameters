@@ -6,7 +6,7 @@
 		{
 			this.setBaseValue(_newValue);
 			::Core.Integrations.getMSUSettingsAPI().setPreset(_newValue);
-			::Core.getManager().getMSUInterface().ModSettings.resetSettings(); // TODO: this will cause a stack overflow
+			::Core.Integrations.getMSUSettingsAPI().getExplicitBuilder().resetPages();
 		});
 	}
 
@@ -49,6 +49,13 @@
 		return ::Core.Integrations.getMSUSettingsAPI().Parameters.DefaultPreset;
 	}
 
+	function getPagesForReset()
+	{
+		local pages = clone ::Core.Integrations.getMSUSettingsAPI().getPages();
+		delete pages[::Core.Integrations.getMSUSettingsAPI().ElementIDs.Pages.Presets];
+		return pages;
+	}
+
 	function getPresetKeys()
 	{
 		return ::Core.Database.getPresetKeys();
@@ -72,5 +79,21 @@
 	function getPresetSettingName()
 	{
 		return ::Core.Integrations.getMSUSettingsAPI().getSettingName(this.getPresetSettingID());
+	}
+
+	function resetPages()
+	{
+		local pages = this.getPagesForReset();
+
+		foreach( page in pages )
+		{
+			page.getAllElementsAsArray(::MSU.Class.AbstractSetting).apply(this.updateSettingBaseValue);
+		}
+	}
+
+	function updateSettingBaseValue( _settingElement )
+	{
+		local defaultValue = ::Core.Integrations.getMSUSettingsAPI().getDefaultValue(_settingElement.getID());
+		_settingElement.setBaseValue(defaultValue, true);
 	}
 };
