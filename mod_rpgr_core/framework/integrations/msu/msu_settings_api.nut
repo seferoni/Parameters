@@ -1,5 +1,22 @@
 ::Core.Integrations.MSU <-
 {
+	ElementIDs =
+	{
+		Pages = 
+		{
+			Presets = "PresetsPage"
+		},
+		Settings =
+		{
+			Presets = "PresetsSetting"
+		}
+	},
+	Parameters = 
+	{
+		ActivePreset = null,
+		DefaultPreset = "RPGR"
+	}
+
 	function addPage( _pageID )
 	{
 		return this.getMSUInterface().ModSettings.addPage(_pageID);
@@ -62,11 +79,6 @@
 		return ::Core.getManager().getMSUInterface().ModSettings.getPage(_pageID);
 	}
 
-	function getPageIByKey( _pageKey )
-	{
-		return this.ElementIDs.Pages[_pageKey];
-	}
-
 	function getPages()
 	{
 		return ::Core.getManager().getMSUInterface().ModSettings.getPanel().getPages();
@@ -75,11 +87,6 @@
 	function getSettingDescription( _settingID )
 	{
 		return ::Core.Strings.Settings[format("%sDescription", _settingID)];
-	}
-
-	function getSettingIDByKey( _settingKey )
-	{
-		return this.ElementIDs.Settings[_settingKey];
 	}
 
 	function getSettingName( _settingID )

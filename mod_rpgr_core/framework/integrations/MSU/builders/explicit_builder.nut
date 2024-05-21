@@ -1,18 +1,18 @@
 ::Core.Integrations.MSU.Builders.Explicit <-
 {
 	function addPresetChangeCallback( _settingElement )
-	{
+	{	// TODO: enum setting needs to update description after every change!
 		_settingElement.addCallback(function( _newValue )
 		{
 			this.setBaseValue(_newValue);
 			::Core.Integrations.getMSUSettingsAPI().setPreset(_newValue);
-			::Core.getManager().getMSUInterface().ModSettings.resetSettings();
+			::Core.getManager().getMSUInterface().ModSettings.resetSettings(); // TODO: this will cause a stack overflow
 		});
 	}
 
 	function appendToPresetsPage( _settingElement )
 	{
-		::Core.Integrations.getMSUSettingsAPI().appendElementToPage(_settingElement, this.IDs.Pages.Presets);
+		::Core.Integrations.getMSUSettingsAPI().appendElementToPage(_settingElement, this.getPresetsPageID());
 	}
 
 	function build()
@@ -23,7 +23,7 @@
 
 	function buildPages()
 	{
-		::Core.Integrations.getMSUSettingsAPI().addPage(this.IDs.Pages.Presets);
+		::Core.Integrations.getMSUSettingsAPI().addPage(this.getPresetsPageID());
 	}
 
 	function buildPresetSetting()
@@ -41,8 +41,12 @@
 
 	function createPresetSetting()
 	{
-		// TODO: fill in settingID and defaultValue
-		return ::MSU.Class.EnumSetting(_settingID, _defaultValue, this.getPresetKeys(), ::Core.Integrations.getMSUSettingsAPI().getSettingName(_settingID));
+		return ::MSU.Class.EnumSetting(this.getPresetSettingID(), this.getDefaultPreset(), this.getPresetKeys(), this.getPresetSettingName());
+	}
+
+	function getDefaultPreset()
+	{
+		return ::Core.Integrations.getMSUSettingsAPI().Parameters.DefaultPreset;
 	}
 
 	function getPresetKeys()
@@ -50,30 +54,23 @@
 		return ::Core.Database.getPresetKeys();
 	}
 
-	function getPagesForReset()
-	{
-		local pages = clone ::Core.Integrations.getMSUSettingsAPI().getPages();
-		delete pages[this.IDs.Pages.Presets];
-		return pages;
-	}
-
-	function getPresetKeyBySettingID( _settingID )
-	{
-		return ::Core.Standard.getKey(_settingID, this.IDs.Settings);
-	}
-
 	function getPresetsPage()
 	{
-		return ::Core.Integrations.getMSUSettingsAPI().getPage(this.IDs.Pages.Presets);
+		return ::Core.Integrations.getMSUSettingsAPI().getPage(this.getPresetsPageID());
 	}
 
-	function resetSettings()
+	function getPresetsPageID()
 	{
-		local pages = this.getPagesForReset();
+		return ::Core.Integrations.getMSUSettingsAPI().ElementIDs.Pages.Presets;
+	}
 
-		foreach( page in pages )
-		{
-			page.resetSettings();
-		}
+	function getPresetSettingID()
+	{
+		return ::Core.Integrations.getMSUSettingsAPI().ElementIDs.Settings.Presets;
+	}
+
+	function getPresetSettingName()
+	{
+		return ::Core.Integrations.getMSUSettingsAPI().getSettingName(this.getPresetSettingID());
 	}
 };
