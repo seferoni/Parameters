@@ -1,12 +1,10 @@
 ::Core.Integrations.MSU.Builders.Explicit <-
 {
 	function addPresetChangeCallback( _settingElement )
-	{	// TODO: enum setting needs to update description after every change!
-		_settingElement.addBeforeChangeCallback(function( _newValue )
+	{
+		_settingElement.addBeforeChangeCallback(function()
 		{
-			this.setBaseValue(_newValue);
-			::Core.Integrations.getMSUSettingsAPI().setPreset(_newValue);
-			::Core.Integrations.getMSUSettingsAPI().getExplicitBuilder().buildPresetSettingDescription(this); // TODO: settings are not being updated appropriately
+			::Core.Integrations.getMSUSettingsAPI().setPreset(this.getName());
 			::Core.Integrations.getMSUSettingsAPI().getExplicitBuilder().resetPages();
 		});
 	}
@@ -19,7 +17,14 @@
 	function build()
 	{
 		this.buildPages();
-		this.buildPresetSetting();
+		this.buildSettings();
+	}
+
+	function buildSettings()
+	{
+		local elementIDs = this.getElementIDs();
+		this.buildPresetSetting(elementIDs.Settings.RPGRPreset);
+		this.buildPresetSetting(elementIDs.Settings.VanillaPreset);
 	}
 
 	function buildPages()
@@ -28,9 +33,9 @@
 		presetsPage.addTitle(this.getPresetTitleID(), this.getPresetTitleName());
 	}
 
-	function buildPresetSetting()
+	function buildPresetSetting( _settingID )
 	{
-		local setting = this.createPresetSetting();
+		local setting = this.createPresetSetting(_settingID);
 		this.addPresetChangeCallback(setting);
 		this.buildPresetSettingDescription(setting);
 		this.appendToPresetsPage(setting);
@@ -38,18 +43,12 @@
 
 	function buildPresetSettingDescription( _settingElement )
 	{
-		local currentValue = _settingElement.getValue();
-		_settingElement.setDescription(this.getPresetDescription(currentValue));
+		::Core.Integrations.getMSUSettingsAPI().buildDescription(_settingElement);
 	}
 
-	function createPresetSetting()
+	function createPresetSetting( _settingID )
 	{
-		return ::MSU.Class.EnumSetting(this.getPresetSettingID(), this.getDefaultPreset(), this.getPresetKeys(), this.getPresetSettingName());
-	}
-
-	function getDefaultPreset()
-	{
-		return this.getParameters().DefaultPreset;
+		return ::MSU.Class.ButtonSetting(_settingID, this.getElementName(_settingID), this.getElementName(_settingID));
 	}
 
 	function getElementIDs()
@@ -84,11 +83,6 @@
 		return ::Core.Integrations.getMSUSettingsAPI().getElementDescription(format("%sPreset", _presetValue));
 	}
 
-	function getPresetKeys()
-	{
-		return ::Core.Database.getPresetKeys();
-	}
-
 	function getPresetsPage()
 	{
 		return ::Core.Integrations.getMSUSettingsAPI().getPage(this.getPresetsPageID());
@@ -99,11 +93,6 @@
 		return this.getPageIDs().Presets;
 	}
 
-	function getPresetSettingID()
-	{
-		return this.getElementIDs().Settings.Presets;
-	}
-
 	function getPresetTitleID()
 	{
 		return this.getElementIDs().Titles.Presets;
@@ -112,11 +101,6 @@
 	function getPresetsPageName()
 	{
 		return this.getElementName(this.getPresetsPageID());
-	}
-
-	function getPresetSettingName()
-	{
-		return this.getElementName(this.getPresetSettingID());
 	}
 
 	function getPresetTitleName()
