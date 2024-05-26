@@ -9,6 +9,12 @@
 		});
 	}
 
+	function addTitle( _pageObject )
+	{
+		local titleElement = this.createPresetTitle();
+		_pageObject.addElement(titleElement);
+	}
+
 	function appendToPresetsPage( _settingElement )
 	{
 		::Core.Integrations.getMSUSettingsAPI().appendElementToPage(_settingElement, this.getPresetsPageID());
@@ -30,7 +36,7 @@
 	function buildPages()
 	{
 		local presetsPage = ::Core.Integrations.getMSUSettingsAPI().addPage(this.getPresetsPageID(), this.getPresetsPageName());
-		presetsPage.addTitle(this.getPresetTitleID(), this.getPresetTitleName());
+		this.addTitle(presetsPage);
 	}
 
 	function buildPresetSetting( _settingID )
@@ -49,6 +55,11 @@
 	function createPresetSetting( _settingID )
 	{
 		return ::MSU.Class.ButtonSetting(_settingID, this.getElementName(_settingID), this.getElementName(_settingID));
+	}
+
+	function createPresetTitle()
+	{
+		return ::Core.Integrations.MSU.CustomSettings.VariableWidthTitleSetting(this.getPresetTitleID(), "-5rem", this.getPresetTitleName()); // TODO: remember, this needs a description
 	}
 
 	function getElementIDs()

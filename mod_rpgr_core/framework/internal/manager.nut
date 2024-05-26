@@ -139,6 +139,17 @@
 		this.registerMod();
 	}
 
+	function registerJS( _path )
+	{
+		if (this.isModernHooksInstalled())
+		{
+			::Hooks.registerJS(_path);
+			return;
+		}
+
+		::mods_registerJS(_path);
+	}
+
 	function registerMod()
 	{
 		if (this.isModernHooksInstalled())

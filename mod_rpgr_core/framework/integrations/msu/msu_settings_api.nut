@@ -47,6 +47,7 @@
 	function createTables()
 	{
 		this.Builders <- {};
+		this.CustomSettings <- {};
 	}
 
 	function getActivePreset()
@@ -103,12 +104,34 @@
 	{
 		this.createTables();
 		this.loadBuilders();
+		this.loadCustomSettings();
 		this.build();
 	}
 
 	function loadBuilders()
 	{
 		::Core.getManager().includeFiles("mod_rpgr_core/framework/integrations/msu/builders");
+	}
+
+	function loadCustomSettings()
+	{
+		this.loadCustomSettingClasses();
+		this.loadJS();
+	}
+
+	function loadCustomSettingClasses()
+	{
+		::Core.getManager().includeFiles("mod_rpgr_core/framework/integrations/msu/custom_settings");
+	}
+
+	function loadJS()
+	{
+		this.registerJS("variable_width_title_setting/js/variable_width_title_setting.js");
+	}
+
+	function registerJS( _path )
+	{
+		::Core.getManager().registerJS(format("mod_rpgr_core/msu_custom_settings/%s", _path)); // TODO: prepend "ui/mods" back to this
 	}
 
 	function setPreset( _newValue )
