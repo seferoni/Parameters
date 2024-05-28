@@ -7,7 +7,7 @@ var RPGRTitleSetting = function( _mod, _page, _setting, _parentDiv )
 	this.title = $('<div class="title title-font-big font-bold font-color-title">' + _setting.name + '</div>')
 		.appendTo(this.layout);
 	this.title.bindTooltip(
-	{	// TODO: not sure i fully understand this
+	{	// TODO: not sure you fully understand this
 		contentType: 'msu-generic',
 		modId: MSU.ID,
 		elementId: "ModSettings.Element.Tooltip",
