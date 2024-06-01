@@ -44,6 +44,17 @@
 		_settingElement.setDescription(description);
 	}
 
+	function buildTooltips()
+	{
+		::Core.getManager().getMSUInterface().setTooltips(
+		{
+			CustomSettings = 
+			{	// TODO: investigate how this should work
+				Title = ::Core.Strings.Title
+			}
+		});
+	}
+
 	function createTables()
 	{
 		this.Builders <- {};
@@ -103,6 +114,7 @@
 	function initialise()
 	{
 		this.createTables();
+		this.buildTooltips();
 		this.loadBuilders();
 		this.loadCustomSettings();
 		this.build();
