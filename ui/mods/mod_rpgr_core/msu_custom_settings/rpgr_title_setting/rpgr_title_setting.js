@@ -9,8 +9,8 @@ var RPGRTitleSetting = function( _mod, _page, _setting, _parentDiv )
 	this.title.bindTooltip(
 	{
 		contentType: 'msu-generic',
-		modId: Core.ID,
-		elementId: "CustomSettings.Title",
+		modId: MSU.ID,
+		elementId: "ModSettings.Element.Tooltip",
 		elementModId: _mod.id,
 		settingsElementId: _setting.id
 	});

@@ -44,17 +44,6 @@
 		_settingElement.setDescription(description);
 	}
 
-	function buildTooltips()
-	{
-		::Core.getManager().getMSUInterface().setTooltips(
-		{
-			CustomSettings = 
-			{	// TODO: investigate how this should work
-				Title = ::Core.Strings.Title
-			}
-		});
-	}
-
 	function createTables()
 	{
 		this.Builders <- {};
@@ -114,7 +103,6 @@
 	function initialise()
 	{
 		this.createTables();
-		this.buildTooltips();
 		this.loadBuilders();
 		this.loadCustomSettings();
 		this.build();
@@ -138,12 +126,12 @@
 
 	function loadJS()
 	{
-		this.registerJS("variable_width_title_setting/js/variable_width_title_setting.js");
+		this.registerJS("rpgr_title_setting/rpgr_title_setting.js");
 	}
 
 	function registerJS( _path )
 	{
-		::Core.getManager().registerJS(format("mod_rpgr_core/msu_custom_settings/%s", _path)); // TODO: prepend "ui/mods" back to this
+		::Core.getManager().registerJS(format("msu_custom_settings/%s", _path));
 	}
 
 	function setPreset( _newValue )

@@ -59,7 +59,7 @@
 
 	function createPresetTitle()
 	{
-		return ::Core.Integrations.MSU.CustomSettings.VariableWidthTitleSetting(this.getPresetTitleID(), "-5rem", this.getPresetTitleName()); // TODO: remember, this needs a description
+		return ::Core.Integrations.MSU.CustomSettings.RPGRTitleSetting(this.getPresetTitleID(), "-5rem", this.getPresetTitleName()); // TODO: remember, this needs a description
 	}
 
 	function getElementIDs()

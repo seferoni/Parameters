@@ -143,11 +143,11 @@
 	{
 		if (this.isModernHooksInstalled())
 		{
-			::Hooks.registerJS(_path);
+			::Hooks.registerJS(format("ui/mods/mod_rpgr_core/%s", _path));
 			return;
 		}
 
-		::mods_registerJS(_path);
+		::mods_registerJS(format("mod_rpgr_core/%s", _path));
 	}
 
 	function registerMod()
