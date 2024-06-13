@@ -1,10 +1,10 @@
 ::Core.Integrations.MSU.Builders.Explicit <-
 {
 	function addPresetChangeCallback( _settingElement )
-	{
+	{	// TODO: not working for some reason
 		_settingElement.addBeforeChangeCallback(function()
 		{
-			::Core.Integrations.getMSUSettingsAPI().setPreset(this.getName());
+			::Core.Integrations.getMSUSettingsAPI().setPreset(this.getID());
 			::Core.Integrations.getMSUSettingsAPI().getExplicitBuilder().resetPages();
 		});
 	}
@@ -27,11 +27,20 @@
 		this.buildSettings();
 	}
 
+	function buildDivider()
+	{
+		local divider = this.createDivider(::Core.Integrations.getMSUSettingsAPI().ElementIDs.Dividers.Presets);
+		this.appendToPresetsPage(divider);
+	}
+
 	function buildSettings()
 	{
 		local elementIDs = this.getElementIDs();
-		this.buildPresetSetting(elementIDs.Settings.RPGRPreset);
-		this.buildPresetSetting(elementIDs.Settings.VanillaPreset);
+		this.buildPresetSetting(elementIDs.Buttons.Vanilla);
+		this.buildDivider();
+		this.buildPresetSetting(elementIDs.Buttons.RPGREasy);
+		this.buildPresetSetting(elementIDs.Buttons.RPGRDefault);
+		this.buildPresetSetting(elementIDs.Buttons.RPGRHard);
 	}
 
 	function buildPages()
@@ -53,6 +62,11 @@
 		::Core.Integrations.getMSUSettingsAPI().buildDescription(_settingElement);
 	}
 
+	function createDivider( _elementID )
+	{
+		return ::MSU.Class.SettingsDivider(_elementID);
+	}
+
 	function createPresetSetting( _settingID )
 	{
 		return ::MSU.Class.ButtonSetting(_settingID, this.getElementName(_settingID), "");
@@ -60,7 +74,7 @@
 
 	function createPresetTitle()
 	{
-		return ::Core.Integrations.MSU.CustomSettings.RPGRTitleSetting(this.getPresetTitleID(), "-5rem", this.getPresetTitleName()); // TODO: remember, this needs a description
+		return ::Core.Integrations.MSU.CustomSettings.RPGRTitleSetting(this.getPresetTitleID(), "-5rem", this.getPresetTitleName());
 	}
 
 	function getElementIDs()

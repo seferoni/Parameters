@@ -6,10 +6,16 @@
 	},
 	ElementIDs =
 	{
-		Settings =
+		Buttons =
 		{
-			RPGRPreset = "RPGRPreset",
-			VanillaPreset = "VanillaPreset"
+			RPGREasy = "PresetsRPGREasy",
+			RPGRDefault = "PresetsRPGRDefault",
+			RPGRHard = "PresetsRPGRHard",
+			Vanilla = "PresetsVanilla"
+		},
+		Dividers = 
+		{
+			Presets = "PresetsDivider"
 		},
 		Titles = 
 		{
@@ -19,7 +25,7 @@
 	Parameters = 
 	{
 		ActivePreset = null,
-		DefaultPreset = "RPGR"
+		DefaultPreset = "RPGRDefault" // TODO: this needs to index the appropriate database key - format this
 	}
 
 	function addPage( _pageID, _pageName = null )
@@ -136,6 +142,6 @@
 
 	function setPreset( _newValue )
 	{
-		this.Parameters.ActivePreset = _newValue;
+		this.Parameters.ActivePreset = ::Core.Standard.getKey(_newValue, this.ElementIDs.Buttons);
 	}
 };

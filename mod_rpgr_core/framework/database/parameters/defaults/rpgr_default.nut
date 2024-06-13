@@ -1,4 +1,4 @@
-::Core.Database.Parameters.Defaults.RPGR <-
+::Core.Database.Parameters.Defaults.RPGRDefault <-
 {
 	LootRemovalChance = 60
 	StashSize = 60,
@@ -12,4 +12,4 @@
 	BuyPriceMult = 230,
 	SellPriceMult = 120,
 	RecruitsMult = 20
-}
+};

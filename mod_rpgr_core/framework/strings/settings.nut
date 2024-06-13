@@ -5,11 +5,17 @@
 	PresetsTitle = "Presets",
 	PresetsTitleDescription = "Presets determine the default configuration of Core's parameters. They serve as templates from which further changes can be made.",
 
-	RPGRPreset = "RPGR",
-	RPGRPresetDescription = "The default parameter configuration for RPG Rebalance. This preset is designed to make the game experience significantly harder and slower-paced by inducing scarcity upon key strategic layer resources.",
+	PresetsRPGRDefault = "RPGR (Default)",
+	PresetsRPGRDefaultDescription = "The default parameter configuration for RPG Rebalance. This preset is designed to make the game experience significantly harder and slower-paced by inducing scarcity upon key strategic layer resources.",
 
-	VanillaPreset = "Vanilla",
-	VanillaPresetDescription = "The default parameter configuration for the vanilla game.",
+	PresetsRPGREasy = "RPGR (Easy)",
+	PresetsRPGREasyDescription = "A less demanding variant of the default parameter configuration for RPG Rebalance. This preset is generally better suited for games where only a handful of RPGR modules are present.",
+
+	PresetsRPGRHard = "RPGR (Hard)",
+	PresetsRPGRHardDescription = "A significantly more restrictive variant of the default parameter configuration for RPG Rebalance. This preset is designed to cater to especially long campaigns, meant to emulate a slower, more gradual sense of progression.",
+
+	PresetsVanilla = "Vanilla",
+	PresetsVanillaDescription = "The default parameter configuration for the vanilla game.",
 
 	LootRemovalChance = "Loot Removal Chance",
 	LootRemovalChanceDescription = "Determines the percentage chance for loot removal on combat end. Legendary items are not affected.",
