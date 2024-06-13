@@ -12,6 +12,7 @@
 	function addTitle( _pageObject )
 	{
 		local titleElement = this.createPresetTitle();
+		::Core.Integrations.getMSUSettingsAPI().buildDescription(titleElement);
 		_pageObject.addElement(titleElement);
 	}
 
@@ -54,7 +55,7 @@
 
 	function createPresetSetting( _settingID )
 	{
-		return ::MSU.Class.ButtonSetting(_settingID, this.getElementName(_settingID), this.getElementName(_settingID));
+		return ::MSU.Class.ButtonSetting(_settingID, this.getElementName(_settingID), "");
 	}
 
 	function createPresetTitle()

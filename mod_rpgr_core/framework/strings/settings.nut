@@ -3,7 +3,7 @@
 	PresetsPage = "Presets",
 
 	PresetsTitle = "Presets",
-	PresetsTitleDescription = "",
+	PresetsTitleDescription = "Presets determine the default configuration of Core's parameters. They serve as templates from which further changes can be made.",
 
 	RPGRPreset = "RPGR",
 	RPGRPresetDescription = "The default parameter configuration for RPG Rebalance. This preset is designed to make the game experience significantly harder and slower-paced by inducing scarcity upon key strategic layer resources.",
