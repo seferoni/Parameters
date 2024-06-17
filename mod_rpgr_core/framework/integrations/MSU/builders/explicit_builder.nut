@@ -1,7 +1,7 @@
 ::Core.Integrations.MSU.Builders.Explicit <-
 {
 	function addPresetChangeCallback( _settingElement )
-	{	// TODO: not working for some reason
+	{
 		_settingElement.addBeforeChangeCallback(function()
 		{
 			::Core.Integrations.getMSUSettingsAPI().setPreset(this.getID());
