@@ -154,7 +154,7 @@
 	{
 		if (this.isModernHooksInstalled())
 		{
-			::Core.Interfaces.ModernHooks = ::Hooks.register(::Core.ID, ::Core.Version, ::Core.Name);
+			::Core.Interfaces.ModernHooks <- ::Hooks.register(::Core.ID, ::Core.Version, ::Core.Name);
 			return;
 		}
 

@@ -16,7 +16,7 @@
 	{
 		if (::Core.getManager().isModernHooksInstalled())
 		{
-			::Core.Integrations.ModernHooks.hook(_path, _function);
+			::Core.Integrations.ModernHooks.hook(format("scripts/%s", _path), _function);
 		}
 
 		::Core.Integrations.ModdingScriptHooks.hook(_path, _function);
@@ -26,7 +26,7 @@
 	{
 		if (::Core.getManager().isModernHooksInstalled())
 		{
-			::Core.Integrations.ModernHooks.hookBase(_path, _function);
+			::Core.Integrations.ModernHooks.hookBase(format("scripts/%s", _path), _function);
 		}
 
 		::Core.Integrations.ModdingScriptHooks.hookBase(_path, _function);
@@ -36,7 +36,7 @@
 	{
 		if (::Core.getManager().isModernHooksInstalled())
 		{
-			::Core.Integrations.ModernHooks.hookTree(_path, _function);
+			::Core.Integrations.ModernHooks.hookTree(format("scripts/%s", _path), _function);
 		}
 
 		::Core.Integrations.ModdingScriptHooks.hookTree(_path, _function);
@@ -117,6 +117,7 @@
 		if (::Core.getManager().isModernHooksInstalled())
 		{
 			::Core.Integrations.ModernHooks.wrap(_object, _methodName, _function, _procedure);
+			return;
 		}
 
 		::Core.Integrations.ModdingScriptHooks.wrap(_object, _methodName, _function, _procedure);
@@ -127,6 +128,7 @@
 		if (::Core.getManager().isModernHooksInstalled())
 		{
 			::Core.Integrations.ModernHooks.wrap(_object, _methodName, _function, _procedure);
+			return;
 		}
 
 		::Core.Integrations.ModdingScriptHooks.wrapBase(_object, _methodName, _function, _procedure);
