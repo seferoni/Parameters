@@ -1,4 +1,4 @@
-::mods_hookBaseClass("scenarios/world/starting_scenario", function( _object )
+::Core.Patcher.hookTree("scenarios/world/starting_scenario", function( _object )
 {
 	::Core.Patcher.wrap(_object, "onSpawnPlayer", function()
 	{

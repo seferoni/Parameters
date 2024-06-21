@@ -1,6 +1,6 @@
-::mods_hookExactClass("scripts/states/tactical_state", function( _object )
+::Core.Patcher.hook("states/tactical_state", function( _object )
 {
-	::Core.Standard.wrap(_object, "gatherLoot", function()
+	::Core.Patcher.wrap(_object, "gatherLoot", function()
 	{
 		if (this.isScenarioMode())
 		{

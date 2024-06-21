@@ -1,4 +1,4 @@
-::mods_hookNewObject("states/world/asset_manager", function( _object )
+::Core.Patcher.hookBase("states/world/asset_manager", function( _object )
 {
 	::Core.Patcher.wrapBase(_object, "setCampaignSettings", function( _settings )
 	{
@@ -10,4 +10,3 @@
 		::Core.Assets.initialiseWorldParameters(this);
 	});
 });
-
