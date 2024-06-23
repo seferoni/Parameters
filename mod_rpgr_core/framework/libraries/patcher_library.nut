@@ -62,6 +62,7 @@
 	# It is the responsibility of the overriding function to ensure it takes on the appropriate arguments and returns appropriate values.
 	function overrideReturn( _object, _function, _originalMethod, _argumentsArray )
 	{
+		::logInfo("override return, calling original method")
 		local originalValue = _originalMethod.acall(_argumentsArray);
 
 		if (originalValue != null)
@@ -127,7 +128,7 @@
 	{
 		if (::Core.getManager().isModernHooksInstalled())
 		{
-			::Core.Integrations.ModernHooks.wrap(_object, _methodName, _function, _procedure);
+			::Core.Integrations.ModernHooks.wrapBase(_object, _methodName, _function, _procedure);
 			return;
 		}
 

@@ -1,12 +1,12 @@
-::Core.Patcher.hookBase("states/world/asset_manager", function( _object )
+::Core.Patcher.hookBase("states/world/asset_manager", function(p)
 {
-	::Core.Patcher.wrapBase(_object, "setCampaignSettings", function( _settings )
+	::Core.Patcher.wrapBase(p, "setCampaignSettings", function( _settings )
 	{
-		::Core.Assets.initialiseWorldParameters(this);
+		::Core.Classes.Assets.initialiseWorldParameters(this);
 	});
 
-	::Core.Patcher.wrapBase(_object, "resetToDefaults", function()
+	::Core.Patcher.wrapBase(p, "resetToDefaults", function()
 	{
-		::Core.Assets.initialiseWorldParameters(this);
+		::Core.Classes.Assets.initialiseWorldParameters(this);
 	});
 });

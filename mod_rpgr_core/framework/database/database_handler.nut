@@ -23,6 +23,16 @@
 		this.loadFolder("parameters/defaults");
 		this.loadFolder("parameters/settings");
 	}
+	
+	function getSettlementKeys()
+	{
+		return ::Core.Standard.getKeys(this.Parameters.Settings.Settlements);
+	}
+
+	function getWorldKeys()
+	{
+		return ::Core.Standard.getKeys(this.Parameters.Settings.World);
+	}
 
 	function getDefaultValue( _presetKey, _defaultKey )
 	{

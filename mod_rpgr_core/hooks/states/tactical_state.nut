@@ -1,6 +1,6 @@
-::Core.Patcher.hook("states/tactical_state", function( _object )
+::Core.Patcher.hook("states/tactical_state", function(p)
 {
-	::Core.Patcher.wrap(_object, "gatherLoot", function()
+	::Core.Patcher.wrap(p, "gatherLoot", function()
 	{
 		if (this.isScenarioMode())
 		{
@@ -12,6 +12,6 @@
 			return;
 		}
 
-		::Core.Assets.removeLoot(this.m.CombatResultLoot.getItems());
+		::Core.Classes.Assets.removeLoot(this.m.CombatResultLoot.getItems());
 	});
 });

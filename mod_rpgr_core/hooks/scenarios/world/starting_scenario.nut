@@ -1,8 +1,8 @@
-::Core.Patcher.hookTree("scenarios/world/starting_scenario", function( _object )
+::Core.Patcher.hookTree("scenarios/world/starting_scenario", function(p)
 {
-	::Core.Patcher.wrap(_object, "onSpawnPlayer", function()
+	::Core.Patcher.wrap(p, "onSpawnPlayer", function()
 	{
-		::Core.Assets.setRosterSize();
-		::Core.Assets.setStashSize();
+		::Core.Classes.Assets.setRosterSize();
+		::Core.Classes.Assets.setStashSize();
 	});
 });

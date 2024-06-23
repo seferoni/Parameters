@@ -5,10 +5,10 @@
 	{
 		if (_getPercentage)
 		{
-			return ::Core.Standard.getPercentageSetting(_classAttribute);
+			return ::Core.Standard.getNormalisedParameter(_classAttribute);
 		}
 
-		return ::Core.Standard.getSetting(_classAttribute);
+		return ::Core.Standard.getParameter(_classAttribute);
 	}
 
 	function getViableBrothers()
@@ -31,7 +31,7 @@
 
 	function initialiseSettlementParameters( _settlementModifiers )
 	{
-		foreach( key, value in ::Core.Defaults.Settlements )
+		foreach( key in ::Core.Database.getSettlementKeys() )
 		{
 			_settlementModifiers[key] = this.get(key, true);
 		}
@@ -39,7 +39,7 @@
 
 	function initialiseWorldParameters( _worldObject )
 	{
-		foreach( key, value in ::Core.Defaults.World )
+		foreach( key in ::Core.Database.getWorldKeys() )
 		{
 			_worldObject.m[key] = this.get(key, true);
 		}
@@ -76,7 +76,7 @@
 
 		local newLoot = _lootArray.filter(function(_index, _item)
 		{
-			if (!::Core.Assets.isItemViableForRemoval(item))
+			if (!::Core.Classes.Assets.isItemViableForRemoval(item))
 			{
 				return false;
 			}
