@@ -158,6 +158,7 @@
 		});
 	}
 
+	// TODO: recent changes to wrap should make this obsolete
 	# This wrapper should be used circumstantially for base classes - that is, classes that neither inherit nor are inherited from.
 	function wrapBase( _object, _methodName, _function, _procedure = "overrideReturn" )
 	{

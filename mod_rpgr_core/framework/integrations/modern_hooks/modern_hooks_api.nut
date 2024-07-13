@@ -12,6 +12,6 @@
 
 	function hookTree( _path, _function )
 	{
-		::Core.getManager().getModernHooksInterface().rawHookTree(_path, _function); // TODO: why does wrapping the passed function in lambda work?
+		::Core.getManager().getModernHooksInterface().rawHookTree(_path, _function);
 	}
 };
