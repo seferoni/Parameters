@@ -12,6 +12,28 @@
 		return naiveMethod;
 	}
 
+	function getParentName( _object )
+	{
+		if (!("SuperName" in _object))
+		{
+			return null;
+		}
+		
+		return _object.SuperName;
+	}
+
+	function getMethodFromParent( _object, _parentName, _methodName )
+	{
+		local dummy = function();
+
+		if (_parentName == null)
+		{
+			return dummy;
+		}
+
+		return _object[_parentName][_methodName];
+	}
+
 	function hook( _path, _function )
 	{
 		if (::Core.getManager().isModernHooksInstalled())
@@ -115,15 +137,15 @@
 	function wrap( _object, _methodName, _function, _procedure = "overrideReturn" )
 	{
 		# Assign reference to the name of the parent of the target object.
-		local parentName = _object.SuperName;
+		local parentName = this.getParentName(_object);
 
 		# Attempt to store a reference to the original method (which may be inherited), to preserve functionality when wrapped (if applicable).
-		local cachedMethod = ::Core.Patcher.cacheHookedMethod(_object, _methodName);
+		local cachedMethod = this.cacheHookedMethod(_object, _methodName);
 
 		_object.rawset(_methodName, function( ... )
 		{
 			# Assign a reference to the original method.
-			local originalMethod = cachedMethod == null ? this[parentName][_methodName] : cachedMethod;
+			local originalMethod = cachedMethod == null ? ::Core.Patcher.getMethodFromParent(this, parentName, _methodName) : cachedMethod;
 
 			if (!::Core.Patcher.validateParameters(originalMethod, vargv))
 			{
