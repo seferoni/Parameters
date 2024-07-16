@@ -1,4 +1,4 @@
-::Core.Patcher.hook("states/tactical_state", function(p)
+::Core.Patcher.hook("scripts/states/tactical_state", function(p)
 {
 	::Core.Patcher.wrap(p, "gatherLoot", function()
 	{

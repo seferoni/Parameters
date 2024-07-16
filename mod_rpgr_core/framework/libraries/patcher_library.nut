@@ -11,6 +11,11 @@
 
 		return naiveMethod;
 	}
+	
+	function formatPath( _path )
+	{
+		return _path.slice("scripts/".len());
+	}
 
 	function getParentName( _object )
 	{
@@ -38,30 +43,30 @@
 	{
 		if (::Core.getManager().isModernHooksInstalled())
 		{
-			::Core.Integrations.ModernHooks.hook(format("scripts/%s", _path), _function);
+			::Core.Integrations.ModernHooks.hook(_path, _function);
 		}
 
-		::Core.Integrations.ModdingScriptHooks.hook(_path, _function);
+		::Core.Integrations.ModdingScriptHooks.hook(this.formatPath(_path), _function);
 	}
 
 	function hookBase( _path, _function )
 	{
 		if (::Core.getManager().isModernHooksInstalled())
 		{
-			::Core.Integrations.ModernHooks.hookBase(format("scripts/%s", _path), _function);
+			::Core.Integrations.ModernHooks.hookBase(_path, _function);
 		}
 
-		::Core.Integrations.ModdingScriptHooks.hookBase(_path, _function);
+		::Core.Integrations.ModdingScriptHooks.hookBase(this.formatPath(_path), _function);
 	}
 
 	function hookTree( _path, _function )
 	{
 		if (::Core.getManager().isModernHooksInstalled())
 		{
-			::Core.Integrations.ModernHooks.hookTree(format("scripts/%s", _path), _function);
+			::Core.Integrations.ModernHooks.hookTree(_path, _function);
 		}
 
-		::Core.Integrations.ModdingScriptHooks.hookTree(_path, _function);
+		::Core.Integrations.ModdingScriptHooks.hookTree(this.formatPath(_path), _function);
 	}
 
 	# Calls new method and passes result onto original method; if null, calls original method with original arguments.
@@ -147,26 +152,6 @@
 			# Assign a reference to the original method.
 			local originalMethod = cachedMethod == null ? ::Core.Patcher.getMethodFromParent(this, parentName, _methodName) : cachedMethod;
 
-			if (!::Core.Patcher.validateParameters(originalMethod, vargv))
-			{
-				::Core.Standard.log(format("An invalid number of parameters were passed to %s, aborting wrap procedure.", _methodName), true);
-				return;
-			}
-
-			local argumentsArray = ::Core.Patcher.prependContextObject(this, vargv);
-			return ::Core.Patcher[_procedure](this, _function, originalMethod, argumentsArray);
-		});
-	}
-
-	// TODO: recent changes to wrap should make this obsolete
-	# This wrapper should be used circumstantially for base classes - that is, classes that neither inherit nor are inherited from.
-	function wrapBase( _object, _methodName, _function, _procedure = "overrideReturn" )
-	{
-		# Store a reference to the original method, to preserve functionality when wrapped (if applicable).
-		local originalMethod = _object[_methodName];
-
-		_object.rawset(_methodName, function( ... )
-		{
 			if (!::Core.Patcher.validateParameters(originalMethod, vargv))
 			{
 				::Core.Standard.log(format("An invalid number of parameters were passed to %s, aborting wrap procedure.", _methodName), true);

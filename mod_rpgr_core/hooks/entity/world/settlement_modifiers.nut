@@ -1,11 +1,11 @@
-::Core.Patcher.hookBase("entity/world/settlement_modifiers", function(p)
+::Core.Patcher.hookBase("scripts/entity/world/settlement_modifiers", function(p)
 {
-	::Core.Patcher.wrapBase(p, "create", function()
+	::Core.Patcher.wrap(p, "create", function()
 	{
 		::Core.Classes.Assets.initialiseSettlementParameters(this);
 	});
 
-	::Core.Patcher.wrapBase(p, "reset", function()
+	::Core.Patcher.wrap(p, "reset", function()
 	{
 		::Core.Classes.Assets.initialiseSettlementParameters(this);
 	});
