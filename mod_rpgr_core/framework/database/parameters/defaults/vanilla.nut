@@ -1,4 +1,4 @@
-::Core.Database.Parameters.Defaults.Vanilla <-
+::Core.Database.Defaults.Vanilla <-
 {	// TODO: shouldn't this be automatically populated with vanilla values?
 	LootRemovalChance = 0
 	StashSize = 99,

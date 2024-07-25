@@ -1,4 +1,4 @@
-::Core.Database.Parameters.Defaults.RPGRDefault <-
+::Core.Database.Defaults.RPGRDefault <-
 {
 	LootRemovalChance = 60
 	StashSize = 60,

@@ -1,4 +1,4 @@
-::Core.Internal.Manager <-
+::Core.Manager <-
 {
 	function awake()
 	{
@@ -37,16 +37,6 @@
 		}
 
 		::Core.Version = this.parseSemVer(::Core.Version);
-	}
-
-	function getMSUInterface()
-	{
-		return ::Core.Interfaces.MSU;
-	}
-
-	function getModernHooksInterface()
-	{
-		return ::Core.Interfaces.ModernHooks;
 	}
 
 	function isMSUInstalled()
@@ -100,7 +90,7 @@
 	{
 		::include("mod_rpgr_core/framework/libraries/standard_library.nut");
 		::include("mod_rpgr_core/framework/libraries/patcher_library.nut");
-	} 
+	}
 
 	function loadFiles()
 	{
@@ -122,11 +112,11 @@
 
 	function queue()
 	{
-		local queued = @() ::Core.getManager().initialise();
+		local queued = @() ::Core.Manager.initialise();
 
 		if (this.isModernHooksInstalled())
 		{
-			this.getModernHooksInterface().queue(">mod_msu", queued);
+			::Core.Interfaces.ModernHooks.queue(">mod_msu", queued);
 			return;
 		}
 

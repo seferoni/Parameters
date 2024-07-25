@@ -1,4 +1,4 @@
-::Core.Database.Parameters.Settings.Settlements <-
+::Core.Database.Settings.Settlements <-
 {
 	BeastPartsPriceMult =
 	{

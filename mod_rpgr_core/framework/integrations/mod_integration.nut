@@ -1,10 +1,5 @@
 ::Core.Integrations <-
 {
-	function getMSUSettingsAPI()
-	{
-		return this.MSU;
-	}
-
 	function getModdingScriptHooksAPI()
 	{
 		return this.ModdingScriptHooks;
@@ -23,12 +18,12 @@
 
 	function initialiseMSUAPI()
 	{
-		if (!::Core.getManager().isMSUInstalled())
+		if (!::Core.Manager.isMSUInstalled())
 		{
 			return;
 		}
 
-		this.getMSUSettingsAPI().initialise();
+		this.MSU.initialise();
 	}
 
 	function loadFile( _fileName )

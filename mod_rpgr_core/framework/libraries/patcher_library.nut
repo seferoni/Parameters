@@ -11,7 +11,7 @@
 
 		return naiveMethod;
 	}
-	
+
 	function formatPath( _path )
 	{
 		return _path.slice("scripts/".len());
@@ -23,7 +23,7 @@
 		{
 			return null;
 		}
-		
+
 		return _object.SuperName;
 	}
 
@@ -41,7 +41,7 @@
 
 	function hook( _path, _function )
 	{
-		if (::Core.getManager().isModernHooksInstalled())
+		if (::Core.Manager.isModernHooksInstalled())
 		{
 			::Core.Integrations.ModernHooks.hook(_path, _function);
 		}
@@ -51,7 +51,7 @@
 
 	function hookBase( _path, _function )
 	{
-		if (::Core.getManager().isModernHooksInstalled())
+		if (::Core.Manager.isModernHooksInstalled())
 		{
 			::Core.Integrations.ModernHooks.hookBase(_path, _function);
 		}
@@ -61,7 +61,7 @@
 
 	function hookTree( _path, _function )
 	{
-		if (::Core.getManager().isModernHooksInstalled())
+		if (::Core.Manager.isModernHooksInstalled())
 		{
 			::Core.Integrations.ModernHooks.hookTree(_path, _function);
 		}

@@ -14,16 +14,11 @@
 		::include(this.Internal.ManagerPath);
 	}
 
-	function getManager()
-	{
-		return this.Internal.Manager;
-	}
-
 	function initialise()
 	{
 		this.loadManager();
-		this.getManager().awake();
-		this.getManager().queue();
+		this.Manager.awake();
+		this.Manager.queue();
 	}
 };
 

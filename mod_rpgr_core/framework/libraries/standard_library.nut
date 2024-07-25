@@ -99,9 +99,9 @@
 
 	function getParameter( _parameterKey )
 	{
-		if (::Core.getManager().isMSUInstalled())
+		if (::Core.Manager.isMSUInstalled())
 		{
-			return ::Core.Integrations.getMSUSettingsAPI().getMSUInterface().ModSettings.getSetting(_parameterKey).getValue();
+			return ::Core.Interfaces.MSU.ModSettings.getSetting(_parameterKey).getValue();
 		}
 
 		local parameters = ::Core.Database.getDefaults();

@@ -1,6 +1,6 @@
 ::Core.Integrations.MSU <-
 {
-	PageIDs = 
+	PageIDs =
 	{
 		Presets = "PresetsPage"
 	},
@@ -13,16 +13,16 @@
 			RPGRHard = "PresetsRPGRHard",
 			Vanilla = "PresetsVanilla"
 		},
-		Dividers = 
+		Dividers =
 		{
 			Presets = "PresetsDivider"
 		},
-		Titles = 
+		Titles =
 		{
 			Presets = "PresetsTitle"
 		}
 	},
-	Parameters = 
+	Parameters =
 	{
 		ActivePreset = null,
 		DefaultPreset = "RPGRDefault" // TODO: this needs to index the appropriate database key - format this
@@ -30,7 +30,7 @@
 
 	function addPage( _pageID, _pageName = null )
 	{	// TODO: consider enforcing pageName requirement for implicit builder for consistency
-		return this.getMSUInterface().ModSettings.addPage(_pageID, _pageName);
+		return ::Core.Interfaces.MSU.ModSettings.addPage(_pageID, _pageName);
 	}
 
 	function appendElementToPage( _settingElement, _pageID )
@@ -40,8 +40,8 @@
 
 	function build()
 	{
-		this.getExplicitBuilder().build();
-		this.getImplicitBuilder().build();
+		this.Builders.Explicit.build();
+		this.Builders.Implicit.build();
 	}
 
 	function buildDescription( _settingElement )
@@ -71,29 +71,14 @@
 		return ::Core.Database.getDefaultValue(this.getActivePreset(), _settingKey);
 	}
 
-	function getExplicitBuilder()
-	{
-		return this.Builders.Explicit;
-	}
-
-	function getMSUInterface()
-	{
-		return ::Core.getManager().getMSUInterface();
-	}
-
-	function getImplicitBuilder()
-	{
-		return this.Builders.Implicit;
-	}
-
 	function getPage( _pageID )
 	{
-		return ::Core.getManager().getMSUInterface().ModSettings.getPage(_pageID);
+		return ::Core.Interfaces.MSU.ModSettings.getPage(_pageID);
 	}
 
 	function getPages()
 	{
-		return ::Core.getManager().getMSUInterface().ModSettings.getPanel().getPages();
+		return ::Core.Interfaces.MSU.ModSettings.getPanel().getPages();
 	}
 
 	function getElementDescription( _elementKey )
@@ -116,7 +101,7 @@
 
 	function loadBuilders()
 	{
-		::Core.getManager().includeFiles("mod_rpgr_core/framework/integrations/msu/builders");
+		::Core.Manager.includeFiles("mod_rpgr_core/framework/integrations/msu/builders");
 	}
 
 	function loadCustomSettings()
@@ -127,7 +112,7 @@
 
 	function loadCustomSettingClasses()
 	{
-		::Core.getManager().includeFiles("mod_rpgr_core/framework/integrations/msu/custom_settings");
+		::Core.Manager.includeFiles("mod_rpgr_core/framework/integrations/msu/custom_settings");
 	}
 
 	function loadJS()
@@ -137,7 +122,7 @@
 
 	function registerJS( _path )
 	{
-		::Core.getManager().registerJS(format("msu_custom_settings/%s", _path));
+		::Core.Manager.registerJS(format("msu_custom_settings/%s", _path));
 	}
 
 	function setPreset( _newValue )

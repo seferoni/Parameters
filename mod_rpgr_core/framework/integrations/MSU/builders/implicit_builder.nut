@@ -1,14 +1,14 @@
 ::Core.Integrations.MSU.Builders.Implicit <-
 {
-	function addSettingImplicitly( _settingID, _dataTable, _pageID )
+	function addSettingImplicitly( _settingID, _settingValues, _pageID )
 	{
 		local settingElement = null;
 
-		switch (typeof _dataTable.Default)
+		switch (typeof _settingValues.Default)
 		{
-			case ("boolean"): settingElement = this.createBooleanSetting(_settingID, _dataTable); break;
+			case ("boolean"): settingElement = this.createBooleanSetting(_settingID, _settingValues); break;
 			case ("float"):
-			case ("integer"): settingElement = this.createNumericalSetting(_settingID, _dataTable); break;
+			case ("integer"): settingElement = this.createNumericalSetting(_settingID, _settingValues); break;
 		}
 
 		if (settingElement == null)
@@ -17,21 +17,21 @@
 			return;
 		}
 
-		::Core.Integrations.getMSUSettingsAPI().buildDescription(settingElement);
-		::Core.Integrations.getMSUSettingsAPI().appendElementToPage(settingElement, _pageID);
+		::Core.Integrations.MSU.buildDescription(settingElement);
+		::Core.Integrations.MSU.appendElementToPage(settingElement, _pageID);
 	}
 
 	function build()
 	{
 		this.buildPages();
-		
+
 		# Get eligible data tables to be exposed as settings through the MSU settings panel.
-		local parameters = this.getSettingsToBeBuiltImplicitly();
+		local implicitSettings = ::Core.Database.Settings;
 
 		# Loop through the Assets, World, and Settlements parameter tables.
-		foreach( parameterType, parameterTable in parameters )
+		foreach( pageName, settingGroup in parameters )
 		{
-			this.buildImplicitly(parameterTable, parameterType);
+			this.buildImplicitly(pageName, settingGroup);
 		}
 	}
 
@@ -42,32 +42,26 @@
 
 		foreach( category in parameterCategories )
 		{
-			::Core.Integrations.getMSUSettingsAPI().addPage(category);
+			::Core.Integrations.MSU.addPage(category);
 		}
 	}
 
-	function buildImplicitly( _parameterTable, _pageName )
+	function buildImplicitly( _pageName, _settingGroup )
 	{
-		# Loop through individual data tables within each parameter type. Each data structure corresponds to an individual MSU setting.
-		foreach( dataKey, dataTable in _parameterTable )
+		foreach( settingID, settingValues in _settingGroup )
 		{
-			dataTable.Default <- ::Core.Integrations.getMSUSettingsAPI().getDefaultValue(dataKey);
-			this.addSettingImplicitly(dataKey, dataTable, _pageName);
+			settingValues.Default <- ::Core.Integrations.MSU.getDefaultValue(dataKey);
+			this.addSettingImplicitly(settingID, settingValues, _pageName);
 		}
 	}
 
-	function createBooleanSetting( _settingID, _dataTable )
+	function createBooleanSetting( _settingID, _settingValues )
 	{
-		return ::MSU.Class.BooleanSetting(_settingID, _dataTable.Default, ::Core.Integrations.getMSUSettingsAPI().getElementName(_settingID));
+		return ::MSU.Class.BooleanSetting(_settingID, _settingValues.Default, ::Core.Integrations.MSU.getElementName(_settingID));
 	}
 
-	function createNumericalSetting( _settingID, _dataTable )
+	function createNumericalSetting( _settingID, _settingValues )
 	{
-		return ::MSU.Class.RangeSetting(_settingID, _dataTable.Default, _dataTable.Range[0], _dataTable.Range[1], _dataTable.Interval, ::Core.Integrations.getMSUSettingsAPI().getElementName(_settingID));
-	}
-
-	function getSettingsToBeBuiltImplicitly()
-	{
-		return ::Core.Database.getSettingTables();
+		return ::MSU.Class.RangeSetting(_settingID, _settingValues.Default, _settingValues.Range[0], _settingValues.Range[1], _settingValues.Interval, ::Core.Integrations.MSU.getElementName(_settingID));
 	}
 };

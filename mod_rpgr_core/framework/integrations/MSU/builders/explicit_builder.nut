@@ -4,21 +4,21 @@
 	{
 		_settingElement.addBeforeChangeCallback(function()
 		{
-			::Core.Integrations.getMSUSettingsAPI().setPreset(this.getID());
-			::Core.Integrations.getMSUSettingsAPI().getExplicitBuilder().resetPages();
+			::Core.Integrations.MSU.setPreset(this.getID());
+			::Core.Integrations.MSU.Builders.Explicit.resetPages();
 		});
 	}
 
 	function addTitle( _pageObject )
 	{
 		local titleElement = this.createPresetTitle();
-		::Core.Integrations.getMSUSettingsAPI().buildDescription(titleElement);
+		::Core.Integrations.MSU.buildDescription(titleElement);
 		_pageObject.addElement(titleElement);
 	}
 
 	function appendToPresetsPage( _settingElement )
 	{
-		::Core.Integrations.getMSUSettingsAPI().appendElementToPage(_settingElement, this.getPresetsPageID());
+		::Core.Integrations.MSU.appendElementToPage(_settingElement, this.getPresetsPageID());
 	}
 
 	function build()
@@ -29,7 +29,7 @@
 
 	function buildDivider()
 	{
-		local divider = this.createDivider(::Core.Integrations.getMSUSettingsAPI().ElementIDs.Dividers.Presets);
+		local divider = this.createDivider(::Core.Integrations.MSU.ElementIDs.Dividers.Presets);
 		this.appendToPresetsPage(divider);
 	}
 
@@ -45,7 +45,7 @@
 
 	function buildPages()
 	{
-		local presetsPage = ::Core.Integrations.getMSUSettingsAPI().addPage(this.getPresetsPageID(), this.getPresetsPageName());
+		local presetsPage = ::Core.Integrations.MSU.addPage(this.getPresetsPageID(), this.getPresetsPageName());
 		this.addTitle(presetsPage);
 	}
 
@@ -59,7 +59,7 @@
 
 	function buildPresetSettingDescription( _settingElement )
 	{
-		::Core.Integrations.getMSUSettingsAPI().buildDescription(_settingElement);
+		::Core.Integrations.MSU.buildDescription(_settingElement);
 	}
 
 	function createDivider( _elementID )
@@ -79,39 +79,39 @@
 
 	function getElementIDs()
 	{
-		return ::Core.Integrations.getMSUSettingsAPI().ElementIDs;
+		return ::Core.Integrations.MSU.ElementIDs;
 	}
 
 	function getElementName( _settingID )
 	{
-		return ::Core.Integrations.getMSUSettingsAPI().getElementName(_settingID);
+		return ::Core.Integrations.MSU.getElementName(_settingID);
 	}
 
 	function getParameters()
 	{
-		return ::Core.Integrations.getMSUSettingsAPI().Parameters;
+		return ::Core.Integrations.MSU.Parameters;
 	}
 
 	function getPageIDs()
 	{
-		return ::Core.Integrations.getMSUSettingsAPI().PageIDs;
+		return ::Core.Integrations.MSU.PageIDs;
 	}
 
 	function getPagesForReset()
 	{
-		local pages = clone ::Core.Integrations.getMSUSettingsAPI().getPages();
+		local pages = clone ::Core.Integrations.MSU.getPages();
 		delete pages[this.getPageIDs().Presets];
 		return pages;
 	}
 
 	function getPresetDescription( _presetValue )
 	{
-		return ::Core.Integrations.getMSUSettingsAPI().getElementDescription(format("%sPreset", _presetValue));
+		return ::Core.Integrations.MSU.getElementDescription(format("%sPreset", _presetValue));
 	}
 
 	function getPresetsPage()
 	{
-		return ::Core.Integrations.getMSUSettingsAPI().getPage(this.getPresetsPageID());
+		return ::Core.Integrations.MSU.getPage(this.getPresetsPageID());
 	}
 
 	function getPresetsPageID()
@@ -146,7 +146,7 @@
 
 	function updateSettingBaseValue( _settingElement )
 	{
-		local defaultValue = ::Core.Integrations.getMSUSettingsAPI().getDefaultValue(_settingElement.getID());
+		local defaultValue = ::Core.Integrations.MSU.getDefaultValue(_settingElement.getID());
 		_settingElement.setBaseValue(defaultValue, true);
 	}
 };
