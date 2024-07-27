@@ -38,11 +38,11 @@
 	function buildPages()
 	{
 		# Internal database structuring for game parameter data is to be reflected in page segregation.
-		local parameterCategories = ::Core.Database.getParameterCategories();
+		local pageNames = ::Core.Database.getSettingCategories();
 
-		foreach( category in parameterCategories )
+		foreach( pageName in pageNames )
 		{
-			::Core.Integrations.MSU.addPage(category);
+			::Core.Integrations.MSU.addPage(pageName);
 		}
 	}
 

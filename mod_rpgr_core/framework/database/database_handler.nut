@@ -48,7 +48,7 @@
 		return ::Core.Standard.getKeys(this.Defaults);
 	}
 
-	function getParameterCategories()
+	function getSettingCategories()
 	{
 		return ::Core.Standard.getKeys(this.Settings);
 	}

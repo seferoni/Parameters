@@ -5,13 +5,13 @@
 		Presets = "PresetsPage"
 	},
 	ElementIDs =
-	{	// TODO: this annoys me to look at
+	{
 		Buttons =
 		{
-			RPGREasy = "PresetsRPGREasy",
-			RPGRDefault = "PresetsRPGRDefault",
-			RPGRHard = "PresetsRPGRHard",
-			Vanilla = "PresetsVanilla"
+			RPGREasy = "RPGREasy",
+			RPGRStandard = "RPGRStandard",
+			RPGRHard = "RPGRHard",
+			Vanilla = "Vanilla"
 		},
 		Dividers =
 		{
@@ -25,11 +25,11 @@
 	Parameters =
 	{
 		ActivePreset = null,
-		DefaultPreset = "RPGRDefault" // TODO: this needs to index the appropriate database key - format this
+		DefaultPreset = "RPGRStandard"
 	}
 
 	function addPage( _pageID, _pageName = null )
-	{	// TODO: consider enforcing pageName requirement for implicit builder for consistency
+	{
 		return ::Core.Interfaces.MSU.ModSettings.addPage(_pageID, _pageName);
 	}
 

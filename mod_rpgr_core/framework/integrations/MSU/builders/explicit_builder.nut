@@ -39,7 +39,7 @@
 		this.buildPresetSetting(elementIDs.Buttons.Vanilla);
 		this.buildDivider();
 		this.buildPresetSetting(elementIDs.Buttons.RPGREasy);
-		this.buildPresetSetting(elementIDs.Buttons.RPGRDefault);
+		this.buildPresetSetting(elementIDs.Buttons.RPGRStandard);
 		this.buildPresetSetting(elementIDs.Buttons.RPGRHard);
 	}
 
