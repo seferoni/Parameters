@@ -2,30 +2,30 @@
 {
 	PageIDs =
 	{
-		Presets = "PresetsPage"
+		Presets = "PagePresets"
 	},
 	ElementIDs =
 	{
 		Buttons =
 		{
-			RPGREasy = "RPGREasy",
-			RPGRStandard = "RPGRStandard",
-			RPGRHard = "RPGRHard",
-			Vanilla = "Vanilla"
+			Easy = "ButtonEasy",
+			Standard = "ButtonStandard",
+			Hard = "ButtonHard",
+			Vanilla = "ButtonVanilla"
 		},
 		Dividers =
 		{
-			Presets = "PresetsDivider"
+			Presets = "DividerPresets"
 		},
 		Titles =
 		{
-			Presets = "PresetsTitle"
+			Presets = "TitlePresets"
 		}
 	},
 	Parameters =
 	{
 		ActivePreset = null,
-		DefaultPreset = "RPGRStandard"
+		DefaultPreset = "Standard"
 	}
 
 	function addPage( _pageID, _pageName = null )
@@ -125,8 +125,8 @@
 		::Core.Manager.registerJS(format("msu_custom_settings/%s", _path));
 	}
 
-	function setPreset( _newValue )
+	function setPreset( _buttonID )
 	{
-		this.Parameters.ActivePreset = ::Core.Standard.getKey(_newValue, this.ElementIDs.Buttons);
+		this.Parameters.ActivePreset = ::Core.Standard.getKey(_buttonID, this.ElementIDs.Buttons);
 	}
 };

@@ -1,4 +1,4 @@
-::Core.Database.Defaults.RPGRHard <-
+::Core.Database.Defaults.Hard <-
 {
 	LootRemovalChance = 90,
 	StashSize = 40,
