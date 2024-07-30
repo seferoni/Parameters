@@ -5,8 +5,8 @@
 		_settingElement.addBeforeChangeCallback(function()
 		{
 			::Core.Integrations.MSU.setPreset(this.getID());
-			//::Core.Integrations.MSU.Builders.Explicit.resetPages(); // TODO: this is causing significant lag
-			// TODO: there is a better way to initialise preset changes. i'm certain of it
+			::Core.Integrations.MSU.Builders.Explicit.resetPages();
+			::Core.Interfaces.MSU.ModSettings.resetSettings();
 		});
 	}
 
@@ -118,6 +118,6 @@
 	function updateSettingBaseValue( _settingElement )
 	{
 		local defaultValue = ::Core.Integrations.MSU.getDefaultValue(_settingElement.getID());
-		_settingElement.setBaseValue(defaultValue, true);
+		_settingElement.setBaseValue(defaultValue);
 	}
 };
