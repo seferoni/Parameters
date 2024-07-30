@@ -2,7 +2,7 @@
 {
 	function addPresetChangeCallback( _settingElement )
 	{
-		_settingElement.addBeforeChangeCallback(function()
+		_settingElement.addCallback(function()
 		{
 			::Core.Integrations.MSU.setPreset(this.getID());
 			::Core.Integrations.MSU.Builders.Explicit.resetPages();
