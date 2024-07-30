@@ -104,27 +104,6 @@
 		::Core.Manager.includeFiles("mod_rpgr_core/framework/integrations/msu/builders");
 	}
 
-	function loadCustomSettings()
-	{
-		this.loadCustomSettingClasses();
-		this.loadJS();
-	}
-
-	function loadCustomSettingClasses()
-	{
-		::Core.Manager.includeFiles("mod_rpgr_core/framework/integrations/msu/custom_settings");
-	}
-
-	function loadJS()
-	{
-		this.registerJS("rpgr_title_setting.js");
-	}
-
-	function registerJS( _path )
-	{
-		::Core.Manager.registerJS(format("msu_custom_settings/%s", _path));
-	}
-
 	function setPreset( _buttonID )
 	{
 		this.Parameters.ActivePreset = ::Core.Standard.getKey(_buttonID, this.ElementIDs.Buttons);

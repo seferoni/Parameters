@@ -5,7 +5,8 @@
 		_settingElement.addBeforeChangeCallback(function()
 		{
 			::Core.Integrations.MSU.setPreset(this.getID());
-			::Core.Integrations.MSU.Builders.Explicit.resetPages();
+			//::Core.Integrations.MSU.Builders.Explicit.resetPages(); // TODO: this is causing significant lag
+			// TODO: there is a better way to initialise preset changes. i'm certain of it
 		});
 	}
 
@@ -69,12 +70,12 @@
 
 	function createPresetSetting( _settingID )
 	{
-		return ::MSU.Class.ButtonSetting(_settingID, ::Core.Integrations.MSU.getElementName(_settingID), "");
+		return ::MSU.Class.ButtonSetting(_settingID, null, ::Core.Integrations.MSU.getElementName(_settingID));
 	}
 
 	function createPresetTitle()
 	{
-		return ::Core.Integrations.MSU.CustomSettings.RPGRTitleSetting(::Core.Integrations.MSU.ElementIDs.Titles.Presets, "-5rem", this.getPresetTitleName());
+		return ::MSU.Class.SettingsTitle(::Core.Integrations.MSU.ElementIDs.Titles.Presets, this.getPresetTitleName());
 	}
 
 	function getPagesForReset()
