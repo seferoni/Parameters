@@ -96,12 +96,11 @@
 	function setRosterSize()
 	{
 		local targetSize = this.get("RosterSize"),
-		setSize = @() ::World.Assets.m.BrothersMax = targetSize,
 		roster = ::World.getPlayerRoster();
 
 		if (roster.getSize() <= targetSize)
 		{
-			setSize();
+			::World.Assets.m.BrothersMax = targetSize;
 			return;
 		}
 
@@ -112,7 +111,7 @@
 			roster.remove(brothers[::Math.rand(0, brothers.len() - 1)])
 		}
 
-		setSize();
+		::World.Assets.m.BrothersMax = targetSize;
 	}
 
 	function setStashSize()

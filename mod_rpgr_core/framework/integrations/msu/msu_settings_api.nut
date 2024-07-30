@@ -117,7 +117,7 @@
 
 	function loadJS()
 	{
-		this.registerJS("rpgr_title_setting/rpgr_title_setting.js");
+		this.registerJS("rpgr_title_setting.js");
 	}
 
 	function registerJS( _path )

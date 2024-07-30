@@ -18,7 +18,7 @@
 
 	function appendToPresetsPage( _settingElement )
 	{
-		::Core.Integrations.MSU.appendElementToPage(_settingElement, this.getPresetsPageID());
+		::Core.Integrations.MSU.appendElementToPage(_settingElement, ::Core.Integrations.MSU.PageIDs.Presets);
 	}
 
 	function build()
@@ -35,17 +35,17 @@
 
 	function buildSettings()
 	{
-		local elementIDs = this.getElementIDs();
-		this.buildPresetSetting(elementIDs.Buttons.Vanilla);
+		local buttonIDs = ::Core.Integrations.MSU.ElementIDs.Buttons;
+		this.buildPresetSetting(buttonIDs.Vanilla);
 		this.buildDivider();
-		this.buildPresetSetting(elementIDs.Buttons.RPGREasy);
-		this.buildPresetSetting(elementIDs.Buttons.RPGRStandard);
-		this.buildPresetSetting(elementIDs.Buttons.RPGRHard);
+		this.buildPresetSetting(buttonIDs.Easy);
+		this.buildPresetSetting(buttonIDs.Standard);
+		this.buildPresetSetting(buttonIDs.Hard);
 	}
 
 	function buildPages()
 	{
-		local presetsPage = ::Core.Integrations.MSU.addPage(this.getPresetsPageID(), this.getPresetsPageName());
+		local presetsPage = ::Core.Integrations.MSU.addPage(::Core.Integrations.MSU.PageIDs.Presets, this.getPresetsPageName());
 		this.addTitle(presetsPage);
 	}
 
@@ -69,38 +69,18 @@
 
 	function createPresetSetting( _settingID )
 	{
-		return ::MSU.Class.ButtonSetting(_settingID, this.getElementName(_settingID), "");
+		return ::MSU.Class.ButtonSetting(_settingID, ::Core.Integrations.MSU.getElementName(_settingID), "");
 	}
 
 	function createPresetTitle()
 	{
-		return ::Core.Integrations.MSU.CustomSettings.RPGRTitleSetting(this.getPresetTitleID(), "-5rem", this.getPresetTitleName());
-	}
-
-	function getElementIDs()
-	{
-		return ::Core.Integrations.MSU.ElementIDs;
-	}
-
-	function getElementName( _settingID )
-	{
-		return ::Core.Integrations.MSU.getElementName(_settingID);
-	}
-
-	function getParameters()
-	{
-		return ::Core.Integrations.MSU.Parameters;
-	}
-
-	function getPageIDs()
-	{
-		return ::Core.Integrations.MSU.PageIDs;
+		return ::Core.Integrations.MSU.CustomSettings.RPGRTitleSetting(::Core.Integrations.MSU.ElementIDs.Titles.Presets, "-5rem", this.getPresetTitleName());
 	}
 
 	function getPagesForReset()
 	{
 		local pages = clone ::Core.Integrations.MSU.getPages();
-		delete pages[this.getPageIDs().Presets];
+		delete pages[::Core.Integrations.MSU.PageIDs.Presets];
 		return pages;
 	}
 
@@ -111,27 +91,17 @@
 
 	function getPresetsPage()
 	{
-		return ::Core.Integrations.MSU.getPage(this.getPresetsPageID());
-	}
-
-	function getPresetsPageID()
-	{
-		return this.getPageIDs().Presets;
-	}
-
-	function getPresetTitleID()
-	{
-		return this.getElementIDs().Titles.Presets;
+		return ::Core.Integrations.MSU.getPage(::Core.Integrations.MSU.PageIDs.Presets);
 	}
 
 	function getPresetsPageName()
 	{
-		return this.getElementName(this.getPresetsPageID());
+		return ::Core.Integrations.MSU.getElementName(::Core.Integrations.MSU.PageIDs.Presets);
 	}
 
 	function getPresetTitleName()
 	{
-		return this.getElementName(this.getPresetTitleID());
+		return ::Core.Integrations.MSU.getElementName(::Core.Integrations.MSU.ElementIDs.Titles.Presets);
 	}
 
 	function resetPages()
