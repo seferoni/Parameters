@@ -95,7 +95,6 @@
 	{
 		this.createTables();
 		this.loadBuilders();
-		this.loadCustomSettings();
 		this.build();
 	}
 
