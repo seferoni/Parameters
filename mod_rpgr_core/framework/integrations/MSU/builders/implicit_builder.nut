@@ -25,11 +25,8 @@
 	{
 		this.buildPages();
 
-		# Get eligible data tables to be exposed as settings through the MSU settings panel.
-		local implicitSettings = ::Core.Database.Settings;
-
 		# Loop through the Assets, World, and Settlements parameter tables.
-		foreach( pageName, settingGroup in parameters )
+		foreach( pageName, settingGroup in ::Core.Database.Settings )
 		{
 			this.buildImplicitly(pageName, settingGroup);
 		}
@@ -50,7 +47,7 @@
 	{
 		foreach( settingID, settingValues in _settingGroup )
 		{
-			settingValues.Default <- ::Core.Integrations.MSU.getDefaultValue(dataKey);
+			settingValues.Default <- ::Core.Integrations.MSU.getDefaultValue(settingID);
 			this.addSettingImplicitly(settingID, settingValues, _pageName);
 		}
 	}

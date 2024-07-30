@@ -88,7 +88,7 @@
 
 	function getElementName( _elementKey )
 	{
-		return ::Core.Strings.Settings[format("%s", _elementKey)];
+		return ::Core.Strings.Settings[_elementKey];
 	}
 
 	function initialise()
