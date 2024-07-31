@@ -12,7 +12,7 @@
 	},
 	RosterSize =
 	{
-		Range = [3, 25],
+		Range = [0, 25],
 		Interval = 1
 	}
 };

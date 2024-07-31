@@ -1,6 +1,5 @@
 ::Core.Classes.Assets <-
 {	// TODO: difficulty mults for faction action stuff
-	// TODO: heal rate mult
 	function get( _classAttribute, _getPercentage = false )
 	{
 		if (_getPercentage)
@@ -95,8 +94,14 @@
 
 	function setRosterSize()
 	{
-		local targetSize = this.get("RosterSize"),
-		roster = ::World.getPlayerRoster();
+		local targetSize = this.get("RosterSize");
+
+		if (targetSize == 0)
+		{
+			return;
+		}
+
+		local roster = ::World.getPlayerRoster();
 
 		if (roster.getSize() <= targetSize)
 		{

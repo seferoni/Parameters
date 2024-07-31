@@ -6,6 +6,7 @@
 	ContractPaymentMult = 140,
 	DailyWageMult = 160,
 	FoodConsumptionMult = 140,
+	HitpointsPerHourMult = 100,
 	RepairSpeedMult = 30,
 	XPMult = 40,
 	BeastPartsPriceMult = 150,

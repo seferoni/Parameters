@@ -8,9 +8,9 @@
 	{
 		Buttons =
 		{
-			Easy = "ButtonEasy",
+			Casual = "ButtonCasual",
 			Standard = "ButtonStandard",
-			Hard = "ButtonHard",
+			Survival = "ButtonSurvival",
 			Vanilla = "ButtonVanilla"
 		},
 		Dividers =

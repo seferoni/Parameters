@@ -8,11 +8,11 @@
 	ButtonStandard = "Standard",
 	ButtonStandardDescription = "The default parameter configuration for RPG Rebalance. This preset is designed to make the game experience significantly harder and slower-paced by inducing scarcity upon key strategic layer resources.",
 
-	ButtonEasy = "Casual",
-	ButtonEasyDescription = "A less demanding variant of the default parameter configuration. This preset is generally better suited for games that are more fast-paced.",
+	ButtonCasual = "Casual",
+	ButtonCasualDescription = "A less demanding variant of the default parameter configuration. This preset is generally better suited for games that are more fast-paced.",
 
-	ButtonHard = "Survival",
-	ButtonHardDescription = "A significantly more restrictive variant of the default parameter configuration. This preset is designed to cater to especially long and difficult campaigns, meant to emulate a much slower and more gradual sense of progression.",
+	ButtonSurvival = "Survival",
+	ButtonSurvivalDescription = "A significantly more restrictive variant of the default parameter configuration. This preset is designed to cater to especially long and difficult campaigns, meant to emulate a much slower and more gradual sense of progression.",
 
 	ButtonVanilla = "Vanilla",
 	ButtonVanillaDescription = "The default parameter configuration for the vanilla game.",
@@ -24,7 +24,7 @@
 	StashSizeDescription = "Determines the starting stash size. Has no effect on ongoing playthroughs.",
 
 	RosterSize = "Roster Size",
-	RosterSizeDescription = "Determines the starting roster size. Overrides scenario-specific restrictions. Has no effect on ongoing playthroughs."
+	RosterSizeDescription = "Determines the starting roster size, overriding scenario-specific restrictions. Disabled when set to 0. Has no effect on ongoing playthroughs."
 
 	BeastPartsPriceMult = "Beast Parts Price Multiplier",
 	BeastPartsPriceMultDescription = "Determines the base percentage multiplier for the price of beast parts.",

@@ -1,4 +1,4 @@
-::Core.Database.Defaults.Easy <-
+::Core.Database.Defaults.Casual <-
 {
 	LootRemovalChance = 0,
 	StashSize = 99,
@@ -6,6 +6,7 @@
 	ContractPaymentMult = 180,
 	DailyWageMult = 120,
 	FoodConsumptionMult = 120,
+	HitpointsPerHourMult = 100,
 	RepairSpeedMult = 75,
 	XPMult = 80,
 	BeastPartsPriceMult = 180,
