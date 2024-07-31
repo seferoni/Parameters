@@ -93,7 +93,7 @@
 	}
 
 	function setRosterSize()
-	{	// TODO:
+	{
 		if (!this.get("ConstrainRosterSize"))
 		{
 			return;
@@ -108,26 +108,20 @@
 			return;
 		}
 
+		local viableBrothers = this.getViableBrothers();
 
-
-
-		/*local roster = ::World.getPlayerRoster();
-		local targetSize = this.get("RosterSize");
-
-		if (roster.getSize() <= targetSize)
+		if (viableBrothers.len() < roster.getSize() - targetSize)
 		{
-			::World.Assets.m.BrothersMax = targetSize;
+			::World.Assets.m.BrothersMax = roster.getSize();
 			return;
 		}
 
-		local brothers = this.getViableBrothers();
-
 		while (roster.getSize() > targetSize)
 		{
-			roster.remove(brothers[::Math.rand(0, brothers.len() - 1)])
+			roster.remove(viableBrothers[::Math.rand(0, viableBrothers.len() - 1)])
 		}
 
-		::World.Assets.m.BrothersMax = targetSize;*/
+		::World.Assets.m.BrothersMax = targetSize;
 	}
 
 	function setStashSize()
