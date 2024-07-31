@@ -24,7 +24,7 @@
 	StashSizeDescription = "Determines the starting stash size. Has no effect on ongoing playthroughs.",
 
 	RosterSize = "Roster Size",
-	RosterSizeDescription = "Determines the starting roster size, overriding scenario-specific restrictions. Disabled when set to 0. Has no effect on ongoing playthroughs."
+	RosterSizeDescription = "Determines the starting roster size, overriding scenario-specific restrictions. Has no effect on ongoing playthroughs.",
 
 	BeastPartsPriceMult = "Beast Parts Price Multiplier",
 	BeastPartsPriceMultDescription = "Determines the base percentage multiplier for the price of beast parts.",

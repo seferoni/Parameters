@@ -3,6 +3,7 @@
 	LootRemovalChance = 0,
 	StashSize = 99,
 	RosterSize = 13,
+	ConstrainRosterSize = true,
 	ContractPaymentMult = 180,
 	DailyWageMult = 120,
 	FoodConsumptionMult = 120,

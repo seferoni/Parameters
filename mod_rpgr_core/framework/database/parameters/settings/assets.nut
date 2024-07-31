@@ -12,7 +12,8 @@
 	},
 	RosterSize =
 	{
-		Range = [0, 25],
+		Range = [3, 25],
 		Interval = 1
-	}
+	},
+	ConstrainRosterSize = {}
 };

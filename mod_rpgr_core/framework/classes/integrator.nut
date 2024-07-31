@@ -11,9 +11,9 @@
 	}
 
 	function getViableBrothers()
-	{	// TODO: this might cause an infinite loop when roster is culled
-		local candidates = [],
-		roster = ::World.getPlayerRoster().getAll();
+	{
+		local candidates = [];
+		local roster = ::World.getPlayerRoster().getAll();
 
 		foreach( brother in roster )
 		{
@@ -93,15 +93,26 @@
 	}
 
 	function setRosterSize()
-	{	// TODO: this is vulnerable
-		local targetSize = this.get("RosterSize");
-
-		if (targetSize == 0)
+	{	// TODO:
+		if (!this.get("ConstrainRosterSize"))
 		{
 			return;
 		}
 
 		local roster = ::World.getPlayerRoster();
+		local targetSize = this.get("RosterSize");
+
+		if (roster.getSize() <= targetSize)
+		{
+			::World.Assets.m.BrothersMax = targetSize;
+			return;
+		}
+
+
+
+
+		/*local roster = ::World.getPlayerRoster();
+		local targetSize = this.get("RosterSize");
 
 		if (roster.getSize() <= targetSize)
 		{
@@ -116,7 +127,7 @@
 			roster.remove(brothers[::Math.rand(0, brothers.len() - 1)])
 		}
 
-		::World.Assets.m.BrothersMax = targetSize;
+		::World.Assets.m.BrothersMax = targetSize;*/
 	}
 
 	function setStashSize()
