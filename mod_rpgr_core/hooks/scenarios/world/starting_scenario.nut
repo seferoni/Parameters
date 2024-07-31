@@ -2,7 +2,7 @@
 {
 	::Core.Patcher.wrap(p, "onInit", function()
 	{
-		::Core.Classes.Assets.setRosterSize();
-		::Core.Classes.Assets.setStashSize();
+		::Core.Classes.Integrator.setRosterSize();
+		::Core.Classes.Integrator.setStashSize();
 	});
 });

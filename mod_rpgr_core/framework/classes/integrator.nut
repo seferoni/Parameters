@@ -1,4 +1,4 @@
-::Core.Classes.Assets <-
+::Core.Classes.Integrator <-
 {	// TODO: difficulty mults for faction action stuff
 	function get( _classAttribute, _getPercentage = false )
 	{
@@ -11,7 +11,7 @@
 	}
 
 	function getViableBrothers()
-	{
+	{	// TODO: this might cause an infinite loop when roster is culled
 		local candidates = [],
 		roster = ::World.getPlayerRoster().getAll();
 
@@ -75,7 +75,7 @@
 
 		local newLoot = _lootArray.filter(function(_index, _item)
 		{
-			if (!::Core.Classes.Assets.isItemViableForRemoval(item))
+			if (!::Core.Classes.Integrator.isItemViableForRemoval(item))
 			{
 				return false;
 			}
@@ -93,7 +93,7 @@
 	}
 
 	function setRosterSize()
-	{
+	{	// TODO: this is vulnerable
 		local targetSize = this.get("RosterSize");
 
 		if (targetSize == 0)
@@ -123,4 +123,4 @@
 	{
 		::World.Assets.getStash().resize(this.get("StashSize"));
 	}
-}
+};
