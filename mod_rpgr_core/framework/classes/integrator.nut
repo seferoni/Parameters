@@ -1,5 +1,5 @@
 ::Core.Classes.Integrator <-
-{
+{	// TODO: setting for max brothers in combat?
 	function get( _classAttribute, _getPercentage = false )
 	{
 		if (_getPercentage)

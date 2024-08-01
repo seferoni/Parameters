@@ -27,7 +27,7 @@
 	RosterSizeDescription = "Determines the maximum roster size, overriding scenario-specific restrictions. Does nothing if Constrain Roster Size is disabled. Has no effect on ongoing playthroughs.",
 
 	ConstrainRosterSize = "Constrain Roster Size",
-	ConstrainRosterSizeDescription = "Determines the state of the Roster Size setting. Keep this setting disabled when scenario-specific roster sizes are desired.",
+	ConstrainRosterSizeDescription = "Determines whether settings to do with roster sizes have any effect for a new playthrough. Keep this setting disabled when scenario-specific roster sizes are desired.",
 
 	BeastPartsPriceMult = "Beast Parts Price Multiplier",
 	BeastPartsPriceMultDescription = "Determines the base percentage multiplier for the price of beast parts.",
@@ -36,13 +36,13 @@
 	BuyPriceMultDescription = "Determines the base percentage multiplier for the purchase prices of goods sold at all settlements.",
 
 	SellPriceMult = "Sell Price Multiplier",
-	SellPriceMultDescription = "Determines the base percentage multiplier for the sale prices of goods sold at all settlements.",
+	SellPriceMultDescription = "Determines the base percentage multiplier for the sale prices of goods at all settlements.",
 
 	RarityMult = "Item Abundance Multiplier",
 	RarityMultDescription = "Determines the base number of items available for sale in settlements. Higher values allow for a greater number of items.",
 
 	RecruitsMult = "Recruits Multiplier",
-	RecruitsMultDescription = "Determines the base percentage multiplier for the number of prospective recruits found at all settlements.",
+	RecruitsMultDescription = "Determines the base percentage multiplier for the number of prospective recruits found across all settlements.",
 
 	ContractPaymentMult = "Contract Payment Multiplier",
 	ContractPaymentMultDescription = "Determines the base percentage multiplier for contract payment.",
@@ -54,11 +54,11 @@
 	FoodConsumptionMultDescription = "Determines how quickly food is consumed.",
 
 	HitpointsPerHourMult = "Heal Rate Multiplier",
-	HitpointsPerHourMultDescription = "Controls the amount of hitpoints healed per hour, if medical supplies are present.",
+	HitpointsPerHourMultDescription = "Determines how quickly missing hitpoints are recovered for all hired brothers, if medical supplies are present.",
 
 	RepairSpeedMult = "Repair Speed Multiplier",
 	RepairSpeedMultDescription = "Determines how quickly items are repaired.",
 
 	XPMult = "XP Multiplier",
-	XPMultDescription = "Determines the base percentage multiplier for global XP gains."
+	XPMultDescription = "Determines the base percentage multiplier for XP gains."
 };
