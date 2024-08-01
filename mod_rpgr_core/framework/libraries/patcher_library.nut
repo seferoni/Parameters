@@ -44,6 +44,7 @@
 		if (::Core.Manager.isModernHooksInstalled())
 		{
 			::Core.Integrations.ModernHooks.hook(_path, _function);
+			return;
 		}
 
 		::Core.Integrations.ModdingScriptHooks.hook(this.formatPath(_path), _function);
@@ -54,6 +55,7 @@
 		if (::Core.Manager.isModernHooksInstalled())
 		{
 			::Core.Integrations.ModernHooks.hookBase(_path, _function);
+			return;
 		}
 
 		::Core.Integrations.ModdingScriptHooks.hookBase(this.formatPath(_path), _function);
@@ -64,6 +66,7 @@
 		if (::Core.Manager.isModernHooksInstalled())
 		{
 			::Core.Integrations.ModernHooks.hookTree(_path, _function);
+			return;
 		}
 
 		::Core.Integrations.ModdingScriptHooks.hookTree(this.formatPath(_path), _function);
