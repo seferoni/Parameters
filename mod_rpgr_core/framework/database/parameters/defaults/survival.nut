@@ -13,5 +13,6 @@
 	BeastPartsPriceMult = 150,
 	BuyPriceMult = 250,
 	SellPriceMult = 100,
+	RarityMult = 40,
 	RecruitsMult = 10
 };

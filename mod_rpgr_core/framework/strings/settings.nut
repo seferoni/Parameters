@@ -38,6 +38,9 @@
 	SellPriceMult = "Sell Price Multiplier",
 	SellPriceMultDescription = "Determines the base percentage multiplier for the sale prices of goods sold at all settlements.",
 
+	RarityMult = "Item Abundance Multiplier",
+	RarityMultDescription = "Determines the base number of items available for sale in settlements. Higher values allow for a greater number of items.",
+
 	RecruitsMult = "Recruits Multiplier",
 	RecruitsMultDescription = "Determines the base percentage multiplier for the number of prospective recruits found at all settlements.",
 

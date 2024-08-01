@@ -15,6 +15,11 @@
 		Range = [25, 250],
 		Interval = 1
 	},
+	RarityMult = 
+	{
+		Range = [25, 150],
+		Interval = 1
+	},
 	RecruitsMult =
 	{
 		Range = [25, 150],
