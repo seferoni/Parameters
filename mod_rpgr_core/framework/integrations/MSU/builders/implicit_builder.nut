@@ -6,7 +6,7 @@
 
 		switch (typeof _settingValues.Default)
 		{
-			case ("boolean"): settingElement = this.createBooleanSetting(_settingID, _settingValues); break;
+			case ("bool"): settingElement = this.createBooleanSetting(_settingID, _settingValues); break;
 			case ("float"):
 			case ("integer"): settingElement = this.createNumericalSetting(_settingID, _settingValues); break;
 		}

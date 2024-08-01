@@ -24,7 +24,10 @@
 	StashSizeDescription = "Determines the starting stash size. Has no effect on ongoing playthroughs.",
 
 	RosterSize = "Roster Size",
-	RosterSizeDescription = "Determines the starting roster size, overriding scenario-specific restrictions. Has no effect on ongoing playthroughs.",
+	RosterSizeDescription = "Determines the maximum roster size, overriding scenario-specific restrictions. Does nothing if Constrain Roster Size is disabled. Has no effect on ongoing playthroughs.",
+
+	ConstrainRosterSize = "Constrain Roster Size",
+	ConstrainRosterSizeDescription = "Determines the state of the Roster Size setting. Keep this setting disabled when scenario-specific roster sizes are desired.",
 
 	BeastPartsPriceMult = "Beast Parts Price Multiplier",
 	BeastPartsPriceMultDescription = "Determines the base percentage multiplier for the price of beast parts.",
@@ -46,6 +49,9 @@
 
 	FoodConsumptionMult = "Food Consumption Multiplier",
 	FoodConsumptionMultDescription = "Determines how quickly food is consumed.",
+
+	HitpointsPerHourMult = "Heal Rate Multiplier",
+	HitpointsPerHourMultDescription = "Controls the amount of hitpoints healed per hour, if medical supplies are present.",
 
 	RepairSpeedMult = "Repair Speed Multiplier",
 	RepairSpeedMultDescription = "Determines how quickly items are repaired.",

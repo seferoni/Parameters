@@ -1,5 +1,5 @@
 ::Core.Classes.Integrator <-
-{	// TODO: difficulty mults for faction action stuff
+{
 	function get( _classAttribute, _getPercentage = false )
 	{
 		if (_getPercentage)

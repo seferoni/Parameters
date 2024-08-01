@@ -39,9 +39,9 @@
 		local buttonIDs = ::Core.Integrations.MSU.ElementIDs.Buttons;
 		this.buildPresetSetting(buttonIDs.Vanilla);
 		this.buildDivider();
-		this.buildPresetSetting(buttonIDs.Easy);
+		this.buildPresetSetting(buttonIDs.Casual);
 		this.buildPresetSetting(buttonIDs.Standard);
-		this.buildPresetSetting(buttonIDs.Hard);
+		this.buildPresetSetting(buttonIDs.Survival);
 	}
 
 	function buildPages()
