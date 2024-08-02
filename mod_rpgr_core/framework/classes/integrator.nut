@@ -138,12 +138,12 @@
 		local eligibleSlots = ::Core.Standard.createInclusiveLinearSequence(17, 27);
 		::Core.Standard.removeFromArray(filledReserveSlots, eligibleSlots);
 
-		for( local i = 0; i < brothersInFormation.len() - formationSize; i++ )
+		for( local i = 0; i < brothersInFormation.len() - targetSize; i++ )
 		{
 			brothersInFormation[i].setPlaceInFormation(eligibleSlots[i]);
 		}
 
-		::World.Assets.m.BrothersMaxInCombat = formationSize;
+		::World.Assets.m.BrothersMaxInCombat = targetSize;
 	}
 
 	function setRosterSize()
