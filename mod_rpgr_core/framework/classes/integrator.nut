@@ -92,6 +92,11 @@
 		::Tactical.CombatResultLoot.sort();
 	}
 
+	function setFormationSize()
+	{
+		// TODO:
+	}
+
 	function setRosterSize()
 	{
 		if (!this.get("ConstrainRosterSize"))
