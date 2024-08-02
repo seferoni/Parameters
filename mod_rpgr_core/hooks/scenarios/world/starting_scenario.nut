@@ -3,6 +3,7 @@
 	::Core.Patcher.wrap(p, "onInit", function()
 	{
 		::Core.Classes.Integrator.setRosterSize();
+		::Core.Classes.Integrator.setFormationSize();
 		::Core.Classes.Integrator.setStashSize();
 	});
 });

@@ -64,6 +64,11 @@
 		return true;
 	}
 
+	function isReserveSlot( _formationSlot )
+	{
+		return _formationSlot >= 17;
+	}
+
 	function removeLoot( _lootArray )
 	{
 		local removalChance = this.get("LootRemovalChance");
@@ -94,19 +99,59 @@
 
 	function setFormationSize()
 	{
-		// TODO:
-	}
-
-	function setRosterSize()
-	{
-		if (!this.get("ConstrainRosterSize"))
+		if (!this.get("ConstrainRoster"))
 		{
 			return;
 		}
 
-		# Constrain maximum formation size independently from roster size.
-		::World.Assets.m.BrothersMaxInCombat = this.get("MaximumBrothersInCombat"); 
-		// TODO: this needs to be constrained such that you don't start with more brothers in formation than this value
+		local roster = ::World.getPlayerRoster();
+		local targetSize = this.get("MaximumBrothersInCombat");
+
+		if (roster.getSize() < formationSize)
+		{
+			::World.Assets.m.BrothersMax = targetSize;
+			return;
+		}
+
+		local brothersInFormation = [];
+		local filledReserveSlots = [];
+
+		foreach( brother in roster.getAll() )
+		{
+			local formationSlot = brother.getPlaceInFormation();
+
+			if (!this.isReserveSlot(formationSlot))
+			{
+				brothersInFormation.push(brother);
+				continue;
+			}
+
+			filledReserveSlots.push(formationSlot);
+		}
+
+		if (brothersInFormation.len() <= targetSize)
+		{
+			::World.Assets.m.BrothersMaxInCombat = targetSize;
+			return;
+		}
+
+		local eligibleSlots = ::Core.Standard.createInclusiveLinearSequence(17, 27);
+		::Core.Standard.removeFromArray(filledReserveSlots, eligibleSlots);
+
+		for( local i = 0; i < brothersInFormation.len() - formationSize; i++ )
+		{
+			brothersInFormation[i].setPlaceInFormation(eligibleSlots[i]);
+		}
+
+		::World.Assets.m.BrothersMaxInCombat = formationSize;
+	}
+
+	function setRosterSize()
+	{
+		if (!this.get("ConstrainRoster"))
+		{
+			return;
+		}
 
 		local roster = ::World.getPlayerRoster();
 		local targetSize = this.get("RosterSize");

@@ -15,10 +15,10 @@
 		Range = [3, 25],
 		Interval = 1
 	},
-	MaximumBrothersInCombat = 
+	MaximumBrothersInCombat =
 	{
 		Range = [3, 25],
 		Interval = 1
 	},
-	ConstrainRosterSize = {}
+	ConstrainRoster = {}
 };

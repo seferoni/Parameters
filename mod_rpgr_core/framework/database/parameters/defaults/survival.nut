@@ -4,7 +4,7 @@
 	StashSize = 40,
 	RosterSize = 4,
 	MaximumBrothersInCombat = 4,
-	ConstrainRosterSize = true,
+	ConstrainRoster = true,
 	ContractPaymentMult = 100,
 	DailyWageMult = 170,
 	FoodConsumptionMult = 170,

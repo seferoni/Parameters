@@ -29,6 +29,18 @@
 		return format("[color=%s]%s[/color]", _colour, string)
 	}
 
+	function createInclusiveLinearSequence( _start, _end, _step = 1 )
+	{
+		local sequence = [];
+
+		for( local i = _start; i <= _end; i += _step )
+		{
+			sequence.push(i);
+		}
+
+		return sequence;
+	}
+
 	function extendArrayWithTableValues( _table, _targetArray )
 	{
 		foreach( key, value in _table )
