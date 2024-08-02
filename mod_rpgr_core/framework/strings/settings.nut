@@ -26,6 +26,9 @@
 	RosterSize = "Roster Size",
 	RosterSizeDescription = "Determines the maximum roster size, overriding scenario-specific restrictions. Does nothing if Constrain Roster Size is disabled. Has no effect on ongoing playthroughs.",
 
+	MaximumBrothersInCombat = "Maximum Brothers in Combat",
+	MaximumBrothersInCombatDescription = "Determines the maximum number of brothers that can be taken into a combat encounter. Does nothing if Constrain Roster Size is disabled. Has no effect on ongoing playthroughs.",
+
 	ConstrainRosterSize = "Constrain Roster Size",
 	ConstrainRosterSizeDescription = "Determines whether settings to do with roster sizes have any effect for a new playthrough. Keep this setting disabled when scenario-specific roster sizes are desired.",
 

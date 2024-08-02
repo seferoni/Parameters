@@ -1,5 +1,5 @@
 ::Core.Classes.Integrator <-
-{	// TODO: setting for max brothers in combat?
+{
 	function get( _classAttribute, _getPercentage = false )
 	{
 		if (_getPercentage)
@@ -98,6 +98,10 @@
 		{
 			return;
 		}
+
+		# Constrain maximum formation size independently from roster size.
+		::World.Assets.m.BrothersMaxInCombat = this.get("MaximumBrothersInCombat"); 
+		// TODO: this needs to be constrained such that you don't start with more brothers in formation than this value
 
 		local roster = ::World.getPlayerRoster();
 		local targetSize = this.get("RosterSize");
