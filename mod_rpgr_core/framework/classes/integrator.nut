@@ -107,7 +107,7 @@
 		local roster = ::World.getPlayerRoster();
 		local targetSize = this.get("MaximumBrothersInCombat");
 
-		if (roster.getSize() < formationSize)
+		if (roster.getSize() < targetSize)
 		{
 			::World.Assets.m.BrothersMax = targetSize;
 			return;
