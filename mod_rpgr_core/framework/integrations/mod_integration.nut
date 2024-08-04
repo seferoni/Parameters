@@ -1,10 +1,5 @@
 ::Core.Integrations <-
 {
-	function getModdingScriptHooksAPI()
-	{
-		return this.ModdingScriptHooks;
-	}
-
 	function initialise()
 	{
 		this.loadAPI();

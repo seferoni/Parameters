@@ -53,7 +53,6 @@
 	function createTables()
 	{
 		this.Builders <- {};
-		this.CustomSettings <- {};
 	}
 
 	function getActivePreset()
