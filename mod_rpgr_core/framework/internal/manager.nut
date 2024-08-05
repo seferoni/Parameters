@@ -21,7 +21,6 @@
 	{
 		::Core.Interfaces <- {};
 		::Core.Strings <- {};
-		::Core.Classes <- {};
 	}
 
 	function formatVersion()

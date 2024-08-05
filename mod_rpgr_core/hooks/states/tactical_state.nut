@@ -12,6 +12,6 @@
 			return;
 		}
 
-		::Core.Classes.Integrator.removeLoot(this.m.CombatResultLoot.getItems());
+		::Core.Mapper.removeLoot(this.m.CombatResultLoot.getItems());
 	});
 });

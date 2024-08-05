@@ -2,11 +2,11 @@
 {
 	::Core.Patcher.wrap(p, "setCampaignSettings", function( _settings )
 	{
-		::Core.Classes.Integrator.initialiseWorldParameters(this);
+		::Core.Mapper.initialiseWorldParameters(this);
 	});
 
 	::Core.Patcher.wrap(p, "resetToDefaults", function()
 	{
-		::Core.Classes.Integrator.initialiseWorldParameters(this);
+		::Core.Mapper.initialiseWorldParameters(this);
 	});
 });

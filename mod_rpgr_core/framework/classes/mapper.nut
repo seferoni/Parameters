@@ -1,4 +1,4 @@
-::Core.Classes.Integrator <-
+::Core.Mapper <-
 {
 	function get( _classAttribute, _getPercentage = false )
 	{
@@ -80,7 +80,7 @@
 
 		local newLoot = _lootArray.filter(function(_index, _item)
 		{
-			if (!::Core.Classes.Integrator.isItemViableForRemoval(item))
+			if (!::Core.Mapper.isItemViableForRemoval(item))
 			{
 				return false;
 			}

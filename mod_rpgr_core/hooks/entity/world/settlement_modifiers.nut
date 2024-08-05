@@ -2,11 +2,11 @@
 {
 	::Core.Patcher.wrap(p, "create", function()
 	{
-		::Core.Classes.Integrator.initialiseSettlementParameters(this);
+		::Core.Mapper.initialiseSettlementParameters(this);
 	});
 
 	::Core.Patcher.wrap(p, "reset", function()
 	{
-		::Core.Classes.Integrator.initialiseSettlementParameters(this);
+		::Core.Mapper.initialiseSettlementParameters(this);
 	});
 });
