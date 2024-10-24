@@ -1,5 +1,5 @@
 ::Core.Strings.Settings <-
-{
+{	// TODO: not all page names are present here. since we already sweep out database keys for parameter categories, all we have to do is index that same key within this dictionary
 	PagePresets = "Presets",
 
 	TitlePresets = "Presets",
