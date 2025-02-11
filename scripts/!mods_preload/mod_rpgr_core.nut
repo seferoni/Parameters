@@ -1,11 +1,11 @@
-::Core <-
+::Parameters <-
 {
-	ID = "mod_rpgr_core",
-	Name = "RPG Rebalance - Core",
+	ID = "mod_rpgr_parameters",
+	Name = "RPG Rebalance - Parameters",
 	Version = "1.0.0",
 	Internal =
 	{
-		ManagerPath = "mod_rpgr_core/framework/internal/manager.nut",
+		ManagerPath = "mod_rpgr_parameters/framework/internal/manager.nut",
 		TERMINATE = "__end"
 	}
 
@@ -22,4 +22,4 @@
 	}
 };
 
-::Core.initialise();
+::Parameters.initialise();
