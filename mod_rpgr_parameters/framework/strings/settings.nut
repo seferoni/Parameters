@@ -1,6 +1,9 @@
 ::Parameters.Strings.Settings <-
-{	// TODO: not all page names are present here. since we already sweep out database keys for parameter categories, all we have to do is index that same key within this dictionary
+{
 	PagePresets = "Presets",
+	PageAssets = "Player",
+	PageSettlements = "Settlements",
+	PageWorld = "World",
 
 	TitlePresets = "Presets",
 	TitlePresetsDescription = "Presets determine the default configuration of Parameters's parameters. They serve as templates from which further changes can be made.",

@@ -26,8 +26,9 @@
 		this.buildPages();
 
 		# Loop through the Assets, World, and Settlements parameter tables.
-		foreach( pageName, settingGroup in ::Parameters.Database.Settings )
+		foreach( settingCategory, settingGroup in ::Parameters.Database.Settings )
 		{
+			local pageName = ::Parameters.Strings.Settings[format("Page%s", settingCategory)];
 			this.buildImplicitly(pageName, settingGroup);
 		}
 	}

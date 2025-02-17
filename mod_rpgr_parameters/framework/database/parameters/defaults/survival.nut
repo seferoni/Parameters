@@ -1,9 +1,9 @@
 ::Parameters.Database.Defaults.Survival <-
 {
 	LootRemovalChance = 90,
-	StashSize = 40,
-	RosterSize = 4,
-	MaximumBrothersInCombat = 4,
+	StashSize = 30,
+	RosterSize = 6,
+	MaximumBrothersInCombat = 6,
 	ConstrainRoster = true,
 	ContractPaymentMult = 100,
 	DailyWageMult = 170,

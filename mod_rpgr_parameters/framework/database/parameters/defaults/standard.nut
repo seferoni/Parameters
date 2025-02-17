@@ -1,5 +1,5 @@
 ::Parameters.Database.Defaults.Standard <-
-{	// TODO: enemymult, globalxpveteranmult implementation please
+{
 	LootRemovalChance = 60
 	StashSize = 60,
 	RosterSize = 9,

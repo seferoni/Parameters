@@ -96,7 +96,7 @@
 	}
 
 	function getPresetsPageName()
-	{
+	{	// TODO: this confuses me. why do it this way?
 		return ::Parameters.Integrations.MSU.getElementName(::Parameters.Integrations.MSU.PageIDs.Presets);
 	}
 
