@@ -70,6 +70,16 @@
 		return ::Parameters.Database.getDefaultValue(this.getActivePreset(), _settingKey);
 	}
 
+	function getElementDescription( _elementKey )
+	{
+		return ::Parameters.Strings.Settings[format("%sDescription", _elementKey)];
+	}
+
+	function getElementName( _elementKey )
+	{
+		return ::Parameters.Strings.Settings[format("%sName", _elementKey)];
+	}
+
 	function getPage( _pageID )
 	{
 		return ::Parameters.Interfaces.MSU.ModSettings.getPage(_pageID);
@@ -78,16 +88,6 @@
 	function getPages()
 	{
 		return ::Parameters.Interfaces.MSU.ModSettings.getPanel().getPages();
-	}
-
-	function getElementDescription( _elementKey )
-	{
-		return ::Parameters.Strings.Settings[format("%sDescription", _elementKey)];
-	}
-
-	function getElementName( _elementKey )
-	{
-		return ::Parameters.Strings.Settings[_elementKey];
 	}
 
 	function initialise()

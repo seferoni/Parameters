@@ -19,7 +19,7 @@
 
 	function appendToPresetsPage( _settingElement )
 	{
-		::Parameters.Integrations.MSU.appendElementToPage(_settingElement, ::Parameters.Integrations.MSU.PageIDs.Presets);
+		::Parameters.Integrations.MSU.appendElementToPage(_settingElement, this.getPageIDs().Presets);
 	}
 
 	function build()
@@ -30,13 +30,13 @@
 
 	function buildDivider()
 	{
-		local divider = this.createDivider(::Parameters.Integrations.MSU.ElementIDs.Dividers.Presets);
+		local divider = this.createDivider(this.getElementIDs().Dividers.Presets);
 		this.appendToPresetsPage(divider);
 	}
 
 	function buildSettings()
 	{
-		local buttonIDs = ::Parameters.Integrations.MSU.ElementIDs.Buttons;
+		local buttonIDs = this.getElementIDs().Buttons;
 		this.buildPresetSetting(buttonIDs.Vanilla);
 		this.buildDivider();
 		this.buildPresetSetting(buttonIDs.Casual);
@@ -46,7 +46,7 @@
 
 	function buildPages()
 	{
-		local presetsPage = ::Parameters.Integrations.MSU.addPage(::Parameters.Integrations.MSU.PageIDs.Presets, this.getPresetsPageName());
+		local presetsPage = ::Parameters.Integrations.MSU.addPage(this.getPageIDs().Presets, this.getPresetsPageName());
 		this.addTitle(presetsPage);
 	}
 
@@ -75,7 +75,17 @@
 
 	function createPresetTitle()
 	{
-		return ::MSU.Class.SettingsTitle(::Parameters.Integrations.MSU.ElementIDs.Titles.Presets, this.getPresetTitleName());
+		return ::MSU.Class.SettingsTitle(this.getElementIDs().Titles.Presets, this.getPresetTitleName());
+	}
+
+	function getElementIDs()
+	{
+		return ::Parameters.Integrations.MSU.ElementIDs;
+	}
+
+	function getPageIDs()
+	{
+		return ::Parameters.Integrations.MSU.PageIDs;
 	}
 
 	function getPagesForReset()
@@ -92,17 +102,17 @@
 
 	function getPresetsPage()
 	{
-		return ::Parameters.Integrations.MSU.getPage(::Parameters.Integrations.MSU.PageIDs.Presets);
+		return ::Parameters.Integrations.MSU.getPage(this.getPageIDs().Presets);
 	}
 
 	function getPresetsPageName()
-	{	// TODO: this confuses me. why do it this way?
-		return ::Parameters.Integrations.MSU.getElementName(::Parameters.Integrations.MSU.PageIDs.Presets);
+	{
+		return ::Parameters.Integrations.MSU.getElementName(this.getPageIDs().Presets);
 	}
 
 	function getPresetTitleName()
 	{
-		return ::Parameters.Integrations.MSU.getElementName(::Parameters.Integrations.MSU.ElementIDs.Titles.Presets);
+		return ::Parameters.Integrations.MSU.getElementName(this.getElementIDs().Titles.Presets);
 	}
 
 	function resetPages()
