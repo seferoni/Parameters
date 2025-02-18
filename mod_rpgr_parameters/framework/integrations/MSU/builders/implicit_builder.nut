@@ -1,6 +1,6 @@
 ::Parameters.Integrations.MSU.Builders.Implicit <-
 {
-	function addSettingImplicitly( _settingID, _settingValues, _pageID )
+	function addSettingImplicitly( _settingID, _settingValues, _settingCategory )
 	{
 		local settingElement = null;
 
@@ -18,7 +18,7 @@
 		}
 
 		::Parameters.Integrations.MSU.buildDescription(settingElement);
-		::Parameters.Integrations.MSU.appendElementToPage(settingElement, _pageID);
+		::Parameters.Integrations.MSU.appendElementToPage(settingElement, _settingCategory);
 	}
 
 	function build()
@@ -28,8 +28,7 @@
 		# Loop through the Assets, World, and Settlements parameter tables.
 		foreach( settingCategory, settingGroup in ::Parameters.Database.Settings )
 		{
-			local pageName = ::Parameters.Strings.Settings[format("Page%s", settingCategory)];
-			this.buildImplicitly(pageName, settingGroup);
+			this.buildImplicitly(settingCategory, settingGroup);
 		}
 	}
 
@@ -44,12 +43,12 @@
 		}
 	}
 
-	function buildImplicitly( _pageName, _settingGroup )
+	function buildImplicitly( _settingCategory, _settingGroup )
 	{
 		foreach( settingID, settingValues in _settingGroup )
 		{
 			settingValues.Default <- ::Parameters.Integrations.MSU.getDefaultValue(settingID);
-			this.addSettingImplicitly(settingID, settingValues, _pageName);
+			this.addSettingImplicitly(settingID, settingValues, _settingCategory);
 		}
 	}
 

@@ -99,7 +99,7 @@
 
 	function loadBuilders()
 	{
-		::Parameters.Manager.includeFiles("mod_rpgr_parameters/framework/integrations/msu/builders");
+		::Parameters.Manager.includeFiles("mod_rpgr_parameters/framework/integrations/MSU/builders");
 	}
 
 	function setPreset( _buttonID )
