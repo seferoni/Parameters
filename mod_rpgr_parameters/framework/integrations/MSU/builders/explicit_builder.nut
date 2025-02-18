@@ -38,10 +38,10 @@
 	{
 		local buttonIDs = this.getElementIDs().Buttons;
 		this.buildPresetSetting(buttonIDs.Vanilla); // TODO: how might we center this in the panel?
-		this.buildDivider();
 		this.buildPresetSetting(buttonIDs.Casual);
 		this.buildPresetSetting(buttonIDs.Standard);
 		this.buildPresetSetting(buttonIDs.Survival);
+		this.buildDivider();
 	}
 
 	function buildPages()
