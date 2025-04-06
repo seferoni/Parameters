@@ -1,5 +1,9 @@
 ::Parameters.Mapper <-
-{
+{	// TODO: disable stone pillars/KrakenCult by hooking into 'build_unique_locations_action'
+	// then distribute the reward into random beasts OR perhaps a lair
+	// TODO: fix for discovered beasts not despawning
+	// TODO: also incorporate relation decay and gain, business rep mult, etc
+	// TODO: could do with a roster offset instead?
 	function get( _classAttribute, _getPercentage = false )
 	{
 		if (_getPercentage)
@@ -8,24 +12,6 @@
 		}
 
 		return ::Parameters.Standard.getParameter(_classAttribute);
-	}
-
-	function getViableBrothers()
-	{
-		local candidates = [];
-		local roster = ::World.getPlayerRoster().getAll();
-
-		foreach( brother in roster )
-		{
-			if (::Parameters.Standard.getFlag("IsPlayerCharacter", brother))
-			{
-				continue;
-			}
-
-			candidates.push(brother);
-		}
-
-		return candidates;
 	}
 
 	function initialiseSettlementParameters( _settlementModifiers )
@@ -64,11 +50,6 @@
 		return true;
 	}
 
-	function isReserveSlot( _formationSlot )
-	{
-		return _formationSlot >= 17;
-	}
-
 	function removeLoot( _lootArray )
 	{
 		local removalChance = this.get("LootRemovalChance");
@@ -95,87 +76,6 @@
 
 		::Tactical.CombatResultLoot.assign(newLoot);
 		::Tactical.CombatResultLoot.sort();
-	}
-
-	function setFormationSize()
-	{
-		if (!this.get("ConstrainRoster"))
-		{
-			return;
-		}
-
-		local roster = ::World.getPlayerRoster();
-		local targetSize = this.get("MaximumBrothersInCombat");
-
-		if (roster.getSize() < targetSize)
-		{
-			::World.Assets.m.BrothersMax = targetSize;
-			return;
-		}
-
-		local brothersInFormation = [];
-		local filledReserveSlots = [];
-
-		foreach( brother in roster.getAll() )
-		{
-			local formationSlot = brother.getPlaceInFormation();
-
-			if (!this.isReserveSlot(formationSlot))
-			{
-				brothersInFormation.push(brother);
-				continue;
-			}
-
-			filledReserveSlots.push(formationSlot);
-		}
-
-		if (brothersInFormation.len() <= targetSize)
-		{
-			::World.Assets.m.BrothersMaxInCombat = targetSize;
-			return;
-		}
-
-		local eligibleSlots = ::Parameters.Standard.createInclusiveLinearSequence(17, 27);
-		::Parameters.Standard.removeFromArray(filledReserveSlots, eligibleSlots);
-
-		for( local i = 0; i < brothersInFormation.len() - targetSize; i++ )
-		{
-			brothersInFormation[i].setPlaceInFormation(eligibleSlots[i]);
-		}
-
-		::World.Assets.m.BrothersMaxInCombat = targetSize;
-	}
-
-	function setRosterSize()
-	{
-		if (!this.get("ConstrainRoster"))
-		{
-			return;
-		}
-
-		local roster = ::World.getPlayerRoster();
-		local targetSize = this.get("RosterSize");
-
-		if (roster.getSize() <= targetSize)
-		{
-			::World.Assets.m.BrothersMax = targetSize;
-			return;
-		}
-
-		local viableBrothers = this.getViableBrothers();
-
-		if (viableBrothers.len() < roster.getSize() - targetSize)
-		{
-			::World.Assets.m.BrothersMax = roster.getSize();
-			return;
-		}
-
-		while (roster.getSize() > targetSize)
-		{
-			roster.remove(viableBrothers[::Math.rand(0, viableBrothers.len() - 1)])
-		}
-
-		::World.Assets.m.BrothersMax = targetSize;
 	}
 
 	function setStashSize()

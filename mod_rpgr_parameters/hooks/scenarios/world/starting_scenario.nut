@@ -2,8 +2,6 @@
 {
 	::Parameters.Patcher.wrap(p, "onInit", function()
 	{
-		::Parameters.Mapper.setRosterSize();
-		::Parameters.Mapper.setFormationSize();
 		::Parameters.Mapper.setStashSize();
 	});
 });

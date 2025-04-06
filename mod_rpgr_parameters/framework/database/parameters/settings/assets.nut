@@ -20,5 +20,5 @@
 		Range = [3, 25],
 		Interval = 1
 	},
-	ConstrainRoster = {}
+	ConstrainRoster = {} // TODO: revise.
 };
