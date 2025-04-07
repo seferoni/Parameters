@@ -20,7 +20,6 @@
 	function createTables()
 	{
 		::Parameters.Interfaces <- {};
-		::Parameters.Strings <- {};
 	}
 
 	function formatVersion()
@@ -52,7 +51,6 @@
 	{
 		this.createMSUInterface();
 		this.loadLibraries();
-		this.loadStrings();
 		this.loadHandlers();
 		this.initialiseHandlers();
 		this.loadFiles();
@@ -61,6 +59,7 @@
 	function initialiseHandlers()
 	{
 		::Parameters.Database.initialise();
+		::Parameters.Strings.initialise();
 		::Parameters.Integrations.initialise();
 	}
 
@@ -77,12 +76,8 @@
 	function loadHandlers()
 	{
 		::include("mod_rpgr_parameters/framework/database/database_handler.nut");
+		::include("mod_rpgr_parameters/framework/strings/string_handler.nut");
 		::include("mod_rpgr_parameters/framework/integrations/mod_integration.nut");
-	}
-
-	function loadStrings()
-	{
-		this.includeFiles("mod_rpgr_parameters/framework/strings");
 	}
 
 	function loadLibraries()

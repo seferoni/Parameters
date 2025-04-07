@@ -1,6 +1,6 @@
 ::Parameters.Mapper <-
 {
-	function get( _classAttribute, _getPercentage = false )
+	function mapToDatabase( _classAttribute, _getPercentage = false )
 	{
 		if (_getPercentage)
 		{
@@ -14,7 +14,7 @@
 	{
 		foreach( key in ::Parameters.Database.getSettlementKeys() )
 		{
-			_settlementModifiers[key] = this.get(key, true);
+			_settlementModifiers[key] = this.mapToDatabase(key, true);
 		}
 	}
 
@@ -22,7 +22,12 @@
 	{
 		foreach( key in ::Parameters.Database.getWorldKeys() )
 		{
-			_worldObject.m[key] = this.get(key, true);
+			_worldObject.m[key] = this.mapToDatabase(key, true);
 		}
+	}
+
+	function setStashSize()
+	{
+		::World.Assets.getStash().resize(this.mapToDatabase("StashSize"));
 	}
 };

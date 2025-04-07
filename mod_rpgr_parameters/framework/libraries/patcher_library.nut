@@ -76,8 +76,8 @@
 	# It is the responsibility of the overriding function to return appropriate arguments.
 	function overrideArguments( _object, _function, _originalMethod, _argumentsArray )
 	{
-		local returnValue = _function.acall(_argumentsArray),
-		newArguments = returnValue == null ? _argumentsArray : this.prependContextObject(_object, returnValue);
+		local returnValue = _function.acall(_argumentsArray);
+		local newArguments = returnValue == null ? _argumentsArray : this.prependContextObject(_object, returnValue);
 		return _originalMethod.acall(newArguments);
 	}
 

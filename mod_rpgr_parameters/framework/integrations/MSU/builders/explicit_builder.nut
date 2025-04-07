@@ -30,7 +30,7 @@
 
 	function buildDivider()
 	{
-		local divider = this.createDivider(this.getElementIDs().Dividers.Presets);
+		local divider = ::Parameters.Integrations.MSU.createDivider(this.getElementIDs().Dividers.Presets);
 		this.appendToPresetsPage(divider);
 	}
 
@@ -62,11 +62,6 @@
 	function buildPresetSettingDescription( _settingElement )
 	{
 		::Parameters.Integrations.MSU.buildDescription(_settingElement);
-	}
-
-	function createDivider( _elementID )
-	{
-		return ::MSU.Class.SettingsDivider(_elementID);
 	}
 
 	function createPresetSetting( _settingID )

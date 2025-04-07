@@ -15,5 +15,6 @@
 	BuyPriceMult = 250,
 	SellPriceMult = 100,
 	RarityMult = 40,
-	RecruitsMult = 20
+	RecruitsMult = 20,
+	PartyStrengthMult = 250
 };

@@ -8,7 +8,7 @@
 		foreach( settingID, settingValues in _settingGroup )
 		{
 			settingValues.Default <- ::Parameters.Integrations.MSU.getDefaultValue(settingID);
-			local settingElement = this.addSettingImplicitly(settingID, settingValues, _pageID);
+			local settingElement = this.buildSettingElement(settingID, settingValues);
 
 			if (settingElement == null)
 			{
@@ -29,7 +29,7 @@
 
 		foreach( element in elements )
 		{
-			::AP.Integrations.MSU.appendElementToPage(element, _pageID);
+			::Parameters.Integrations.MSU.appendElementToPage(element, _pageID);
 		}
 	}
 

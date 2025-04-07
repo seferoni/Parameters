@@ -7,11 +7,21 @@
 			return;
 		}
 
-		if (this.m.StrategicProperties != null && this.m.StrategicProperties.IsArenaMode)
+		if (this.m.StrategicProperties == null)
 		{
 			return;
 		}
 
-		::Parameters.Utilities.removeLoot(this.m.CombatResultLoot.getItems());
+		if (this.m.StrategicProperties.IsArenaMode)
+		{
+			return;
+		}
+
+		if (this.m.StrategicProperties.IsLootingProhibited)
+		{
+			return;
+		}
+
+		::Parameters.StashInjector.removeLoot(this.m.CombatResultLoot.getItems());
 	});
 });

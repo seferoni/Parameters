@@ -2,11 +2,11 @@
 {
 	::Parameters.Patcher.wrap(p, "onUpdate", function( _faction )
 	{
-		if (!::Parameters.Mapper.get("FixBeastSpawns"))
+		if (!::Parameters.Mapper.mapToDatabase("FixBeastSpawns"))
 		{
 			return;
 		}
 
-		::Parameters.Utilities.despawnDiscoveredBeasts(_faction.getUnits());
+		::Parameters.Spawner.despawnDiscoveredBeasts(_faction.getUnits());
 	});
 });

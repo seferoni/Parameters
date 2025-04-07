@@ -1,10 +1,14 @@
 ::Parameters.Strings.Settings.Common <-
 {
+	# Pages.
 	PagePresetsName = "Presets",
+	PageCommonName = "Common",
 	PageAssetsName = "Player",
 	PageSettlementsName = "Settlements",
 	PageWorldName = "World",
+	PageMiscellaneousName = "Miscellaneous",
 
+	# Setting elements.
 	TitlePresetsName = "Presets",
 	TitlePresetsDescription = "Presets determine the default configuration of Parameters's parameters. They serve as templates from which further changes can be made.",
 
@@ -67,6 +71,9 @@
 
 	XPMultName = "XP Multiplier",
 	XPMultDescription = "Determines the base percentage multiplier for XP gains.",
+
+	PartyStrengthMultName = "Party Strength Scaling Multiplier",
+	PartyStrengthMultDescription = "Determines how strong the game perceives the player party's strength at any given point. Higher values lead to significantly stronger enemies for a given roster strength.",
 
 	FixBeastSpawnsName = "Despawn Discovered Beasts",
 	FixBeastSpawnsDescription = "Despawns discovered beasts after twenty days have elapsed from its spawn time. In the vanilla game, discovered beasts are never despawned, and therefore prevent new beast spawns until they are themselves destroyed.",
