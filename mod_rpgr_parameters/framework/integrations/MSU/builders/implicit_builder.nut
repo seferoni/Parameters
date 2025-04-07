@@ -7,7 +7,11 @@
 
 		foreach( settingID, settingValues in _settingGroup )
 		{
-			settingValues.Default <- ::Parameters.Integrations.MSU.getDefaultValue(settingID);
+			if (!("Default" in settingValues))
+			{
+				settingValues.Default <- ::Parameters.Integrations.MSU.getDefaultValue(settingID);
+			}
+
 			local settingElement = this.buildSettingElement(settingID, settingValues);
 
 			if (settingElement == null)

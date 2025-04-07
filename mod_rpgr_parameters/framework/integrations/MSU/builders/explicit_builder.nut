@@ -124,6 +124,12 @@
 	function updateSettingBaseValue( _settingElement )
 	{
 		local defaultValue = ::Parameters.Integrations.MSU.getDefaultValue(_settingElement.getID());
+
+		if (defaultValue == null)
+		{
+			return;
+		}
+
 		_settingElement.setBaseValue(defaultValue);
 	}
 };

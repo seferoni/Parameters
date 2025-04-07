@@ -6,12 +6,6 @@
 		this.Settings <- {};
 	}
 
-	function createDefaultsTables()
-	{
-		this.Defaults.RPGR <- {};
-		this.Defaults.Vanilla <- {};
-	}
-
 	function loadFolder( _path )
 	{
 		::Parameters.Manager.includeFiles(format("mod_rpgr_parameters/framework/database/%s", _path));
@@ -35,10 +29,17 @@
 
 	function getDefaultValue( _presetKey, _defaultKey )
 	{
-		return this.getDefaults(_presetKey)[_defaultKey];
+		local defaults = this.getDefaults(_presetKey);
+
+		if (_defaultKey in defaults)
+		{
+			return defaults[_defaultKey];
+		}
+
+		return null;
 	}
 
-	function getDefaults( _presetKey = "RPGR" )
+	function getDefaults( _presetKey = "Standard" )
 	{
 		return this.Defaults[_presetKey];
 	}
@@ -56,7 +57,6 @@
 	function initialise()
 	{
 		this.createTables();
-		this.createDefaultsTables();
 		this.loadFiles();
 	}
 };
