@@ -1,4 +1,4 @@
-::Parameters.Database.Settings.Assets <-
+::Parameters.Database.Settings.Common <-
 {
 	LootRemovalChance =
 	{
@@ -20,5 +20,10 @@
 		Range = [3, 25],
 		Interval = 1
 	},
-	ConstrainRoster = {} // TODO: revise.
+	PartyStrengthMult =
+	{
+		Range = [100, 500],
+		Interval = 10
+	},
+	ConstrainRoster = {}
 };

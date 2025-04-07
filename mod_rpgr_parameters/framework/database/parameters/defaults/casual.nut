@@ -2,6 +2,9 @@
 {
 	LootRemovalChance = 0,
 	StashSize = 99,
+	RosterSize = 18,
+	MaximumBrothersInCombat = 14,
+	ConstrainRoster = false,
 	ContractPaymentMult = 180,
 	DailyWageMult = 120,
 	FoodConsumptionMult = 120,

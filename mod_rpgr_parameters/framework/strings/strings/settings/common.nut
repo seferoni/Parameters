@@ -1,4 +1,4 @@
-::Parameters.Strings.Settings <-
+::Parameters.Strings.Settings.Common <-
 {
 	PagePresetsName = "Presets",
 	PageAssetsName = "Player",
@@ -9,10 +9,10 @@
 	TitlePresetsDescription = "Presets determine the default configuration of Parameters's parameters. They serve as templates from which further changes can be made.",
 
 	ButtonStandardName = "Standard",
-	ButtonStandardDescription = "The default parameter configuration for RPG Rebalance. This preset is designed to make the game experience significantly harder and slower-paced by inducing scarcity upon key strategic layer resources.",
+	ButtonStandardDescription = "Default configuration. This preset is designed to make the game experience significantly harder and slower-paced by inducing scarcity upon key strategic layer resources.",
 
 	ButtonCasualName = "Casual",
-	ButtonCasualDescription = "A less demanding variant of the default parameter configuration. This preset is generally better suited for games that are more fast-paced.",
+	ButtonCasualDescription = "A less demanding variant of the default configuration. This preset is generally better suited for games that are more fast-paced.",
 
 	ButtonSurvivalName = "Survival",
 	ButtonSurvivalDescription = "A significantly more restrictive variant of the default parameter configuration. This preset is designed to cater to especially long and difficult campaigns, meant to emulate a much slower and more gradual sense of progression.",
@@ -66,5 +66,11 @@
 	RepairSpeedMultDescription = "Determines how quickly items are repaired.",
 
 	XPMultName = "XP Multiplier",
-	XPMultDescription = "Determines the base percentage multiplier for XP gains."
+	XPMultDescription = "Determines the base percentage multiplier for XP gains.",
+
+	FixBeastSpawnsName = "Despawn Discovered Beasts",
+	FixBeastSpawnsDescription = "Despawns discovered beasts after twenty days have elapsed from its spawn time. In the vanilla game, discovered beasts are never despawned, and therefore prevent new beast spawns until they are themselves destroyed.",
+
+	RemoveKrakenName = "Remove Kraken Encounter",
+	RemoveKrakenDescription = "Prevents the legendary Stone Pillars location from generating when a new campaign is started. Adds the blade of the legendary sword to beast loot tables. Has no effect on the Water Wheel legendary location.",
 };

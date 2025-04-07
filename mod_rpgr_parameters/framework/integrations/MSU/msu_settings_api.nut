@@ -24,11 +24,14 @@
 	},
 	Parameters =
 	{
+		DefaultPreset = "Survival"
+	},
+	RuntimeVariables =
+	{
 		ActivePreset = null,
-		DefaultPreset = "Standard"
 	}
 
-	function addPage( _pageID, _pageName = null )
+	function addPage( _pageID, _pageName )
 	{
 		return ::Parameters.Interfaces.MSU.ModSettings.addPage(_pageID, _pageName);
 	}
@@ -57,12 +60,12 @@
 
 	function getActivePreset()
 	{
-		if (this.Parameters.ActivePreset == null)
+		if (this.RuntimeVariables.ActivePreset == null)
 		{
 			return this.Parameters.DefaultPreset;
 		}
 
-		return this.Parameters.ActivePreset;
+		return this.RuntimeVariables.ActivePreset;
 	}
 
 	function getDefaultValue( _settingKey )
@@ -72,12 +75,22 @@
 
 	function getElementDescription( _elementKey )
 	{
-		return ::Parameters.Strings.Settings[format("%sDescription", _elementKey)];
+		return this.getStringField(format("%sDescription", _elementKey));
 	}
 
 	function getElementName( _elementKey )
 	{
-		return ::Parameters.Strings.Settings[format("%sName", _elementKey)];
+		return this.getStringField(format("%sName", _elementKey));
+	}
+
+	function getPageName( _pageKey )
+	{
+		return this.getElementName(format("Page%s", _pageKey));
+	}
+
+	function getStringField( _fieldName )
+	{
+		return ::Parameters.Strings.getField("Settings", "Common")[_fieldName];
 	}
 
 	function getPage( _pageID )
@@ -104,6 +117,6 @@
 
 	function setPreset( _buttonID )
 	{
-		this.Parameters.ActivePreset = ::Parameters.Standard.getKey(_buttonID, this.ElementIDs.Buttons);
+		this.RuntimeVariables.ActivePreset = ::Parameters.Standard.getKey(_buttonID, this.ElementIDs.Buttons);
 	}
 };

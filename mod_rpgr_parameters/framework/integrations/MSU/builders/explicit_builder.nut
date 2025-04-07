@@ -37,6 +37,7 @@
 	function buildSettings()
 	{
 		local buttonIDs = this.getElementIDs().Buttons;
+		# Execution order reflects the order of the buttons within the screen.
 		this.buildPresetSetting(buttonIDs.Vanilla);
 		this.buildPresetSetting(buttonIDs.Casual);
 		this.buildPresetSetting(buttonIDs.Standard);

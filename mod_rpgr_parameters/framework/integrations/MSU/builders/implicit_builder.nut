@@ -1,6 +1,39 @@
 ::Parameters.Integrations.MSU.Builders.Implicit <-
 {
-	function addSettingImplicitly( _settingID, _settingValues, _settingCategory )
+	function addSettingsImplicitly( _settingGroup, _pageID )
+	{
+		local elements = [];
+		local booleanSettings = [];
+
+		foreach( settingID, settingValues in _settingGroup )
+		{
+			settingValues.Default <- ::Parameters.Integrations.MSU.getDefaultValue(settingID);
+			local settingElement = this.addSettingImplicitly(settingID, settingValues, _pageID);
+
+			if (settingElement == null)
+			{
+				continue;
+			}
+
+			if (settingElement instanceof ::MSU.Class.BooleanSetting)
+			{
+				booleanSettings.push(settingElement);
+				continue;
+			}
+
+			elements.push(settingElement);
+		}
+
+		elements.push(::Parameters.Integrations.MSU.createDivider(format("%sDivider", _pageID)));
+		elements.extend(booleanSettings);
+
+		foreach( element in elements )
+		{
+			::AP.Integrations.MSU.appendElementToPage(element, _pageID);
+		}
+	}
+
+	function buildSettingElement( _settingID, _settingValues )
 	{
 		local settingElement = null;
 
@@ -18,47 +51,44 @@
 		}
 
 		::Parameters.Integrations.MSU.buildDescription(settingElement);
-		::Parameters.Integrations.MSU.appendElementToPage(settingElement, _settingCategory);
+		return settingElement;
 	}
 
 	function build()
 	{
-		this.buildPages();
-
-		# Loop through the Assets, World, and Settlements parameter tables.
-		foreach( settingCategory, settingGroup in ::Parameters.Database.Settings )
+		foreach( pageID, settingGroup in ::Parameters.Database.Settings )
 		{
-			this.buildImplicitly(settingCategory, settingGroup);
+			this.buildPage(pageID);
+			this.addSettingsImplicitly(settingGroup, pageID);
 		}
 	}
 
-	function buildPages()
+	function buildPage( _pageID )
 	{
-		# Internal database structuring for game parameter data is to be reflected in page segregation.
-		local pageNames = ::Parameters.Database.getSettingCategories();
-
-		foreach( pageName in pageNames )
-		{
-			::Parameters.Integrations.MSU.addPage(pageName);
-		}
-	}
-
-	function buildImplicitly( _settingCategory, _settingGroup )
-	{
-		foreach( settingID, settingValues in _settingGroup )
-		{
-			settingValues.Default <- ::Parameters.Integrations.MSU.getDefaultValue(settingID);
-			this.addSettingImplicitly(settingID, settingValues, _settingCategory);
-		}
+		local pageName = ::Parameters.Integrations.MSU.getPageName(_pageID);
+		::Parameters.Integrations.MSU.addPage(_pageID, pageName);
 	}
 
 	function createBooleanSetting( _settingID, _settingValues )
 	{
-		return ::MSU.Class.BooleanSetting(_settingID, _settingValues.Default, ::Parameters.Integrations.MSU.getElementName(_settingID));
+		return ::MSU.Class.BooleanSetting
+		(
+			_settingID,
+			_settingValues.Default,
+			::Parameters.Integrations.MSU.getElementName(_settingID)
+		);
 	}
 
 	function createNumericalSetting( _settingID, _settingValues )
 	{
-		return ::MSU.Class.RangeSetting(_settingID, _settingValues.Default, _settingValues.Range[0], _settingValues.Range[1], _settingValues.Interval, ::Parameters.Integrations.MSU.getElementName(_settingID));
+		return ::MSU.Class.RangeSetting
+		(
+			_settingID,
+			_settingValues.Default,
+			_settingValues.Range[0],
+			_settingValues.Range[1],
+			_settingValues.Interval,
+			::Parameters.Integrations.MSU.getElementName(_settingID)
+		);
 	}
 };

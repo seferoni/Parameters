@@ -1,7 +1,5 @@
 ::Parameters.Mapper <-
 {
-	// TODO: also incorporate relation decay and gain, business rep mult, etc
-	// TODO: could do with a roster offset instead?
 	function get( _classAttribute, _getPercentage = false )
 	{
 		if (_getPercentage)
