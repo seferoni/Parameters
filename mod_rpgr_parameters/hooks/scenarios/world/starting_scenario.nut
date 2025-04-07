@@ -2,6 +2,6 @@
 {
 	::Parameters.Patcher.wrap(p, "onInit", function()
 	{
-		::Parameters.Mapper.setStashSize();
+		::Parameters.Utilities.setStashSize();
 	});
 });

@@ -12,6 +12,6 @@
 			return;
 		}
 
-		::Parameters.Mapper.removeLoot(this.m.CombatResultLoot.getItems());
+		::Parameters.Utilities.removeLoot(this.m.CombatResultLoot.getItems());
 	});
 });
