@@ -9,7 +9,6 @@
 	function compileFragments( _fragmentsArray, _colour )
 	{
 		local compiledString = "";
-		local colourWrap = @(_string) _colour == null ? _string : ::PRM.Standard.colourWrap(_string, _colour);
 
 		if (_fragmentsArray.len() % 2 != 0)
 		{
@@ -18,8 +17,8 @@
 
 		for( local i = 0; i < _fragmentsArray.len(); i++ )
 		{
-			local fragment = i % 2 == 0 ? _fragmentsArray[i] : colourWrap(_fragmentsArray[i]);
-			compiledString = ::PRM.Standard.appendToStringList(fragment, compiledString, "");
+			local fragment = (_colour != null && i % 2 != 0) ? ::WFR.Standard.colourWrap(_fragmentsArray[i], _colour) : _fragmentsArray[i];
+			compiledString = ::WFR.Standard.appendToStringList(fragment, compiledString, " ");
 		}
 
 		return compiledString;
@@ -78,6 +77,7 @@
 
 	function loadFiles()
 	{
+		this.loadFolder("generic");
 		this.loadFolder("settings");
 	}
 
