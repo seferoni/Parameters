@@ -17,6 +17,7 @@
 			return;
 		}
 
+		::logInfo("kraken cult built!")
 		::PRM.Utilities.setKrakenBuiltState(true);
 	});
 });
