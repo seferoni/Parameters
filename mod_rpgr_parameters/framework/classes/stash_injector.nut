@@ -6,7 +6,7 @@
 	}
 
 	function injectReproachBladeIntoStash( _locationObject, _lootTable )
-	{	// TODO: need to hook into the reproach blade, replace its description
+	{
 		local injectionChance = 0;
 		local locationID = _locationObject.getTypeID();
 		local eligibleTypes = ::PRM.Utilities.getCommonField("LegendaryBladeEligibleLocations");
@@ -39,21 +39,32 @@
 		this.setReproachBladeInjectedState(true);
 	}
 
-	function isItemViableForRemoval( _item )
-	{	// TODO: not comprehensive. this is removing the reproach blade
-		if (_item.isItemType(::Const.Items.ItemType.Legendary))
+	function isItemViableForRemoval( _itemObject )
+	{
+		local removalParameters = ::PRM.Utilities.getField("ItemRemovalParameters");
+
+		foreach( itemType in removalParameters.ForbiddenTypesInclusive )
 		{
-			return false;
+			if (_itemObject.isItemType(itemType))
+			{
+				return false;
+			}
 		}
 
-		if (_item.m.ItemType == ::Const.Items.ItemType.Misc)
+		foreach( itemType in removalParameters.ForbiddenTypesExclusive )
 		{
-			return false;
+			if (_itemObject.m.ItemType == itemType)
+			{
+				return false;
+			}
 		}
 
-		if (_item.getID() == "weapon.player_banner")
+		foreach( itemID in removalParameters.ForbiddenItemIDs )
 		{
-			return false;
+			if (_itemObject.getID() == itemID)
+			{
+				return false;
+			}
 		}
 
 		::logInfo(_item.getID() + " is viable for removal")

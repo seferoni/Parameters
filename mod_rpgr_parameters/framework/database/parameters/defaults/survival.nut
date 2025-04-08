@@ -1,20 +1,20 @@
 ::PRM.Database.Defaults.Unfair <-
 {
-	LootRemovalChance = 90,
+	LootRemovalChance = 75,
 	StashSize = 30,
-	RosterSize = 6,
+	RosterSize = 8,
 	MaximumBrothersInCombat = 6,
 	ConstrainRoster = true,
 	ContractPaymentMult = 100,
 	DailyWageMult = 170,
-	FoodConsumptionMult = 170,
-	HitpointsPerHourMult = 30,
+	FoodConsumptionMult = 120,
+	HitpointsPerHourMult = 40,
 	RepairSpeedMult = 15,
 	XPMult = 30,
 	BeastPartsPriceMult = 150,
-	BuyPriceMult = 250,
-	SellPriceMult = 100,
+	BuyPriceMult = 180,
+	SellPriceMult = 80,
 	RarityMult = 40,
 	RecruitsMult = 20,
-	PartyStrengthMult = 250
+	PartyStrengthMult = 180
 };

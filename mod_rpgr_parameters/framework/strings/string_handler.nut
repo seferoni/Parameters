@@ -2,6 +2,7 @@
 {
 	function createTables()
 	{
+		this.Generic <- {};
 		this.Settings <- {};
 	}
 
