@@ -24,17 +24,14 @@
 
 		if (injectionChance == 0)
 		{
-			::logInfo("location not eligible!") // TODO: remove when done
 			return;
 		}
 
 		if (::Math.rand(1, 100) > injectionChance)
 		{
-			::logInfo("rolled above chance!")
 			return;
 		}
 
-		::logInfo("injecting sword blade")
 		_lootTable.push(::new("scripts/items/special/legendary_sword_blade_item"));
 		this.setReproachBladeInjectedState(true);
 	}
@@ -67,7 +64,6 @@
 			}
 		}
 
-		::logInfo(_item.getID() + " is viable for removal")
 		return true;
 	}
 
@@ -85,7 +81,7 @@
 			return;
 		}
 
-		local newLoot = _lootArray.filter(function(_index, _item)
+		local newLoot = _lootArray.filter(function( _index, _item )
 		{
 			if (!::PRM.StashInjector.isItemViableForRemoval(_item))
 			{
@@ -97,7 +93,6 @@
 				return true;
 			}
 
-			::logInfo("removed " + _item.getID())
 			return false;
 		});
 

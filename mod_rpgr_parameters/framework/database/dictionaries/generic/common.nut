@@ -8,19 +8,19 @@
 		},
 		{
 			TypeID = "location.undead_ruins",
-			Chance = 100 // 10
+			Chance = 10
 		},
 		{
 			TypeID = "location.undead_crypt",
-			Chance = 100 // 10
+			Chance = 10
 		},
 		{
 			TypeID = "location.undead_vampire_coven",
-			Chance = 100 // 15
+			Chance = 15
 		},
 		{
 			TypeID = "location.undead_graveyard",
-			Chance = 100 // 5
+			Chance = 5
 		}
 	]
 };
