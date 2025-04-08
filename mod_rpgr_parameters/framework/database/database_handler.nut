@@ -1,30 +1,59 @@
-::Parameters.Database <-
+::PRM.Database <-
 {
 	function createTables()
 	{
+		this.Generic <- {};
 		this.Defaults <- {};
 		this.Settings <- {};
 	}
 
 	function loadFolder( _path )
 	{
-		::Parameters.Manager.includeFiles(format("mod_rpgr_parameters/framework/database/%s", _path));
+		::PRM.Manager.includeFiles(format("mod_rpgr_parameters/framework/database/%s", _path));
 	}
 
 	function loadFiles()
 	{
+		this.loadFolder("dictionaries");
 		this.loadFolder("parameters/defaults");
 		this.loadFolder("parameters/settings");
 	}
 
+	function getExactField( _tableName, _subTableName, _fieldName )
+	{
+		return this[_tableName][_subTableName][_fieldName];
+	}
+
+	function getField( _tableName, _fieldName )
+	{
+		local field = this.getTopLevelField(_tableName, _fieldName);
+
+		if (field == null)
+		{
+			::PRM.Standard.log(format("Could not find %s in the specified database %s.", _fieldName, _tableName), true);
+		}
+
+		return field;
+	}
+
+	function getTopLevelField( _tableName, _fieldName )
+	{
+		if (!(_fieldName in this[_tableName]))
+		{
+			return null;
+		}
+
+		return this[_tableName][_fieldName];
+	}
+
 	function getSettlementKeys()
 	{
-		return ::Parameters.Standard.getKeys(this.Settings.Settlements);
+		return ::PRM.Standard.getKeys(this.Settings.Settlements);
 	}
 
 	function getWorldKeys()
 	{
-		return ::Parameters.Standard.getKeys(this.Settings.World);
+		return ::PRM.Standard.getKeys(this.Settings.World);
 	}
 
 	function getDefaultValue( _presetKey, _defaultKey )
@@ -39,19 +68,19 @@
 		return null;
 	}
 
-	function getDefaults( _presetKey = "Standard" )
+	function getDefaults( _presetKey = "Challenging" )
 	{
 		return this.Defaults[_presetKey];
 	}
 
 	function getPresetKeys()
 	{
-		return ::Parameters.Standard.getKeys(this.Defaults);
+		return ::PRM.Standard.getKeys(this.Defaults);
 	}
 
 	function getSettingCategories()
 	{
-		return ::Parameters.Standard.getKeys(this.Settings);
+		return ::PRM.Standard.getKeys(this.Settings);
 	}
 
 	function initialise()

@@ -1,6 +1,6 @@
-::Parameters.Patcher.hook("scripts/states/tactical_state", function( p )
+::PRM.Patcher.hook("scripts/states/tactical_state", function( p )
 {
-	::Parameters.Patcher.wrap(p, "gatherLoot", function()
+	::PRM.Patcher.wrap(p, "gatherLoot", function()
 	{
 		if (this.isScenarioMode())
 		{
@@ -22,6 +22,6 @@
 			return;
 		}
 
-		::Parameters.StashInjector.removeLoot(this.m.CombatResultLoot.getItems());
+		::PRM.StashInjector.removeLoot(this.m.CombatResultLoot.getItems());
 	});
 });

@@ -1,13 +1,22 @@
-::Parameters.Patcher.hook("scripts/factions/actions/build_unique_locations_action", function( p )
+::PRM.Patcher.hook("scripts/factions/actions/build_unique_locations_action", function( p )
 {
-	// TODO: don't forget to set appropriate flags. there's one for exploration.
-	::Parameters.Patcher.wrap(p, "updateBuildings", function()
+	::PRM.Patcher.wrap(p, "updateBuildings", function()
 	{
-		if (!::Parameters.Mapper.mapToDatabase("DisableKraken"))
+		if (!::PRM.Mapper.mapToDatabase("DisableKraken"))
 		{
 			return;
 		}
 
 		this.m.BuildKrakenCult = false;
+	});
+
+	::PRM.Patcher.wrap(p, "onExecute", function( _faction )
+	{
+		if (!this.m.BuildKrakenCult)
+		{
+			return;
+		}
+
+		::PRM.Utilities.setKrakenBuiltState(true);
 	});
 });

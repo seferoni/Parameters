@@ -1,4 +1,4 @@
-::Parameters.Integrations.MSU <-
+::PRM.Integrations.MSU <-
 {
 	PageIDs =
 	{
@@ -9,8 +9,8 @@
 		Buttons =
 		{
 			Casual = "ButtonCasual",
-			Standard = "ButtonStandard",
-			Survival = "ButtonSurvival",
+			Challenging = "ButtonChallenging",
+			Unfair = "ButtonUnfair",
 			Vanilla = "ButtonVanilla"
 		},
 		Dividers =
@@ -24,7 +24,7 @@
 	},
 	Parameters =
 	{
-		DefaultPreset = "Survival"
+		DefaultPreset = "Challenging"
 	},
 	RuntimeVariables =
 	{
@@ -33,7 +33,7 @@
 
 	function addPage( _pageID, _pageName )
 	{
-		return ::Parameters.Interfaces.MSU.ModSettings.addPage(_pageID, _pageName);
+		return ::PRM.Interfaces.MSU.ModSettings.addPage(_pageID, _pageName);
 	}
 
 	function appendElementToPage( _settingElement, _pageID )
@@ -75,7 +75,7 @@
 
 	function getDefaultValue( _settingKey )
 	{
-		return ::Parameters.Database.getDefaultValue(this.getActivePreset(), _settingKey);
+		return ::PRM.Database.getDefaultValue(this.getActivePreset(), _settingKey);
 	}
 
 	function getElementDescription( _elementKey )
@@ -95,17 +95,17 @@
 
 	function getStringField( _fieldName )
 	{
-		return ::Parameters.Strings.getField("Settings", "Common")[_fieldName];
+		return ::PRM.Strings.getField("Settings", "Common")[_fieldName];
 	}
 
 	function getPage( _pageID )
 	{
-		return ::Parameters.Interfaces.MSU.ModSettings.getPage(_pageID);
+		return ::PRM.Interfaces.MSU.ModSettings.getPage(_pageID);
 	}
 
 	function getPages()
 	{
-		return ::Parameters.Interfaces.MSU.ModSettings.getPanel().getPages();
+		return ::PRM.Interfaces.MSU.ModSettings.getPanel().getPages();
 	}
 
 	function initialise()
@@ -117,11 +117,11 @@
 
 	function loadBuilders()
 	{
-		::Parameters.Manager.includeFiles("mod_rpgr_parameters/framework/integrations/MSU/builders");
+		::PRM.Manager.includeFiles("mod_rpgr_parameters/framework/integrations/MSU/builders");
 	}
 
 	function setPreset( _buttonID )
 	{
-		this.RuntimeVariables.ActivePreset = ::Parameters.Standard.getKey(_buttonID, this.ElementIDs.Buttons);
+		this.RuntimeVariables.ActivePreset = ::PRM.Standard.getKey(_buttonID, this.ElementIDs.Buttons);
 	}
 };

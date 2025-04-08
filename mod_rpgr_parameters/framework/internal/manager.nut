@@ -1,4 +1,4 @@
-::Parameters.Manager <-
+::PRM.Manager <-
 {
 	function awake()
 	{
@@ -14,12 +14,12 @@
 			return;
 		}
 
-		::Parameters.Interfaces.MSU <- ::MSU.Class.Mod(::Parameters.ID, ::Parameters.Version, ::Parameters.Name);
+		::PRM.Interfaces.MSU <- ::MSU.Class.Mod(::PRM.ID, ::PRM.Version, ::PRM.Name);
 	}
 
 	function createTables()
 	{
-		::Parameters.Interfaces <- {};
+		::PRM.Interfaces <- {};
 	}
 
 	function formatVersion()
@@ -34,17 +34,17 @@
 			return;
 		}
 
-		::Parameters.Version = this.parseSemVer(::Parameters.Version);
+		::PRM.Version = this.parseSemVer(::PRM.Version);
 	}
 
 	function isMSUInstalled()
 	{
-		return ::Parameters.Internal.MSUFound;
+		return ::PRM.Internal.MSUFound;
 	}
 
 	function isModernHooksInstalled()
 	{
-		return ::Parameters.Internal.ModernHooksFound;
+		return ::PRM.Internal.ModernHooksFound;
 	}
 
 	function initialise()
@@ -58,9 +58,9 @@
 
 	function initialiseHandlers()
 	{
-		::Parameters.Database.initialise();
-		::Parameters.Strings.initialise();
-		::Parameters.Integrations.initialise();
+		::PRM.Database.initialise();
+		::PRM.Strings.initialise();
+		::PRM.Integrations.initialise();
 	}
 
 	function includeFiles( _path )
@@ -106,15 +106,15 @@
 
 	function queue()
 	{
-		local queued = @() ::Parameters.Manager.initialise();
+		local queued = @() ::PRM.Manager.initialise();
 
 		if (this.isModernHooksInstalled())
 		{
-			::Parameters.Interfaces.ModernHooks.queue(">mod_msu", queued);
+			::PRM.Interfaces.ModernHooks.queue(">mod_msu", queued);
 			return;
 		}
 
-		::mods_queue(::Parameters.ID, ">mod_msu", queued);
+		::mods_queue(::PRM.ID, ">mod_msu", queued);
 	}
 
 	function register()
@@ -138,11 +138,11 @@
 	{
 		if (this.isModernHooksInstalled())
 		{
-			::Parameters.Interfaces.ModernHooks <- ::Hooks.register(::Parameters.ID, ::Parameters.Version, ::Parameters.Name);
+			::PRM.Interfaces.ModernHooks <- ::Hooks.register(::PRM.ID, ::PRM.Version, ::PRM.Name);
 			return;
 		}
 
-		::mods_registerMod(::Parameters.ID, ::Parameters.Version, ::Parameters.Name);
+		::mods_registerMod(::PRM.ID, ::PRM.Version, ::PRM.Name);
 	}
 
 	function updateIntegrationRegistry()
@@ -153,11 +153,11 @@
 
 	function updateMSUState()
 	{
-		::Parameters.Internal.MSUFound <- "MSU" in ::getroottable();
+		::PRM.Internal.MSUFound <- "MSU" in ::getroottable();
 	}
 
 	function updateModernHooksState()
 	{
-		::Parameters.Internal.ModernHooksFound <- "Hooks" in ::getroottable();
+		::PRM.Internal.ModernHooksFound <- "Hooks" in ::getroottable();
 	}
 };

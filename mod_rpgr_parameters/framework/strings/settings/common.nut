@@ -1,4 +1,4 @@
-::Parameters.Strings.Settings.Common <-
+::PRM.Strings.Settings.Common <-
 {
 	# Pages.
 	PagePresetsName = "Presets",
@@ -12,14 +12,14 @@
 	TitlePresetsName = "Presets",
 	TitlePresetsDescription = "Presets determine the default configuration of Parameters's parameters. They serve as templates from which further changes can be made.",
 
-	ButtonStandardName = "Standard",
-	ButtonStandardDescription = "Default configuration. This preset is designed to make the game experience significantly harder and slower-paced by inducing scarcity upon key strategic layer resources.",
+	ButtonChallengingName = "Challenging",
+	ButtonChallengingDescription = "Default configuration. This preset is designed to make the game experience significantly harder and slower-paced by inducing scarcity upon key strategic layer resources.",
 
 	ButtonCasualName = "Casual",
 	ButtonCasualDescription = "A less demanding variant of the default configuration. This preset is generally better suited for games that are more fast-paced.",
 
-	ButtonSurvivalName = "Survival",
-	ButtonSurvivalDescription = "A significantly more restrictive variant of the default parameter configuration. This preset is designed to cater to especially long and difficult campaigns, meant to emulate a much slower and more gradual sense of progression.",
+	ButtonUnfairName = "Unfair",
+	ButtonUnfairDescription = "A significantly more restrictive variant of the default parameter configuration. This preset is designed to cater to especially long and difficult campaigns, meant to emulate a much slower and more gradual sense of progression.",
 
 	ButtonVanillaName = "Vanilla",
 	ButtonVanillaDescription = "The default parameter configuration for the vanilla game.",
@@ -76,8 +76,8 @@
 	PartyStrengthMultDescription = "Determines how strong the game perceives the player party's strength at any given point. Higher values lead to significantly stronger enemies for a given roster strength.",
 
 	FixBeastSpawnsName = "Despawn Discovered Beasts",
-	FixBeastSpawnsDescription = "Despawns discovered beasts after twenty days have elapsed from its spawn time. In the vanilla game, discovered beasts are never despawned, and therefore prevent new beast spawns until they are themselves destroyed.",
+	FixBeastSpawnsDescription = "In the vanilla game, discovered beasts are never despawned, and therefore prevent new beast spawns until they are themselves destroyed. When enabled, this setting permits the despawning of discovered beasts in accordance with other factions.",
 
-	RemoveKrakenName = "Remove Kraken Encounter",
-	RemoveKrakenDescription = "Prevents the legendary Stone Pillars location from generating when a new campaign is started. Adds the blade of the legendary sword to beast loot tables. Has no effect on the Water Wheel legendary location.",
+	DisableKrakenName = "Remove Kraken Encounter",
+	DisableKrakenDescription = "Prevents the legendary Stone Pillars location from generating when starting a new campaign, and adds the Reproach's blade to the loot tables of all undead lairs. Has no effect on ongoing playthroughs.",
 };

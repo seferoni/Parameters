@@ -1,4 +1,4 @@
-::Parameters.Database.Settings.World <-
+::PRM.Database.Settings.World <-
 {
 	ContractPaymentMult =
 	{

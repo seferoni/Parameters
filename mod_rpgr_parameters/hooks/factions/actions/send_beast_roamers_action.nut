@@ -1,12 +1,12 @@
-::Parameters.Patcher.hook("scripts/factions/actions/send_beast_roamers_action", function( p )
+::PRM.Patcher.hook("scripts/factions/actions/send_beast_roamers_action", function( p )
 {
-	::Parameters.Patcher.wrap(p, "onUpdate", function( _faction )
-	{
-		if (!::Parameters.Mapper.mapToDatabase("FixBeastSpawns"))
+	::PRM.Patcher.wrap(p, "onUpdate", function( _faction )
+	{	// TODO: requires testing
+		if (!::PRM.Mapper.mapToDatabase("FixBeastSpawns"))
 		{
 			return;
 		}
 
-		::Parameters.Spawner.despawnDiscoveredBeasts(_faction.getUnits());
+		::PRM.Spawner.despawnDiscoveredBeasts(_faction.getUnits());
 	});
 });

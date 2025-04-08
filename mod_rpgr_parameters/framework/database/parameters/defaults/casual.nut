@@ -1,4 +1,4 @@
-::Parameters.Database.Defaults.Casual <-
+::PRM.Database.Defaults.Casual <-
 {
 	LootRemovalChance = 0,
 	StashSize = 99,

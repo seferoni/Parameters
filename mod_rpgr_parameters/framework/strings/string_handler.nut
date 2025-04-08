@@ -1,4 +1,4 @@
-::Parameters.Strings <-
+::PRM.Strings <-
 {
 	function createTables()
 	{
@@ -8,7 +8,7 @@
 	function compileFragments( _fragmentsArray, _colour )
 	{
 		local compiledString = "";
-		local colourWrap = @(_string) _colour == null ? _string : ::Parameters.Standard.colourWrap(_string, _colour);
+		local colourWrap = @(_string) _colour == null ? _string : ::PRM.Standard.colourWrap(_string, _colour);
 
 		if (_fragmentsArray.len() % 2 != 0)
 		{
@@ -18,13 +18,13 @@
 		for( local i = 0; i < _fragmentsArray.len(); i++ )
 		{
 			local fragment = i % 2 == 0 ? _fragmentsArray[i] : colourWrap(_fragmentsArray[i]);
-			compiledString = ::Parameters.Standard.appendToStringList(fragment, compiledString, "");
+			compiledString = ::PRM.Standard.appendToStringList(fragment, compiledString, "");
 		}
 
 		return compiledString;
 	}
 
-	function getFragmentsAsCompiledString( _fragmentBase, _tableKey, _subTableKey = null, _colour = ::Parameters.Standard.Colour.Red )
+	function getFragmentsAsCompiledString( _fragmentBase, _tableKey, _subTableKey = null, _colour = ::PRM.Standard.Colour.Red )
 	{
 		local fragmentsArray = this.getFragmentsAsSortedArray(_fragmentBase, _tableKey, _subTableKey);
 		return this.compileFragments(fragmentsArray, _colour);
@@ -53,7 +53,7 @@
 
 		if (field == null)
 		{
-			::WFR.Standard.log(format("Could not find %s in the specified string database %s.", _fieldName, _tableName), true);
+			::PRM.Standard.log(format("Could not find %s in the specified string database %s.", _fieldName, _tableName), true);
 		}
 
 		return field;
@@ -82,6 +82,6 @@
 
 	function loadFolder( _path )
 	{
-		::Parameters.Manager.includeFiles(format("mod_rpgr_parameters/framework/strings/%s", _path));
+		::PRM.Manager.includeFiles(format("mod_rpgr_parameters/framework/strings/%s", _path));
 	}
 };

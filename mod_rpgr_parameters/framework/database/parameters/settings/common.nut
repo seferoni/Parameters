@@ -1,4 +1,4 @@
-::Parameters.Database.Settings.Common <-
+::PRM.Database.Settings.Common <-
 {
 	LootRemovalChance =
 	{

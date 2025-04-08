@@ -1,25 +1,25 @@
-::Parameters.Integrations.MSU.Builders.Explicit <-
+::PRM.Integrations.MSU.Builders.Explicit <-
 {
 	function addPresetChangeCallback( _settingElement )
 	{
 		_settingElement.addCallback(function()
 		{
-			::Parameters.Integrations.MSU.setPreset(this.getID());
-			::Parameters.Integrations.MSU.Builders.Explicit.resetPages();
-			::Parameters.Interfaces.MSU.ModSettings.resetSettings();
+			::PRM.Integrations.MSU.setPreset(this.getID());
+			::PRM.Integrations.MSU.Builders.Explicit.resetPages();
+			::PRM.Interfaces.MSU.ModSettings.resetSettings();
 		});
 	}
 
 	function addTitle( _pageObject )
 	{
 		local titleElement = this.createPresetTitle();
-		::Parameters.Integrations.MSU.buildDescription(titleElement);
+		::PRM.Integrations.MSU.buildDescription(titleElement);
 		_pageObject.addElement(titleElement);
 	}
 
 	function appendToPresetsPage( _settingElement )
 	{
-		::Parameters.Integrations.MSU.appendElementToPage(_settingElement, this.getPageIDs().Presets);
+		::PRM.Integrations.MSU.appendElementToPage(_settingElement, this.getPageIDs().Presets);
 	}
 
 	function build()
@@ -30,7 +30,7 @@
 
 	function buildDivider()
 	{
-		local divider = ::Parameters.Integrations.MSU.createDivider(this.getElementIDs().Dividers.Presets);
+		local divider = ::PRM.Integrations.MSU.createDivider(this.getElementIDs().Dividers.Presets);
 		this.appendToPresetsPage(divider);
 	}
 
@@ -40,14 +40,14 @@
 		# Execution order reflects the order of the buttons within the screen.
 		this.buildPresetSetting(buttonIDs.Vanilla);
 		this.buildPresetSetting(buttonIDs.Casual);
-		this.buildPresetSetting(buttonIDs.Standard);
-		this.buildPresetSetting(buttonIDs.Survival);
+		this.buildPresetSetting(buttonIDs.Challenging);
+		this.buildPresetSetting(buttonIDs.Unfair);
 		this.buildDivider();
 	}
 
 	function buildPages()
 	{
-		local presetsPage = ::Parameters.Integrations.MSU.addPage(this.getPageIDs().Presets, this.getPresetsPageName());
+		local presetsPage = ::PRM.Integrations.MSU.addPage(this.getPageIDs().Presets, this.getPresetsPageName());
 		this.addTitle(presetsPage);
 	}
 
@@ -61,12 +61,12 @@
 
 	function buildPresetSettingDescription( _settingElement )
 	{
-		::Parameters.Integrations.MSU.buildDescription(_settingElement);
+		::PRM.Integrations.MSU.buildDescription(_settingElement);
 	}
 
 	function createPresetSetting( _settingID )
 	{
-		return ::MSU.Class.ButtonSetting(_settingID, null, ::Parameters.Integrations.MSU.getElementName(_settingID));
+		return ::MSU.Class.ButtonSetting(_settingID, null, ::PRM.Integrations.MSU.getElementName(_settingID));
 	}
 
 	function createPresetTitle()
@@ -76,39 +76,39 @@
 
 	function getElementIDs()
 	{
-		return ::Parameters.Integrations.MSU.ElementIDs;
+		return ::PRM.Integrations.MSU.ElementIDs;
 	}
 
 	function getPageIDs()
 	{
-		return ::Parameters.Integrations.MSU.PageIDs;
+		return ::PRM.Integrations.MSU.PageIDs;
 	}
 
 	function getPagesForReset()
 	{
-		local pages = clone ::Parameters.Integrations.MSU.getPages();
-		delete pages[::Parameters.Integrations.MSU.PageIDs.Presets];
+		local pages = clone ::PRM.Integrations.MSU.getPages();
+		delete pages[::PRM.Integrations.MSU.PageIDs.Presets];
 		return pages;
 	}
 
 	function getPresetDescription( _presetValue )
 	{
-		return ::Parameters.Integrations.MSU.getElementDescription(format("%sPreset", _presetValue));
+		return ::PRM.Integrations.MSU.getElementDescription(format("%sPreset", _presetValue));
 	}
 
 	function getPresetsPage()
 	{
-		return ::Parameters.Integrations.MSU.getPage(this.getPageIDs().Presets);
+		return ::PRM.Integrations.MSU.getPage(this.getPageIDs().Presets);
 	}
 
 	function getPresetsPageName()
 	{
-		return ::Parameters.Integrations.MSU.getElementName(this.getPageIDs().Presets);
+		return ::PRM.Integrations.MSU.getElementName(this.getPageIDs().Presets);
 	}
 
 	function getPresetTitleName()
 	{
-		return ::Parameters.Integrations.MSU.getElementName(this.getElementIDs().Titles.Presets);
+		return ::PRM.Integrations.MSU.getElementName(this.getElementIDs().Titles.Presets);
 	}
 
 	function resetPages()
@@ -123,7 +123,7 @@
 
 	function updateSettingBaseValue( _settingElement )
 	{
-		local defaultValue = ::Parameters.Integrations.MSU.getDefaultValue(_settingElement.getID());
+		local defaultValue = ::PRM.Integrations.MSU.getDefaultValue(_settingElement.getID());
 
 		if (defaultValue == null)
 		{

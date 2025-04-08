@@ -1,4 +1,4 @@
-::Parameters.Database.Defaults.Standard <-
+::PRM.Database.Defaults.Challenging <-
 {
 	LootRemovalChance = 60,
 	StashSize = 60,

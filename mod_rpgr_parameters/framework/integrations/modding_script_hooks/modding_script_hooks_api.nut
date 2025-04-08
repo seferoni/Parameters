@@ -1,4 +1,4 @@
-::Parameters.Integrations.ModdingScriptHooks <-
+::PRM.Integrations.ModdingScriptHooks <-
 {
 	function hook( _path, _function )
 	{

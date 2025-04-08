@@ -1,12 +1,17 @@
-::Parameters.Patcher.hook("scripts/entity/world/location", function( p )
+::PRM.Patcher.hook("scripts/entity/world/location", function( p )
 {
-	::Parameters.Patcher.wrap(p, "dropTreasure", function( _num, _items, _lootTable )
-	{
-		if (::Parameters.StashInjector.getReproachBladeInjectionState())
+	::PRM.Patcher.wrap(p, "dropTreasure", function( _num, _items, _lootTable )
+	{	// TODO: requires testing.
+		if (::PRM.StashInjector.getReproachBladeInjectedState())
 		{
 			return;
 		}
 
-		::Parameters.StashInjector.injectReproachBladeIntoStash(this, _lootTable);
+		if (::PRM.Utilities.getKrakenBuiltState())
+		{
+			return;
+		}
+
+		::PRM.StashInjector.injectReproachBladeIntoStash(this, _lootTable);
 	}, "overrideArguments");
 });

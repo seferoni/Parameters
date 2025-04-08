@@ -1,4 +1,4 @@
-::Parameters.Database.Defaults.Survival <-
+::PRM.Database.Defaults.Unfair <-
 {
 	LootRemovalChance = 90,
 	StashSize = 30,

@@ -1,4 +1,4 @@
-::Parameters <-
+::PRM <-
 {
 	ID = "mod_rpgr_parameters",
 	Name = "RPG Rebalance - Parameters",
@@ -22,4 +22,4 @@
 	}
 };
 
-::Parameters.initialise();
+::PRM.initialise();

@@ -1,4 +1,4 @@
-::Parameters.Integrations <-
+::PRM.Integrations <-
 {
 	function initialise()
 	{
@@ -13,7 +13,7 @@
 
 	function initialiseMSUAPI()
 	{
-		if (!::Parameters.Manager.isMSUInstalled())
+		if (!::PRM.Manager.isMSUInstalled())
 		{
 			return;
 		}

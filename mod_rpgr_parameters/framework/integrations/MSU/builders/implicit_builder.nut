@@ -1,4 +1,4 @@
-::Parameters.Integrations.MSU.Builders.Implicit <-
+::PRM.Integrations.MSU.Builders.Implicit <-
 {
 	function addSettingsImplicitly( _settingGroup, _pageID )
 	{
@@ -9,7 +9,7 @@
 		{
 			if (!("Default" in settingValues))
 			{
-				settingValues.Default <- ::Parameters.Integrations.MSU.getDefaultValue(settingID);
+				settingValues.Default <- ::PRM.Integrations.MSU.getDefaultValue(settingID);
 			}
 
 			local settingElement = this.buildSettingElement(settingID, settingValues);
@@ -28,12 +28,12 @@
 			elements.push(settingElement);
 		}
 
-		elements.push(::Parameters.Integrations.MSU.createDivider(format("%sDivider", _pageID)));
+		elements.push(::PRM.Integrations.MSU.createDivider(format("%sDivider", _pageID)));
 		elements.extend(booleanSettings);
 
 		foreach( element in elements )
 		{
-			::Parameters.Integrations.MSU.appendElementToPage(element, _pageID);
+			::PRM.Integrations.MSU.appendElementToPage(element, _pageID);
 		}
 	}
 
@@ -50,17 +50,17 @@
 
 		if (settingElement == null)
 		{
-			::Parameters.Standard.log(format("Passed element with ID %s had an unexpected default value type, skipping for implicit construction.", _settingID), true);
+			::PRM.Standard.log(format("Passed element with ID %s had an unexpected default value type, skipping for implicit construction.", _settingID), true);
 			return;
 		}
 
-		::Parameters.Integrations.MSU.buildDescription(settingElement);
+		::PRM.Integrations.MSU.buildDescription(settingElement);
 		return settingElement;
 	}
 
 	function build()
 	{
-		foreach( pageID, settingGroup in ::Parameters.Database.Settings )
+		foreach( pageID, settingGroup in ::PRM.Database.Settings )
 		{
 			this.buildPage(pageID);
 			this.addSettingsImplicitly(settingGroup, pageID);
@@ -69,8 +69,8 @@
 
 	function buildPage( _pageID )
 	{
-		local pageName = ::Parameters.Integrations.MSU.getPageName(_pageID);
-		::Parameters.Integrations.MSU.addPage(_pageID, pageName);
+		local pageName = ::PRM.Integrations.MSU.getPageName(_pageID);
+		::PRM.Integrations.MSU.addPage(_pageID, pageName);
 	}
 
 	function createBooleanSetting( _settingID, _settingValues )
@@ -79,7 +79,7 @@
 		(
 			_settingID,
 			_settingValues.Default,
-			::Parameters.Integrations.MSU.getElementName(_settingID)
+			::PRM.Integrations.MSU.getElementName(_settingID)
 		);
 	}
 
@@ -92,7 +92,7 @@
 			_settingValues.Range[0],
 			_settingValues.Range[1],
 			_settingValues.Interval,
-			::Parameters.Integrations.MSU.getElementName(_settingID)
+			::PRM.Integrations.MSU.getElementName(_settingID)
 		);
 	}
 };

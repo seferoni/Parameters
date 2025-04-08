@@ -1,10 +1,8 @@
-::Parameters.Patcher.hook("scripts/entity/world/player_party", function( p )
+::PRM.Patcher.hook("scripts/entity/world/player_party", function( p )
 {
-	::Parameters.Patcher.wrap(p, "getStrength", function( _originalValue )
+	::PRM.Patcher.wrap(p, "getStrength", function( _originalValue )
 	{
-		local prefactor = ::Parameters.Mapper.mapToDatabase("PartyStrengthMult", true);
-		::logInfo("got an original value of " + _originalValue); // TODO: get rid of these
-		::logInfo("new value was " + _originalValue * prefactor);
+		local prefactor = ::PRM.Mapper.mapToDatabase("PartyStrengthMult", true);
 		return _originalValue * prefactor;
 	});
 });

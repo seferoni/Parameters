@@ -1,14 +1,14 @@
-::Parameters.RosterHandler <-
+::PRM.RosterHandler <-
 {
 	function constrainFormation()
 	{
-		if (!::Parameters.Mapper.mapToDatabase("ConstrainRoster"))
+		if (!::PRM.Mapper.mapToDatabase("ConstrainRoster"))
 		{
 			return;
 		}
 
 		local roster = ::World.getPlayerRoster();
-		local targetSize = ::Parameters.Mapper.mapToDatabase("MaximumBrothersInCombat");
+		local targetSize = ::PRM.Mapper.mapToDatabase("MaximumBrothersInCombat");
 
 		if (roster.getSize() < targetSize)
 		{
@@ -38,8 +38,8 @@
 			return;
 		}
 
-		local eligibleSlots = ::Parameters.Standard.createInclusiveLinearSequence(17, 27);
-		::Parameters.Standard.removeFromArray(filledReserveSlots, eligibleSlots);
+		local eligibleSlots = ::PRM.Standard.createInclusiveLinearSequence(17, 27);
+		::PRM.Standard.removeFromArray(filledReserveSlots, eligibleSlots);
 
 		for( local i = 0; i < brothersInFormation.len() - targetSize; i++ )
 		{
@@ -56,7 +56,7 @@
 
 		foreach( brother in roster )
 		{
-			if (::Parameters.Standard.getFlag("IsPlayerCharacter", brother))
+			if (::PRM.Standard.getFlag("IsPlayerCharacter", brother))
 			{
 				continue;
 			}
@@ -74,13 +74,13 @@
 
 	function setRosterSize()
 	{
-		if (!::Parameters.Mapper.mapToDatabase("ConstrainRoster"))
+		if (!::PRM.Mapper.mapToDatabase("ConstrainRoster"))
 		{
 			return;
 		}
 
 		local roster = ::World.getPlayerRoster();
-		local targetSize = ::Parameters.Mapper.mapToDatabase("RosterSize");
+		local targetSize = ::PRM.Mapper.mapToDatabase("RosterSize");
 
 		if (roster.getSize() <= targetSize)
 		{

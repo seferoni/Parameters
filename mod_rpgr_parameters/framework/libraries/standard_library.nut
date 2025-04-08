@@ -1,4 +1,4 @@
-::Parameters.Standard <-
+::PRM.Standard <-
 {
 	Case =
 	{
@@ -111,12 +111,12 @@
 
 	function getParameter( _parameterKey )
 	{
-		if (::Parameters.Manager.isMSUInstalled())
+		if (::PRM.Manager.isMSUInstalled())
 		{
-			return ::Parameters.Interfaces.MSU.ModSettings.getSetting(_parameterKey).getValue();
+			return ::PRM.Interfaces.MSU.ModSettings.getSetting(_parameterKey).getValue();
 		}
 
-		local parameters = ::Parameters.Database.getDefaults();
+		local parameters = ::PRM.Database.getDefaults();
 
 		foreach( key, value in parameters )
 		{

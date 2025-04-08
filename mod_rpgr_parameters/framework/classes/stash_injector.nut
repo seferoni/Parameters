@@ -1,15 +1,15 @@
-::Parameters.StashInjector <-
+::PRM.StashInjector <-
 {
-	function getReproachBladeInjectionState()
+	function getReproachBladeInjectedState()
 	{
-		return ::Parameters.Standard.getFlag("ReproachBladeInjected", ::World.Statistics);
+		return ::PRM.Standard.getFlag("ReproachBladeInjected", ::World.Statistics);
 	}
 
 	function injectReproachBladeIntoStash( _locationObject, _lootTable )
-	{
+	{	// TODO: need to hook into the reproach blade, replace its description
 		local injectionChance = 0;
 		local locationID = _locationObject.getTypeID();
-		local eligibleTypes = ::Parameters.Utilities.getCommonField("LegendaryBladeEligibleLocations");
+		local eligibleTypes = ::PRM.Utilities.getCommonField("LegendaryBladeEligibleLocations");
 
 		foreach( key, dataTable in eligibleTypes )
 		{
@@ -36,11 +36,11 @@
 
 		::logInfo("injecting sword blade")
 		_lootTable.push(::new("scripts/items/special/legendary_sword_blade_item"));
-		this.setReproachBladeInjectionState(true);
+		this.setReproachBladeInjectedState(true);
 	}
 
 	function isItemViableForRemoval( _item )
-	{
+	{	// TODO: not comprehensive. this is removing the reproach blade
 		if (_item.isItemType(::Const.Items.ItemType.Legendary))
 		{
 			return false;
@@ -56,6 +56,7 @@
 			return false;
 		}
 
+		::logInfo(_item.getID() + " is viable for removal")
 		return true;
 	}
 
@@ -66,7 +67,7 @@
 			return;
 		}
 
-		local removalChance = ::Parameters.Mapper.mapToDatabase("LootRemovalChance");
+		local removalChance = ::PRM.Mapper.mapToDatabase("LootRemovalChance");
 
 		if (removalChance == 0)
 		{
@@ -75,7 +76,7 @@
 
 		local newLoot = _lootArray.filter(function(_index, _item)
 		{
-			if (!::Parameters.Utilities.isItemViableForRemoval(_item))
+			if (!::PRM.StashInjector.isItemViableForRemoval(_item))
 			{
 				return true;
 			}
@@ -85,6 +86,7 @@
 				return true;
 			}
 
+			::logInfo("removed " + _item.getID())
 			return false;
 		});
 
@@ -92,8 +94,8 @@
 		::Tactical.CombatResultLoot.sort();
 	}
 
-	function setReproachBladeInjectionState( _newValue = true )
+	function setReproachBladeInjectedState( _newValue = true )
 	{
-		::Parameters.Standard.setFlag("ReproachBladeInjected", _newValue, ::World.Statistics);
+		::PRM.Standard.setFlag("ReproachBladeInjected", _newValue, ::World.Statistics);
 	}
 };

@@ -1,4 +1,4 @@
-::Parameters.Patcher <-
+::PRM.Patcher <-
 {
 	function cacheHookedMethod( _object, _methodName )
 	{
@@ -41,35 +41,35 @@
 
 	function hook( _path, _function )
 	{
-		if (::Parameters.Manager.isModernHooksInstalled())
+		if (::PRM.Manager.isModernHooksInstalled())
 		{
-			::Parameters.Integrations.ModernHooks.hook(_path, _function);
+			::PRM.Integrations.ModernHooks.hook(_path, _function);
 			return;
 		}
 
-		::Parameters.Integrations.ModdingScriptHooks.hook(this.formatPath(_path), _function);
+		::PRM.Integrations.ModdingScriptHooks.hook(this.formatPath(_path), _function);
 	}
 
 	function hookBase( _path, _function )
 	{
-		if (::Parameters.Manager.isModernHooksInstalled())
+		if (::PRM.Manager.isModernHooksInstalled())
 		{
-			::Parameters.Integrations.ModernHooks.hookBase(_path, _function);
+			::PRM.Integrations.ModernHooks.hookBase(_path, _function);
 			return;
 		}
 
-		::Parameters.Integrations.ModdingScriptHooks.hookBase(this.formatPath(_path), _function);
+		::PRM.Integrations.ModdingScriptHooks.hookBase(this.formatPath(_path), _function);
 	}
 
 	function hookTree( _path, _function )
 	{
-		if (::Parameters.Manager.isModernHooksInstalled())
+		if (::PRM.Manager.isModernHooksInstalled())
 		{
-			::Parameters.Integrations.ModernHooks.hookTree(_path, _function);
+			::PRM.Integrations.ModernHooks.hookTree(_path, _function);
 			return;
 		}
 
-		::Parameters.Integrations.ModdingScriptHooks.hookTree(this.formatPath(_path), _function);
+		::PRM.Integrations.ModdingScriptHooks.hookTree(this.formatPath(_path), _function);
 	}
 
 	# Calls new method and passes result onto original method; if null, calls original method with original arguments.
@@ -85,7 +85,7 @@
 	function overrideMethod( _object, _function, _originalMethod, _argumentsArray )
 	{
 		local returnValue = _function.acall(_argumentsArray);
-		return returnValue == null ? _originalMethod.acall(_argumentsArray) : (returnValue == ::Parameters.Internal.TERMINATE ? null : returnValue);
+		return returnValue == null ? _originalMethod.acall(_argumentsArray) : (returnValue == ::PRM.Internal.TERMINATE ? null : returnValue);
 	}
 
 	# Calls original method and passes result onto new method, returns new result.
@@ -100,7 +100,7 @@
 		}
 
 		local returnValue = _function.acall(_argumentsArray);
-		return returnValue == null ? originalValue : (returnValue == ::Parameters.Internal.TERMINATE ? null : returnValue);
+		return returnValue == null ? originalValue : (returnValue == ::PRM.Internal.TERMINATE ? null : returnValue);
 	}
 
 	function prependContextObject( _object, _arguments )
@@ -153,16 +153,16 @@
 		_object.rawset(_methodName, function( ... )
 		{
 			# Assign a reference to the original method.
-			local originalMethod = cachedMethod == null ? ::Parameters.Patcher.getMethodFromParent(this, parentName, _methodName) : cachedMethod;
+			local originalMethod = cachedMethod == null ? ::PRM.Patcher.getMethodFromParent(this, parentName, _methodName) : cachedMethod;
 
-			if (!::Parameters.Patcher.validateParameters(originalMethod, vargv))
+			if (!::PRM.Patcher.validateParameters(originalMethod, vargv))
 			{
-				::Parameters.Standard.log(format("An invalid number of parameters were passed to %s, aborting wrap procedure.", _methodName), true);
+				::PRM.Standard.log(format("An invalid number of parameters were passed to %s, aborting wrap procedure.", _methodName), true);
 				return;
 			}
 
-			local argumentsArray = ::Parameters.Patcher.prependContextObject(this, vargv);
-			return ::Parameters.Patcher[_procedure](this, _function, originalMethod, argumentsArray);
+			local argumentsArray = ::PRM.Patcher.prependContextObject(this, vargv);
+			return ::PRM.Patcher[_procedure](this, _function, originalMethod, argumentsArray);
 		});
 	}
 };
