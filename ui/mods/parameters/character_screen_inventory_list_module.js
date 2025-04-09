@@ -1,0 +1,1 @@
+CharacterScreenInventoryListModule.prototype.createItemSlot = PRM.Wrappers.createItemSlot(CharacterScreenInventoryListModule.prototype.createItemSlot);
