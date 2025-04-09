@@ -83,6 +83,11 @@
 
 		local newLoot = _lootArray.filter(function( _index, _item )
 		{
+			if (_item == null)
+			{
+				return false;
+			}
+
 			if (!::PRM.StashInjector.isItemViableForRemoval(_item))
 			{
 				return true;

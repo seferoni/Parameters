@@ -21,6 +21,10 @@
 		{
 			TypeID = "location.undead_graveyard",
 			Chance = 5
+		},
+		{
+			TypeID = "location.undead_mass_grave",
+			Chance = 15
 		}
 	]
 };
