@@ -95,7 +95,10 @@
 
 	function loadJS()
 	{
-		this.registerJS("character_screen_inventory_list_module.js");
+		this.registerJS("registry.js");
+		this.registerJS("js_helpers/patcher.js");
+		this.registerJS("overrides/character_screen_inventory_list_module.js");
+		this.registerJS("overrides/character_screen_datasource.js");
 	}
 
 	function parseSemVer( _versionString )
