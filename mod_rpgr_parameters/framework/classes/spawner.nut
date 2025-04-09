@@ -4,6 +4,11 @@
 	{
 		foreach( entity in _entityArray )
 		{
+			if (entity == null || !entity.isAlive())
+			{
+				continue;
+			}
+
 			if (!this.isBeastViableForDespawn(entity))
 			{
 				continue;
@@ -14,7 +19,14 @@
 	}
 
 	function isBeastViableForDespawn( _entityObject )
-	{	# Approximates vanilla procedures.
+	{
+		# Simple safeguard to prevent contract targets from being despawned.
+		if (::World.Contracts.getActiveContract() != null)
+		{
+			return false;
+		}
+
+		# Approximates vanilla procedures.
 		if (!_entityObject.isDiscovered())
 		{
 			return false;

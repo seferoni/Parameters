@@ -1,7 +1,7 @@
 ::PRM.Database.Generic.Common <-
 {
 	LegendaryBladeEligibleLocations =
-	[	// TODO: debug values below
+	[
 		{
 			TypeID = "location.undead_necropolis",
 			Chance = 80
