@@ -50,6 +50,7 @@
 	function initialise()
 	{
 		this.createMSUInterface();
+		this.loadJS();
 		this.loadLibraries();
 		this.loadHandlers();
 		this.initialiseHandlers();
@@ -90,6 +91,11 @@
 	{
 		this.includeFiles("mod_rpgr_parameters/framework/classes");
 		this.includeFiles("mod_rpgr_parameters/hooks");
+	}
+
+	function loadJS()
+	{
+		this.registerJS("character_screen_inventory_list_module.js");
 	}
 
 	function parseSemVer( _versionString )

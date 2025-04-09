@@ -2,6 +2,11 @@
 {
 	::PRM.Patcher.wrap(p, "dropTreasure", function( _num, _items, _lootTable )
 	{
+		if (!::Const.DLC.Unhold)
+		{
+			return;
+		}
+
 		if (::PRM.StashInjector.getReproachBladeInjectedState())
 		{
 			return;
