@@ -1,4 +1,6 @@
-PRM = 
+PRM =
 {
 	Patcher: {},
+	Utilities: {},
+	Enums: {}
 };

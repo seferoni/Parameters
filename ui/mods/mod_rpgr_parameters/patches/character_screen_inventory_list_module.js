@@ -1,4 +1,19 @@
-PRM.Patcher.wrap(CharacterScreenInventoryListModule.prototype, "createItemSlot", function( _result, _owner, _index, _parentDiv, _screenDiv )
+PRM.Patcher.wrap($.fn, "assignListItemRightClick", function( _result, _callback )
 {
-	// TODO: we're not wrapping `assignListItemRightClick`, we're calling it with a callback
-}, "overrideReturn");
+	if (typeof _callback !== 'function')
+	{
+		return null;
+	}
+
+	this.mousedown(function( _event )
+	{
+		if (_event.which !== PRM.Enums.MouseButtons.LEFT)
+		{
+			return null;
+		}
+
+		_callback($(this), _event);
+		return false;
+	});
+
+}, "overrideMethod");
