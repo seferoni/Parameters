@@ -1,6 +1,10 @@
-PRM.Patcher.wrap = function( _object, _methodName, _function, _procedure = "overrideReturn")
+PRM.Patcher.wrap = function( _object, _methodName, _function, _procedure )
 {
-	var dummy = function() { return };
+	console.log(_methodName)
+	var dummy = function()
+	{
+		return;
+	};
 	var originalMethod = _methodName in _object ? _object[_methodName] : dummy;
 	_object[_methodName] = function()
 	{
@@ -20,7 +24,7 @@ PRM.Patcher.overrideReturn = function( _contextObject, _originalMethod, _argumen
 
 	var returnValue = _function.apply(_contextObject, _argumentsArray);
 	
-	if (returnValue === null)
+	if (returnValue == null)
 	{
 		return originalResult;
 	}
