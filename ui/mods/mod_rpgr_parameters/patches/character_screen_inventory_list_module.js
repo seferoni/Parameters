@@ -1,19 +1,15 @@
-PRM.Patcher.wrap($.fn, "assignListItemRightClick", function( _result, _callback )
+PRM.Patcher.wrap(CharacterScreenInventoryListModule.prototype, "createItemSlot", function( _result, _owner, _index, _parentDiv, _screenDiv )
 {
-	if (typeof _callback !== 'function')
+	var context = this;
+	_result.PRMassignListItemLeftClick(function( _item, _event )
 	{
-		return null;
-	}
+		var itemIndex = PRM.Classes.ItemEvents.fetchIndexFromDataOnDeleteEvent(_item, _event);
 
-	this.mousedown(function( _event )
-	{
-		if (_event.which !== PRM.Enums.MouseButtons.LEFT)
+		if (itemIndex === null)
 		{
 			return null;
 		}
 
-		_callback($(this), _event);
-		return false;
+		context.mDataSource.PRM_notifyBackendRemoveItemAfterClick(itemIndex);
 	});
-
-}, "overrideMethod");
+}, "overrideReturn");

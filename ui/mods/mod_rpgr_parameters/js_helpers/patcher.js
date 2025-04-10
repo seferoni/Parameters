@@ -1,6 +1,5 @@
 PRM.Patcher.wrap = function( _object, _methodName, _function, _procedure )
 {
-	console.log(_methodName)
 	var dummy = function()
 	{
 		return;

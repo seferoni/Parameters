@@ -28,12 +28,10 @@
 	}
 
 	function getMethodFromParent( _object, _parentName, _methodName )
-	{
-		local dummy = function();
-
+	{	// TODO: ensure that other stdlibs for other projects also avoid the `dummy` hack
 		if (_parentName == null)
 		{
-			return dummy;
+			return null;
 		}
 
 		return _object[_parentName][_methodName];
@@ -123,7 +121,8 @@
 
 	function validateParameters( _originalFunction, _newParameters )
 	{
-		local originalInfo = _originalFunction.getinfos(), originalParameters = originalInfo.parameters;
+		local originalInfo = _originalFunction.getinfos();
+		local originalParameters = originalInfo.parameters;
 
 		# Return a trivial evaluation if the evaluated function accepts variable arguments.
 		if (originalParameters[originalParameters.len() - 1] == "...")
@@ -154,6 +153,12 @@
 		{
 			# Assign a reference to the original method.
 			local originalMethod = cachedMethod == null ? ::PRM.Patcher.getMethodFromParent(this, parentName, _methodName) : cachedMethod;
+
+			if (originalMethod == null)
+			{
+				::PRM.Standard.log(format("Could not fetch the original method for %s, aborting wrap procedure.", _methodName), true);
+				return;
+			}
 
 			if (!::PRM.Patcher.validateParameters(originalMethod, vargv))
 			{

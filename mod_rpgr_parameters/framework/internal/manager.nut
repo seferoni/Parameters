@@ -96,9 +96,13 @@
 	function loadJS()
 	{
 		this.registerJS("registry.js");
+		this.registerJS("js_helpers/enums.js");
+		this.registerJS("js_helpers/utilities.js");
 		this.registerJS("js_helpers/patcher.js");
-		this.registerJS("patches/character_screen_inventory_list_module.js");
+		this.registerJS("classes/item_events.js");
+		this.registerJS("patches/item_extensions.js");
 		this.registerJS("patches/character_screen_datasource.js");
+		this.registerJS("patches/character_screen_inventory_list_module.js");
 	}
 
 	function parseSemVer( _versionString )
