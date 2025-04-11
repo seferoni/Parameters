@@ -169,6 +169,11 @@
 		return naiveValue;
 	}
 
+	function getNormalisedParameter(  _parameterKey, _normalisationFactor = 100.0 )
+	{
+		return (this.getParameter(_parameterKey) / _normalisationFactor);
+	}
+
 	function getParameter( _parameterID )
 	{
 		if (::PRM.Manager.isMSUInstalled())

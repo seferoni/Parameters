@@ -12,11 +12,12 @@
 			return;
 		}
 
-		::PRM.Standard.constructEntry
+		local entry = ::PRM.Standard.constructEntry
 		(
 			"LeftClickCTRL",
-			::PRM.Utilities.getTooltipString("RemovableStashItemHint"),
-			_result
+			::PRM.Utilities.getTooltipString("RemovableStashItemHint")
 		);
+		entry.type = "hint";
+		_result.push(entry);
 	});
 });

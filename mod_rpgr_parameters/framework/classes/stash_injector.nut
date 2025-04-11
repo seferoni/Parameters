@@ -138,6 +138,6 @@
 			return;
 		}
 
-		setSize(this.mapToDatabase("StashSize"));
+		setSize(::PRM.Mapper.mapToDatabase("StashSize"));
 	}
 };

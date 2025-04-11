@@ -71,7 +71,7 @@
 
 	function getDefaultValue( _settingKey )
 	{
-		return ::PRM.Database.getDefaultValue(this.getActivePreset(), _settingKey);
+		return ::PRM.Database.getDefaultValueByPreset(_settingKey, this.getActivePreset());
 	}
 
 	function getElementDescription( _elementKey )

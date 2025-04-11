@@ -27,7 +27,7 @@
 
 	function getTooltipString( _fieldName )
 	{
-		return this.getStringField("Tooltips", _fieldName);
+		return this.getStringField("Tooltips")[_fieldName];
 	}
 
 	function setKrakenBuiltState( _newValue = true )

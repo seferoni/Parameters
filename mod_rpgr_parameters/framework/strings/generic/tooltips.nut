@@ -1,4 +1,4 @@
 ::PRM.Strings.Generic.Tooltips <-
 {
-	RemovableStashItemHint = "Remove item"
+	RemovableStashItemHint = "Remove item from stash"
 };
