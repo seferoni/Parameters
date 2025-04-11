@@ -81,5 +81,5 @@
 	DisableKrakenDescription = "Prevents the legendary Stone Pillars location from generating when starting a new campaign, and adds the Reproach's blade to the loot tables of all undead lairs. Prevents the associated ambition from firing. Has no effect on ongoing playthroughs.",
 
 	RemovableStashItemsName = "Removable Stash Items",
-	RemovableStashItemsDescription = "The vanilla game does not permit the manual removal of items in the stash while in the inventory screen. When enabled, this setting permits the use of Shift + Left Click to remove any hovered-over stash items, and modifies the tooltip for each item to indicate the presence of this functionality."
+	RemovableStashItemsDescription = "The vanilla game does not permit the manual removal of items in the stash while in the inventory screen. When enabled, this setting permits the use of CTRL + Left Click to remove any hovered-over stash items, and modifies the tooltip for each item to indicate the presence of this functionality."
 };

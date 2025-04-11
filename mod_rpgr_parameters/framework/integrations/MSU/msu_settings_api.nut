@@ -22,10 +22,6 @@
 			Presets = "TitlePresets"
 		}
 	},
-	Parameters =
-	{
-		DefaultPreset = "Challenging"
-	},
 	RuntimeVariables =
 	{
 		ActivePreset = null,
@@ -67,7 +63,7 @@
 	{
 		if (this.RuntimeVariables.ActivePreset == null)
 		{
-			return this.Parameters.DefaultPreset;
+			return ::PRM.Internal.DefaultPreset;
 		}
 
 		return this.RuntimeVariables.ActivePreset;

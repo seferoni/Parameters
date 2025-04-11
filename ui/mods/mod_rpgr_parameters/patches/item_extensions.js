@@ -12,7 +12,7 @@ jQuery.fn.PRM_assignListItemLeftClick = function( _callback )
 			return;
 		}
 
-		if (!(KeyModiferConstants.ShiftKey in _event) || _event[KeyModiferConstants.ShiftKey] !== true)
+		if (!(KeyModiferConstants.CtrlKey in _event) || _event[KeyModiferConstants.CtrlKey] !== true)
 		{
 			return;
 		}

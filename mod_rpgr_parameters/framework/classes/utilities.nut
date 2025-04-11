@@ -15,14 +15,19 @@
 		return ::PRM.Standard.getFlag("KrakenBuilt", ::World.Statistics);
 	}
 
-	function getString( _fieldName )
+	function getItemString( _fieldName )
 	{
-		return this.getStringField("Common")[_fieldName]
+		return this.getStringField("Items")[_fieldName]
 	}
 
 	function getStringField( _fieldName )
 	{
 		return ::PRM.Strings.getField("Generic", _fieldName);
+	}
+
+	function getTooltipString( _fieldName )
+	{
+		return this.getStringField("Tooltips", _fieldName);
 	}
 
 	function setKrakenBuiltState( _newValue = true )
