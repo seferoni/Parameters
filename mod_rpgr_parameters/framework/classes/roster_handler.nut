@@ -2,6 +2,14 @@
 {
 	function constrainFormation()
 	{
+		local serialisedMaxBrothersInCombat = this.getSerialisedMaxBrothersInCombat();
+
+		if (serialisedMaxBrothersInCombat != null)
+		{
+			::World.Assets.m.BrothersMaxInCombat = serialisedMaxBrothersInCombat;
+			return;
+		}
+
 		if (!::PRM.Mapper.mapToDatabase("ConstrainRoster"))
 		{
 			return;
@@ -49,6 +57,30 @@
 		::World.Assets.m.BrothersMaxInCombat = targetSize;
 	}
 
+	function getSerialisedMaxBrothersInCombat()
+	{
+		local maxBrothersInCombat = ::PRM.Standard.getFlag("MaxBrothersInCombat", ::World.Statistics);
+
+		if (maxBrothersInCombat == false)
+		{
+			return null;
+		}
+
+		return maxBrothersInCombat;
+	}
+
+	function getSerialisedRosterSize()
+	{
+		local rosterSize = ::PRM.Standard.getFlag("RosterSize", ::World.Statistics);
+
+		if (rosterSize == false)
+		{
+			return null;
+		}
+
+		return rosterSize;
+	}
+
 	function getViableBrothersForRemoval()
 	{
 		local candidates = [];
@@ -74,6 +106,14 @@
 
 	function setRosterSize()
 	{
+		local serialisedRosterSize = this.getSerialisedRosterSize();
+
+		if (serialisedRosterSize != null)
+		{
+			::World.Assets.m.BrothersMax = serialisedRosterSize;
+			return;
+		}
+
 		if (!::PRM.Mapper.mapToDatabase("ConstrainRoster"))
 		{
 			return;
@@ -102,5 +142,16 @@
 		}
 
 		::World.Assets.m.BrothersMax = targetSize;
+		this.setSerialisedRosterSize(targetSize);
+	}
+
+	function setSerialisedMaxBrothersInCombat( _value )
+	{
+		::PRM.Standard.setFlag("MaxBrothersInCombat", _value, ::World.Statistics);
+	}
+
+	function setSerialisedRosterSize( _value )
+	{
+		::PRM.Standard.setFlag("RosterSize", _value, ::World.Statistics);
 	}
 };

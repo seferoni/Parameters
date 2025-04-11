@@ -7,7 +7,7 @@
 			return;
 		}
 
-		if (::PRM.StashInjector.getReproachBladeInjectedState())
+		if (::PRM.StashHandler.getReproachBladeInjectedState())
 		{
 			return;
 		}
@@ -17,6 +17,6 @@
 			return;
 		}
 
-		::PRM.StashInjector.injectReproachBladeIntoStash(this, _lootTable);
+		::PRM.StashHandler.injectReproachBladeIntoStash(this, _lootTable);
 	}, "overrideArguments");
 });

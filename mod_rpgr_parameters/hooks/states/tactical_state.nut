@@ -22,6 +22,6 @@
 			return;
 		}
 
-		::PRM.StashInjector.removeLoot(this.m.CombatResultLoot.getItems());
+		::PRM.StashHandler.removeLoot(this.m.CombatResultLoot.getItems());
 	});
 });

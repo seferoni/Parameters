@@ -25,9 +25,4 @@
 			_worldObject.m[key] = this.mapToDatabase(key, true);
 		}
 	}
-
-	function setStashSize()
-	{
-		::World.Assets.getStash().resize(this.mapToDatabase("StashSize"));
-	}
 };
