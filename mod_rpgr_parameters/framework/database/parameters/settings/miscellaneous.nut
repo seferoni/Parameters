@@ -8,4 +8,8 @@
 	{
 		Default = true
 	},
+	RemovableStashItems =
+	{
+		Default = true
+	}
 };

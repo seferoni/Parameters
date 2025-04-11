@@ -3,7 +3,6 @@
 	# Pages.
 	PagePresetsName = "Presets",
 	PageCommonName = "Common",
-	PageAssetsName = "Player",
 	PageSettlementsName = "Settlements",
 	PageWorldName = "World",
 	PageMiscellaneousName = "Miscellaneous",
@@ -76,8 +75,11 @@
 	PartyStrengthMultDescription = "Determines how strong the game perceives the player party's strength at any given point. Higher values lead to significantly stronger enemies for a given roster strength.",
 
 	FixBeastSpawnsName = "Despawn Discovered Beasts",
-	FixBeastSpawnsDescription = "In the vanilla game, discovered beasts are never despawned, and therefore prevent new beast spawns. When enabled, this setting permits the despawning of discovered beasts in accordance with other factions, thereby allowing fresh spawns on a periodic basis.",
+	FixBeastSpawnsDescription = "In the vanilla game, discovered beasts are never despawned, and since a spawn limit is enforced, new spawns are therefore left bottlenecked or entirely prohibited. When enabled, this setting permits the despawning of discovered beasts in accordance with other factions, thereby allowing fresh spawns on a periodic basis.",
 
 	DisableKrakenName = "Remove Kraken Encounter",
 	DisableKrakenDescription = "Prevents the legendary Stone Pillars location from generating when starting a new campaign, and adds the Reproach's blade to the loot tables of all undead lairs. Prevents the associated ambition from firing. Has no effect on ongoing playthroughs.",
+
+	RemovableStashItemsName = "Removable Stash Items",
+	RemovableStashItemsDescription = "The vanilla game does not permit the manual removal of items in the stash while in the inventory screen. When enabled, this setting permits the use of Shift + Left Click to remove any hovered-over stash items, and modifies the tooltip for each item to indicate the presence of this functionality."
 };

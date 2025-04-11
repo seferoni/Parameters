@@ -1,3 +1,13 @@
+PRM.Utilities.getMSUSettingIfPresent = function( _settingKey )
+{
+	if (!("MSU" in window))
+	{
+		return PRM.Enums.MSUState.NotFound;
+	}
+
+	return MSU.getSettingValue(PRM.ModID, _settingKey);
+};
+
 PRM.Utilities.formatString = function( _string, _placeholderReplacements )
 {
 	var fetchReplacement = function( _fullPlaceholderString, _captureGroupString )

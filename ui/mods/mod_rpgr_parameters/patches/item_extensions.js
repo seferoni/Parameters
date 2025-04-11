@@ -17,12 +17,18 @@ jQuery.fn.PRM_assignListItemLeftClick = function( _callback )
 			return;
 		}
 
-		_event.stopImmediatePropagation();
+		var settingState = PRM.Utilities.getMSUSettingIfPresent("RemovableStashItems");
+
+		if (settingState === false)
+		{
+			return;
+		}
+
 		_callback(jQuery(this), _event);
 		return false;
 	});
 
-	this.each(function() 
+	this.each(function()
 	{
 		var grossHandlers = jQuery._data(this, "events")["mousedown"];
 		var currentHandler = grossHandlers.pop();

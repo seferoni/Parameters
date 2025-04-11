@@ -2,13 +2,19 @@
 {
 	p.PRM_onRemoveItemAfterClick <- function( _data )
 	{
-		local removedItem = ::World.Assets.getStash().removeByIndex(_data[0]);
-
-		if (removedItem != null)
+		if (!::PRM.Mapper.mapToDatabase("RemovableStashItems"))
 		{
-			removedItem.playInventorySound(::Const.Items.InventoryEventType.PlacedOnGround);
+			return null;
 		}
 
+		local removedItem = ::World.Assets.getStash().removeByIndex(_data[0]);
+
+		if (removedItem == null)
+		{
+			return null;
+		}
+
+		removedItem.playInventorySound(::Const.Items.InventoryEventType.PlacedOnGround);
 		local result =
 		{
 			stash = ::UIDataHelper.convertStashToUIData(true)

@@ -1,7 +1,8 @@
 PRM =
 {
-	Classes: {},
-	Patcher: {},
-	Utilities: {},
-	Enums: {}
+	ModID : "mod_rpgr_parameters",
+	Classes : {},
+	Patcher : {},
+	Utilities : {},
+	Enums : {}
 };
