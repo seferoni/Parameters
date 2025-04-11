@@ -2,6 +2,11 @@
 {
 	::PRM.Patcher.wrap(p, "updateBuildings", function()
 	{
+		if (!::Const.DLC.Unhold)
+		{
+			return;
+		}
+
 		if (!::PRM.Mapper.mapToDatabase("DisableKraken"))
 		{
 			return;
@@ -12,12 +17,16 @@
 
 	::PRM.Patcher.wrap(p, "onExecute", function( _faction )
 	{
+		if (!::Const.DLC.Unhold)
+		{
+			return;
+		}
+
 		if (!this.m.BuildKrakenCult)
 		{
 			return;
 		}
 
-		::logInfo("kraken cult built!")
 		::PRM.Utilities.setKrakenBuiltState(true);
 	});
 });

@@ -30,13 +30,13 @@
 	StashSizeDescription = "Determines the starting stash size. Has no effect on ongoing playthroughs.",
 
 	RosterSizeName = "Roster Size",
-	RosterSizeDescription = "Determines the maximum roster size, overriding scenario-specific restrictions. Does nothing if Enable Roster Constraints is disabled. If the current roster is of greater size than this value, Parameters will randomly cull non-player character brothers until the roster size is equal to or less than this value.",
+	RosterSizeDescription = "Determines the maximum roster size, overriding scenario-specific restrictions. Does nothing if Enable Roster Constraints is disabled. Has no effect on ongoing playthroughs.",
 
 	MaximumBrothersInCombatName = "Maximum Brothers in Combat",
-	MaximumBrothersInCombatDescription = "Determines the maximum number of brothers that can be taken into a combat encounter. Does nothing if Enable Roster Constraints is disabled.",
+	MaximumBrothersInCombatDescription = "Determines the maximum number of brothers that can be taken into a combat encounter. Does nothing if Enable Roster Constraints is disabled. Has no effect on ongoing playthroughs.",
 
 	ConstrainRosterName = "Enable Roster Constraints",
-	ConstrainRosterDescription = "Determines whether settings to do with roster sizes have any effect for a new playthrough. Keep this setting disabled when scenario-specific roster sizes are desired.",
+	ConstrainRosterDescription = "Determines whether settings to do with roster sizes have any effect for a new playthrough. Keep this setting disabled when scenario-specific roster sizes are desired. Has no effect on ongoing playthroughs.",
 
 	BeastPartsPriceMultName = "Beast Parts Price Multiplier",
 	BeastPartsPriceMultDescription = "Determines the base percentage multiplier for the price of beast parts.",
@@ -78,7 +78,7 @@
 	FixBeastSpawnsDescription = "In the vanilla game, discovered beasts are never despawned, and since a spawn limit is enforced, new spawns are therefore left bottlenecked or entirely prohibited. When enabled, this setting permits the despawning of discovered beasts in accordance with other factions, thereby allowing fresh spawns on a periodic basis.",
 
 	DisableKrakenName = "Remove Kraken Encounter",
-	DisableKrakenDescription = "Prevents the legendary Stone Pillars location from generating when starting a new campaign, and adds the Reproach's blade to the loot tables of all undead lairs. Prevents the associated ambition from firing. Has no effect on ongoing playthroughs.",
+	DisableKrakenDescription = "Prevents the legendary Stone Pillars location from generating when starting a new campaign, and adds the Reproach's blade to the loot tables of all undead lairs. Prevents the associated ambition from firing. Does nothing if WotN is not installed. Has no effect on ongoing playthroughs.",
 
 	RemovableStashItemsName = "Removable Stash Items",
 	RemovableStashItemsDescription = "The vanilla game does not permit the manual removal of items in the stash while in the inventory screen. When enabled, this setting permits the use of CTRL + Left Click to remove any hovered-over stash items, and modifies the tooltip for each item to indicate the presence of this functionality."

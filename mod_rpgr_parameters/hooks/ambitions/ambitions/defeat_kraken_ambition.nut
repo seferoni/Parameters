@@ -2,6 +2,11 @@
 {
 	::PRM.Patcher.wrap(p, "onUpdateScore", function()
 	{
+		if (!::Const.DLC.Unhold)
+		{
+			return;
+		}
+
 		if (::PRM.Utilities.getKrakenBuiltState())
 		{
 			return;

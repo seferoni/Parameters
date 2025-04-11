@@ -2,6 +2,11 @@
 {
 	::PRM.Patcher.wrap(p, "create", function()
 	{
+		if (!::Const.DLC.Unhold)
+		{
+			return;
+		}
+
 		if (::PRM.Utilities.getKrakenBuiltState())
 		{
 			return;

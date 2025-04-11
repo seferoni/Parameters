@@ -5,18 +5,6 @@
 		return ::PRM.Standard.getFlag("ReproachBladeInjected", ::World.Statistics);
 	}
 
-	function getSerialisedStashSize()
-	{
-		local stashSize = ::PRM.Standard.getFlag("StashSize", ::World.Statistics);
-
-		if (stashSize == false)
-		{
-			return null;
-		}
-
-		return stashSize;
-	}
-
 	function injectReproachBladeIntoStash( _locationObject, _lootTable )
 	{
 		local injectionChance = 0;
@@ -122,22 +110,8 @@
 		::PRM.Standard.setFlag("ReproachBladeInjected", _newValue, ::World.Statistics);
 	}
 
-	function setSerialisedStashSize( _newValue )
-	{
-		::PRM.Standard.setFlag("StashSize", _newValue, ::World.Statistics);
-	}
-
 	function setStashSize()
-	{	// TODO: descriptions need to reflect both stash and roster size systems, the serialisation aspect
-		local setSize = @(_newSize) ::World.Assets.getStash().resize(_newSize);
-		local serialisedStashSize = this.getSerialisedStashSize();
-
-		if (serialisedStashSize != null)
-		{
-			setSize(serialisedStashSize);
-			return;
-		}
-
-		setSize(::PRM.Mapper.mapToDatabase("StashSize"));
+	{
+		::World.Assets.getStash().resize(::PRM.Mapper.mapToDatabase("StashSize"));
 	}
 };
