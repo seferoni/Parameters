@@ -1,4 +1,4 @@
-PRM.Utilities.format = function( _string, _placeholderReplacements )
+PRM.Utilities.formatString = function( _string, _placeholderReplacements )
 {
 	var fetchReplacement = function( _fullPlaceholderString, _captureGroupString )
 	{
@@ -22,5 +22,5 @@ PRM.Utilities.format = function( _string, _placeholderReplacements )
 
 PRM.Utilities.log = function( _message )
 {
-	console.error(this.format("{0} {1}", ["[Parameters]", _message]));
+	console.error(this.formatString("{0} {1}", ["[Parameters]", _message]));
 };
