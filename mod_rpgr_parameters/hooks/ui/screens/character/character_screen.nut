@@ -1,7 +1,7 @@
 ::PRM.Patcher.hookBase("scripts/ui/screens/character/character_screen", function( p )
 {
 	p.PRM_onRemoveItemAfterClick <- function( _data )
-	{
+	{	// TODO: needs to check for item viability
 		if (!::PRM.Mapper.mapToDatabase("RemovableStashItems"))
 		{
 			return null;

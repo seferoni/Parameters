@@ -6,7 +6,6 @@
 		{
 			::PRM.Integrations.MSU.setPreset(this.getID());
 			::PRM.Integrations.MSU.Builders.Explicit.resetPages();
-			::PRM.Interfaces.MSU.ModSettings.resetSettings();
 		});
 	}
 
@@ -111,13 +110,24 @@
 		return ::PRM.Integrations.MSU.getElementName(this.getElementIDs().Titles.Presets);
 	}
 
+	function resetPage( _pageObject )
+	{
+		local allElements = _pageObject.getAllElementsAsArray(::MSU.Class.AbstractSetting);
+
+		foreach( element in allElements )
+		{
+			this.updateSettingBaseValue(element);
+			element.set(element.BaseValue, true, false, false, false, false);
+		}
+	}
+
 	function resetPages()
 	{
 		local pages = this.getPagesForReset();
 
 		foreach( page in pages )
 		{
-			page.getAllElementsAsArray(::MSU.Class.AbstractSetting).apply(this.updateSettingBaseValue);
+			this.resetPage(page);
 		}
 	}
 
