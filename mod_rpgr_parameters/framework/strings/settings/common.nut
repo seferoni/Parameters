@@ -29,15 +29,6 @@
 	StashSizeName = "Stash Size",
 	StashSizeDescription = "Determines the starting stash size. Has no effect on ongoing playthroughs.",
 
-	RosterSizeName = "Roster Size",
-	RosterSizeDescription = "Determines the maximum roster size, overriding scenario-specific restrictions. Does nothing if Enable Roster Constraints is disabled. Has no effect on ongoing playthroughs.",
-
-	MaximumBrothersInCombatName = "Maximum Brothers in Combat",
-	MaximumBrothersInCombatDescription = "Determines the maximum number of brothers that can be taken into a combat encounter. Does nothing if Enable Roster Constraints is disabled. Has no effect on ongoing playthroughs.",
-
-	ConstrainRosterName = "Enable Roster Constraints",
-	ConstrainRosterDescription = "Determines whether settings to do with roster sizes have any effect for a new playthrough. Keep this setting disabled when scenario-specific roster sizes are desired. Has no effect on ongoing playthroughs.",
-
 	BeastPartsPriceMultName = "Beast Parts Price Multiplier",
 	BeastPartsPriceMultDescription = "Determines the base percentage multiplier for the price of beast parts.",
 
