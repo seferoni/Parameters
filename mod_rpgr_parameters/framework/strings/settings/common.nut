@@ -71,8 +71,8 @@
 	XPMultName = "XP Multiplier",
 	XPMultDescription = "Determines the base percentage multiplier for XP gains.",
 
-	PartyStrengthMultName = "Party Strength Scaling Multiplier",
-	PartyStrengthMultDescription = "Determines how strong the game perceives the player party's strength at any given point. Higher values lead to significantly stronger enemies for a given roster strength.",
+	PartyStrengthMultName = "Enemy Strength Scaling Multiplier",
+	PartyStrengthMultDescription = "Abstracted percentage scalar that determines how strong the game perceives the player party's strength at any given point. Higher values lead to significantly stronger enemies for a given roster strength.",
 
 	FixBeastSpawnsName = "Despawn Discovered Beasts",
 	FixBeastSpawnsDescription = "In the vanilla game, discovered beasts are never despawned, and since a spawn limit is enforced, new spawns are therefore left bottlenecked or entirely prohibited. When enabled, this setting permits the despawning of discovered beasts in accordance with other factions, thereby allowing fresh spawns on a periodic basis.",
