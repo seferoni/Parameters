@@ -8,7 +8,19 @@
 		}
 
 		local playerStash = ::World.Assets.getStash();
-		local item = playerStash.getItemAtIndex(_data[0]);
+		local itemTable = playerStash.getItemAtIndex(_data[0]);
+
+		if (itemTable == null)
+		{
+			return;
+		}
+
+		local item = itemTable.item;
+
+		if (item == null)
+		{
+			return;
+		}
 
 		if (!::PRM.StashHandler.isItemViableForRemoval(item, true))
 		{

@@ -43,7 +43,7 @@
 
 	function isItemViableForRemoval( _itemObject, _checkValue = false )
 	{
-		if (_checkValue && _itemObject.getValue() > this.Parameters.ItemRemovalValueThreshold)
+		if (_checkValue && _itemObject.getValue() > ::PRM.Mapper.mapToDatabase("RemovableStashItemValueThreshold"))
 		{
 			return false;
 		}

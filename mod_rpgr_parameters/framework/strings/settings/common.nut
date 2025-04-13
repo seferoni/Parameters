@@ -72,5 +72,8 @@
 	DisableKrakenDescription = "Prevents the legendary Stone Pillars location from generating when starting a new campaign, and adds the Reproach's blade to the loot tables of all undead lairs. Prevents the associated ambition from firing. Does nothing if WotN is not installed. Requires a new game - has no effect on ongoing playthroughs.",
 
 	RemovableStashItemsName = "Removable Stash Items",
-	RemovableStashItemsDescription = "When enabled, this setting permits the use of CTRL + Left Click to remove any hovered-over stash items, and modifies the tooltip for each item to indicate the presence of this functionality. Only items of low value (less than or equal to 300 crowns in value) can be removed in this manner. Quest items can never be removed.",
+	RemovableStashItemsDescription = "When enabled, this setting permits the use of CTRL + Left Click to remove any hovered-over stash items, and modifies the tooltip for each item to indicate the presence of this functionality. Quest items can never be removed.",
+
+	RemovableStashItemValueThresholdName = "Removable Stash Item Value Threshold",
+	RemovableStashItemValueThresholdDescription = "Determines the item value, in crowns, at and below which a given stash item can be made removable from the inventory screen. Items above this threshold can only be removed as per vanilla functionality. Does nothing if Removable Stash Items is disabled."
 };
