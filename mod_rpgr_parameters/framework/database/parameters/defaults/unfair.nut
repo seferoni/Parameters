@@ -1,6 +1,6 @@
 ::PRM.Database.Defaults.Unfair <-
 {
-	LootRemovalChance = 75,
+	LootRemovalChance = 65,
 	StashSize = 30,
 	ContractPaymentMult = 100,
 	DailyWageMult = 170,

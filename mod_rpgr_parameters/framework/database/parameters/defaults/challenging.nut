@@ -1,6 +1,6 @@
 ::PRM.Database.Defaults.Challenging <-
 {
-	LootRemovalChance = 20,
+	LootRemovalChance = 30,
 	StashSize = 60,
 	ContractPaymentMult = 120,
 	DailyWageMult = 130,
@@ -13,5 +13,5 @@
 	SellPriceMult = 100,
 	RarityMult = 70,
 	RecruitsMult = 70,
-	NPCResourcesMult = 130
+	NPCResourcesMult = 140
 };
