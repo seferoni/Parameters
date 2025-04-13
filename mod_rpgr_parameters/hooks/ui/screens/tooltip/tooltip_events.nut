@@ -1,8 +1,13 @@
 ::PRM.Patcher.hookBase("scripts/ui/screens/tooltip/tooltip_events", function( p )
 {
 	::PRM.Patcher.wrap(p, "tactical_helper_addHintsToTooltip", function( _result, _activeEntity, _entity, _item, _itemOwner, _ignoreStashLocked = false )
-	{	// TODO: needs to check for item viability
+	{
 		if (!::PRM.Mapper.mapToDatabase("RemovableStashItems"))
+		{
+			return;
+		}
+
+		if (!::PRM.StashHandler.isItemViableForRemoval(_item, true))
 		{
 			return;
 		}

@@ -1,20 +1,22 @@
 ::PRM.Patcher.hookBase("scripts/ui/screens/character/character_screen", function( p )
 {
 	p.PRM_onRemoveItemAfterClick <- function( _data )
-	{	// TODO: needs to check for item viability
+	{
 		if (!::PRM.Mapper.mapToDatabase("RemovableStashItems"))
 		{
 			return null;
 		}
 
-		local removedItem = ::World.Assets.getStash().removeByIndex(_data[0]);
+		local playerStash = ::World.Assets.getStash();
+		local item = playerStash.getItemAtIndex(_data[0]);
 
-		if (removedItem == null)
+		if (!::PRM.StashHandler.isItemViableForRemoval(item, true))
 		{
-			return null;
+			return;
 		}
 
-		removedItem.playInventorySound(::Const.Items.InventoryEventType.PlacedOnGround);
+		item.playInventorySound(::Const.Items.InventoryEventType.PlacedOnGround);
+		playerStash.remove(item);
 		local result =
 		{
 			stash = ::UIDataHelper.convertStashToUIData(true)

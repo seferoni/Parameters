@@ -28,7 +28,7 @@
 	}
 
 	function getMethodFromParent( _object, _parentName, _methodName )
-	{	// TODO: ensure that other stdlibs for other projects also avoid the `dummy` hack
+	{
 		if (_parentName == null)
 		{
 			return null;

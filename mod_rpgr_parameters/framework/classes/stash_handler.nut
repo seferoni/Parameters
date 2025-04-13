@@ -1,5 +1,10 @@
 ::PRM.StashHandler <-
 {
+	Parameters =
+	{
+		ItemRemovalValueThreshold = 300
+	}
+
 	function getReproachBladeInjectedState()
 	{
 		return ::PRM.Standard.getFlag("ReproachBladeInjected", ::World.Statistics);
@@ -36,8 +41,13 @@
 		this.setReproachBladeInjectedState(true);
 	}
 
-	function isItemViableForRemoval( _itemObject )
+	function isItemViableForRemoval( _itemObject, _checkValue = false )
 	{
+		if (_checkValue && _itemObject.getValue() > this.Parameters.ItemRemovalValueThreshold)
+		{
+			return false;
+		}
+
 		local removalParameters = ::PRM.Utilities.getField("ItemRemovalParameters");
 
 		foreach( itemType in removalParameters.ForbiddenTypesInclusive )
