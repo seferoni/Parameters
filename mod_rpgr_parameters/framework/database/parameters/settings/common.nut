@@ -10,9 +10,9 @@
 		Range = [10, 99],
 		Interval = 1
 	},
-	PartyStrengthMult =
+	NPCResourcesMult =
 	{
-		Range = [100, 500],
+		Range = [100, 250],
 		Interval = 10
 	}
 };

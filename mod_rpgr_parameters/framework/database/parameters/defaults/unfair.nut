@@ -13,5 +13,5 @@
 	SellPriceMult = 80,
 	RarityMult = 40,
 	RecruitsMult = 25,
-	PartyStrengthMult = 180
+	NPCResourcesMult = 210
 };
