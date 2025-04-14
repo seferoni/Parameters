@@ -66,7 +66,7 @@
 	NPCResourcesMultDescription = "Flat percentage multiplier on resources allocated to all non-player spawns. Higher values lead to significantly stronger enemies across the board.",
 
 	FixBeastSpawnsName = "Despawn Discovered Beasts",
-	FixBeastSpawnsDescription = "In the vanilla game, discovered beasts are never despawned, and since a spawn limit is enforced, new spawns are therefore left bottlenecked or entirely prohibited. When enabled, this setting permits the despawning of discovered beasts in accordance with other factions, thereby allowing fresh spawns on a periodic basis.",
+	FixBeastSpawnsDescription = "In the vanilla game, discovered beast parties are never despawned, and since a spawn limit is enforced, new spawns are therefore left bottlenecked or entirely prohibited. When enabled, this setting permits the despawning of discovered beast parties in accordance with other factions, thereby allowing fresh spawns on a periodic basis. Does not affect contract targets.",
 
 	DisableKrakenName = "Remove Kraken Encounter",
 	DisableKrakenDescription = "Prevents the legendary Stone Pillars location from generating when starting a new campaign, and adds the Reproach's blade to the loot tables of all undead lairs. Prevents the associated ambition from firing. Does nothing if WotN is not installed. Requires a new game - has no effect on ongoing playthroughs.",

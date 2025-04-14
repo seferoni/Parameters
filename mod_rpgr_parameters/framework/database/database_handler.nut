@@ -5,6 +5,7 @@
 		this.Generic <- {};
 		this.Defaults <- {};
 		this.Settings <- {};
+		this.SettingData <- {};
 	}
 
 	function loadFolder( _path )
@@ -15,6 +16,7 @@
 	function loadFiles()
 	{
 		this.loadFolder("dictionaries");
+		this.loadFolder("parameters/common");
 		this.loadFolder("parameters/defaults");
 		this.loadFolder("parameters/settings");
 	}

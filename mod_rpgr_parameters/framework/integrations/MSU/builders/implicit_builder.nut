@@ -60,10 +60,12 @@
 
 	function build()
 	{
-		foreach( pageID, settingGroup in ::PRM.Database.Settings )
+		local pageOrder = ::PRM.Integrations.MSU.getPageOrder();
+
+		foreach( pageKey in pageOrder )
 		{
-			this.buildPage(pageID);
-			this.addSettingsImplicitly(settingGroup, pageID);
+			this.buildPage(pageKey);
+			this.addSettingsImplicitly(::PRM.Database.Settings[pageKey], pageKey);
 		}
 	}
 

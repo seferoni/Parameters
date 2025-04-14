@@ -10,14 +10,14 @@
 		return ::PRM.Database.getField("Generic", _fieldName);
 	}
 
-	function getKrakenBuiltState()
-	{
-		return ::PRM.Standard.getFlag("KrakenBuilt", ::World.Statistics);
-	}
-
 	function getItemString( _fieldName )
 	{
 		return this.getStringField("Items")[_fieldName]
+	}
+
+	function getKrakenBuiltState()
+	{
+		return ::PRM.Standard.getFlag("KrakenBuilt", ::World.Statistics);
 	}
 
 	function getStringField( _fieldName )

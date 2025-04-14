@@ -84,6 +84,11 @@
 		return this.getStringField(format("%sName", _elementKey));
 	}
 
+	function getPageOrder()
+	{
+		return ::PRM.Database.getField("SettingData", "PageOrder");
+	}
+
 	function getPageName( _pageKey )
 	{
 		return this.getElementName(format("Page%s", _pageKey));

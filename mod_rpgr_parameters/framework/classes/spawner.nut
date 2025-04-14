@@ -9,7 +9,7 @@
 				continue;
 			}
 
-			if (!this.isBeastViableForDespawn(entity))
+			if (!this.isPartyViableForDespawn(entity))
 			{
 				continue;
 			}
@@ -18,7 +18,7 @@
 		}
 	}
 
-	function isBeastViableForDespawn( _entityObject )
+	function isPartyViableForDespawn( _entityObject )
 	{
 		# Simple safeguard to prevent contract targets from being despawned.
 		if (::World.Contracts.getActiveContract() != null)
@@ -40,9 +40,9 @@
 		}
 
 		local maximumDistance = 8;
-		local player = ::World.State.getPlayer();
+		local playerParty = ::World.State.getPlayer();
 
-		if (player != null && player.getTile().getDistanceTo(_entityObject.getTile()) < maximumDistance)
+		if (playerParty != null && playerParty.getTile().getDistanceTo(_entityObject.getTile()) < maximumDistance)
 		{
 			return false;
 		}
