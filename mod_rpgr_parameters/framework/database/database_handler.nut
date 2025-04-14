@@ -26,16 +26,9 @@
 		return this[_tableName][_subTableName][_fieldName];
 	}
 
-	function getField( _tableName, _fieldName )
+	function getField( _tableName, _fieldName = "" )
 	{
-		local field = this.getTopLevelField(_tableName, _fieldName);
-
-		if (field == null)
-		{
-			::PRM.Standard.log(format("Could not find %s in the specified database %s.", _fieldName, _tableName), true);
-		}
-
-		return field;
+		return this.getTopLevelField(_tableName, _fieldName);
 	}
 
 	function getIcon( _iconKey )
@@ -51,8 +44,20 @@
 
 	function getTopLevelField( _tableName, _fieldName )
 	{
+		if (!(_tableName) in this)
+		{
+			::PRM.Standard.log(format("Could not find the specified database %s.", _tableName), true);
+			return null;
+		}
+
+		if (_fieldName == "")
+		{
+			return this[_tableName];
+		}
+
 		if (!(_fieldName in this[_tableName]))
 		{
+			::PRM.Standard.log(format("Could not find %s in the specified database %s.", _fieldName, _tableName), true);
 			return null;
 		}
 
