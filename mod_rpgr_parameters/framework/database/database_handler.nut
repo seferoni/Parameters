@@ -35,7 +35,7 @@
 	{
 		if (!_iconKey in this.Generic.Icons)
 		{
-			::WFR.Standard.log(format("Could not find image path corresponding to icon key %s.", _iconKey), true);
+			::PRM.Standard.log(format("Could not find image path corresponding to icon key %s.", _iconKey), true);
 			return null;
 		}
 

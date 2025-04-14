@@ -1,17 +1,19 @@
 ::PRM.Database.Defaults.Casual <-
 {
-	LootRemovalChance = 10,
-	StashSize = 99,
+	BeastPartsPriceMult = 140,
+	BuyPriceMult = 120,
+	ChampionChanceAdditional = 1,
 	ContractPaymentMult = 140,
 	DailyWageMult = 110,
 	FoodConsumptionMult = 110,
 	HitpointsPerHourMult = 90,
-	RepairSpeedMult = 80,
-	XPMult = 100,
-	BeastPartsPriceMult = 140,
-	BuyPriceMult = 120,
-	SellPriceMult = 110,
+	LocationResourcesMult = 110,
+	LootRemovalChance = 10,
+	PartyResourcesMult = 100
 	RarityMult = 90,
 	RecruitsMult = 85,
-	NPCResourcesMult = 100
+	RepairSpeedMult = 80,
+	StashSize = 99,
+	SellPriceMult = 110,
+	XPMult = 100,
 };

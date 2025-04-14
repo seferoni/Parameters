@@ -1,17 +1,19 @@
 ::PRM.Database.Defaults.Challenging <-
 {
-	LootRemovalChance = 30,
-	StashSize = 60,
+	BeastPartsPriceMult = 150,
+	BuyPriceMult = 150,
+	ChampionChanceAdditional = 3,
 	ContractPaymentMult = 120,
 	DailyWageMult = 130,
 	FoodConsumptionMult = 110,
 	HitpointsPerHourMult = 70,
-	RepairSpeedMult = 50,
-	XPMult = 70,
-	BeastPartsPriceMult = 150,
-	BuyPriceMult = 150,
-	SellPriceMult = 100,
+	LocationResourcesMult = 140,
+	LootRemovalChance = 30,
+	PartyResourcesMult = 140
 	RarityMult = 70,
 	RecruitsMult = 70,
-	NPCResourcesMult = 140
+	RepairSpeedMult = 50,
+	StashSize = 60,
+	SellPriceMult = 100,
+	XPMult = 70,
 };

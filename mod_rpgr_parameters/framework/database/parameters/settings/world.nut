@@ -1,5 +1,10 @@
 ::PRM.Database.Settings.World <-
 {
+	ChampionChanceAdditional =
+	{
+		Range = [0, 10],
+		Interval = 1
+	},
 	ContractPaymentMult =
 	{
 		Range = [25, 200],

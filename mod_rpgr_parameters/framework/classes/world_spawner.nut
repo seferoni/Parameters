@@ -1,4 +1,4 @@
-::PRM.Spawner <-
+::PRM.WorldSpawner <-
 {
 	function despawnDiscoveredBeasts( _entityArray )
 	{

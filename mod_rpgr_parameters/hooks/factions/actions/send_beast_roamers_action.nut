@@ -7,6 +7,6 @@
 			return;
 		}
 
-		::PRM.Spawner.despawnDiscoveredBeasts(_faction.getUnits());
+		::PRM.WorldSpawner.despawnDiscoveredBeasts(_faction.getUnits());
 	});
 });

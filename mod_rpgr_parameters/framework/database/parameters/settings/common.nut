@@ -10,7 +10,12 @@
 		Range = [10, 99],
 		Interval = 1
 	},
-	NPCResourcesMult =
+	PartyResourcesMult =
+	{
+		Range = [100, 250],
+		Interval = 10
+	},
+	LocationResourcesMult =
 	{
 		Range = [100, 250],
 		Interval = 10
