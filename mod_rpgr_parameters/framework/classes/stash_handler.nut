@@ -1,10 +1,5 @@
 ::PRM.StashHandler <-
 {
-	Parameters =
-	{
-		ItemRemovalValueThreshold = 300
-	}
-
 	function getReproachBladeInjectedState()
 	{
 		return ::PRM.Standard.getFlag("ReproachBladeInjected", ::World.Statistics);
