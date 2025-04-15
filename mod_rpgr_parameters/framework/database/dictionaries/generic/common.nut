@@ -25,6 +25,14 @@
 		{
 			TypeID = "location.undead_mass_grave",
 			Chance = 15
+		},
+		{
+			TypeID = "location.undead_buried_castle",
+			Chance = 20
+		},
+		{
+			TypeID = "location.undead_necromancers_lair",
+			Chance = 5
 		}
 	]
 };

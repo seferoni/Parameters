@@ -1,13 +1,13 @@
 ::PRM.Patcher.hook("scripts/entity/world/location", function( p )
 {
 	::PRM.Patcher.wrap(p, "onSpawned", function()
-	{	// TODO: requires testing
+	{
 		if (!::PRM.LocationHandler.isLocationViableForScaling(this))
 		{
 			return;
 		}
 
-		local scalar = ::PRM.Mapper.mapToDatabase("LocationResourcesMult");
+		local scalar = ::PRM.Mapper.mapToDatabase("LocationResourcesMult", true);
 		this.m.Resources = ::Math.floor(this.m.Resources * scalar);
 	}, "overrideArguments");
 
@@ -18,12 +18,12 @@
 			return;
 		}
 
-		if (::PRM.StashHandler.getReproachBladeInjectedState())
+		if (::PRM.Utilities.getKrakenBuiltState())
 		{
 			return;
 		}
 
-		if (::PRM.Utilities.getKrakenBuiltState())
+		if (::PRM.StashHandler.getReproachBladeInjectedState())
 		{
 			return;
 		}

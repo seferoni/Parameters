@@ -9,7 +9,7 @@
 	HitpointsPerHourMult = 40,
 	LocationResourcesMult = 180,
 	LootRemovalChance = 65,
-	PartyResourcesMult = 210,
+	PartyResourcesMult = 170,
 	RarityMult = 40,
 	RecruitsMult = 25,
 	RepairSpeedMult = 25,

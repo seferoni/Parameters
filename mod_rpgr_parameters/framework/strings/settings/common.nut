@@ -24,19 +24,19 @@
 	ButtonVanillaDescription = "The default parameter configuration for the vanilla game.",
 
 	BeastPartsPriceMultName = "Beast Parts Price Multiplier",
-	BeastPartsPriceMultDescription = "Determines the base percentage multiplier for the price of beast parts.",
+	BeastPartsPriceMultDescription = "Determines the base percentage multiplier for the value of beast parts. Higher values result in more valuable beast parts.",
 
 	BuyPriceMultName = "Buy Price Multiplier",
-	BuyPriceMultDescription = "Determines the base percentage multiplier for the purchase prices of goods sold at all settlements.",
+	BuyPriceMultDescription = "Determines the base percentage multiplier for the purchase prices of goods sold at all settlements. Higher values lead to more expensive goods sold in marketplaces.",
 
 	ChampionChanceAdditionalName = "Additional Champion Chance",
 	ChampionChanceAdditionalDescription = "Determines a positive offset to the chance for a given enemy type to be made a champion. Stacks with retinue bonuses.",
 
 	ContractPaymentMultName = "Contract Payment Multiplier",
-	ContractPaymentMultDescription = "Determines the base percentage multiplier for contract payment.",
+	ContractPaymentMultDescription = "Determines the base percentage multiplier for contract payment. Higher values yield better payout for all contracts.",
 
 	DailyWageMultName = "Daily Wage Multiplier",
-	DailyWageMultDescription = "Determines the base percentage multiplier for the daily wages paid out to currently hired brothers.",
+	DailyWageMultDescription = "Determines the base percentage multiplier for the daily wages paid out to currently hired brothers. Higher values lead to a greater value of wages paid out per brother.",
 
 	DisableKrakenName = "Remove Kraken Encounter",
 	DisableKrakenDescription = "Prevents the legendary Stone Pillars location from generating when starting a new campaign, and adds the Reproach's blade to the loot tables of all undead lairs. Prevents the associated ambition from firing. Does nothing if Beasts & Exploration is not installed. Requires a new game - has no effect on ongoing playthroughs.",
@@ -45,13 +45,13 @@
 	FixBeastSpawnsDescription = "In the vanilla game, discovered beast parties are never despawned, and since a spawn limit is enforced, new spawns are therefore left bottlenecked or entirely prohibited. When enabled, this setting permits the despawning of discovered beast parties in accordance with other factions, thereby allowing fresh spawns on a periodic basis. Does not affect contract targets.",
 
 	FoodConsumptionMultName = "Food Consumption Multiplier",
-	FoodConsumptionMultDescription = "Determines how quickly food is consumed.",
+	FoodConsumptionMultDescription = "Determines how quickly food is consumed. Higher values lead to greater food consumption within a given period of time.",
 
 	HitpointsPerHourMultName = "Heal Rate Multiplier",
 	HitpointsPerHourMultDescription = "Determines how quickly missing hitpoints are recovered for all hired brothers, if medical supplies are present.",
 
 	LocationResourcesMultName = "Location Difficulty Scaling Multiplier",
-	LocationResourcesMultDescription = "Flat percentage multiplier on resources allocated to most locations. Higher values lead to significantly stronger garrisoned troop compositions, and raises the chance for the location to store named items. Does not affect legendary locations.",
+	LocationResourcesMultDescription = "Flat percentage multiplier on resources allocated to most locations. Higher values lead to significantly stronger garrisoned troop compositions, and raises the chance for the location to store named items. Does not affect legendary locations. Has limited effect on contract targets.",
 
 	LootRemovalChanceName = "Loot Removal Chance",
 	LootRemovalChanceDescription = "This setting determines the chance that items that would otherwise be available as combat loot are removed at random. Setting this to 0 retains all items. Legendary & quest items are never eligible for removal.",
@@ -63,23 +63,23 @@
 	RarityMultDescription = "Determines the base number of items available for sale in settlements. Higher values allow for a greater number and variety of items.",
 
 	RecruitsMultName = "Recruits Multiplier",
-	RecruitsMultDescription = "Determines the base percentage multiplier for the number of prospective recruits found across all settlements.",
+	RecruitsMultDescription = "Determines the base percentage multiplier for the number of prospective recruits found across all settlements. Higher values lead to more recruits across the board for all settlements.",
 
 	RemovableStashItemsName = "Removable Stash Items",
-	RemovableStashItemsDescription = "When enabled, this setting permits the use of CTRL + Left Click to remove any hovered-over stash items, and modifies the tooltip for each item to indicate the presence of this functionality. Quest items can never be removed.",
+	RemovableStashItemsDescription = "When enabled, this setting permits the use of CTRL + Left Click to remove any hovered-over stash items, and modifies the tooltip for each item to indicate the presence of this functionality. Legendary & quest items are never eligible for removal.",
 
 	RemovableStashItemValueThresholdName = "Removable Stash Item Value Threshold",
 	RemovableStashItemValueThresholdDescription = "Determines the item value, in crowns, at and below which a given stash item can be made removable from the inventory screen. Items above this threshold can only be removed as per vanilla functionality. Does nothing if Removable Stash Items is disabled."
 
 	RepairSpeedMultName = "Repair Speed Multiplier",
-	RepairSpeedMultDescription = "Determines how quickly items are repaired. Does not effect tools cost.",
+	RepairSpeedMultDescription = "Determines how quickly items are repaired in the player's stash, if tools are present. Higher values lead to faster repairs.",
 
 	SellPriceMultName = "Sell Price Multiplier",
-	SellPriceMultDescription = "Determines the base percentage multiplier for the sale prices of goods at all settlements.",
+	SellPriceMultDescription = "Determines the base percentage multiplier for the sale prices of goods at all settlements. Higher values lead to greater returns on sold goods.",
 
 	StashSizeName = "Stash Size",
 	StashSizeDescription = "Determines the starting stash size. Overrides scenario-specific restrictions. Requires a new game - has no effect on ongoing playthroughs.",
 
 	XPMultName = "XP Multiplier",
-	XPMultDescription = "Determines the base percentage multiplier for XP gain.",
+	XPMultDescription = "Determines the base percentage multiplier for XP gain. Higher values lead to greater XP gain.",
 };
