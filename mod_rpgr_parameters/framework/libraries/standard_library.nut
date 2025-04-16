@@ -27,18 +27,6 @@
 		return newString;
 	}
 
-	function cacheHookedMethod( _object, _methodName )
-	{
-		local naiveMethod = null;
-
-		if (_methodName in _object)
-		{
-			naiveMethod = _object[_methodName];
-		}
-
-		return naiveMethod;
-	}
-
 	function colourWrap( _text, _colour )
 	{
 		local string = _text;
@@ -224,16 +212,6 @@
 		return entries;
 	}
 
-	function includeFiles( _path )
-	{
-		local filePaths = ::IO.enumerateFiles(_path);
-
-		foreach( file in filePaths )
-		{
-			::include(file);
-		}
-	}
-
 	function incrementFlag( _string, _value, _object, _isNative = false )
 	{
 		local flag = _isNative ? format("%s", _string) : format("%s.%s", ::PRM.ID, _string);
@@ -336,18 +314,6 @@
 		return _minFloat + (1.0 * ::Math.rand() / RAND_MAX) * (_maxFloat - _minFloat);
 	}
 
-	function replaceSubstring( _substring, _newSubstring, _targetString )
-	{
-		local startIndex = _targetString.find(_substring);
-
-		if (startIndex == null)
-		{
-			return _targetString;
-		}
-
-		return format("%s%s%s", _targetString.slice(0, startIndex), _newSubstring, _targetString.slice(startIndex + _substring.len()));
-	}
-
 	function removeFromArray( _target, _array )
 	{
 		local targetArray = typeof _target == "array" ? _target : [_target];
@@ -363,18 +329,16 @@
 		}
 	}
 
-	function shuffleArray( _array )
-	{	# This method uses the Fisher-Yates shuffle algorithm.
-		local sequenceLength = _array.len();
+	function replaceSubstring( _substring, _newSubstring, _targetString )
+	{
+		local startIndex = _targetString.find(_substring);
 
-		for( local i = 0; i < sequenceLength - 1; i++ )
+		if (startIndex == null)
 		{
-			local j = ::Math.rand(i, sequenceLength - 1);
-			local valueA = _array[i];
-			local valueB = _array[j];
-			_array[j] = valueA;
-			_array[i] = valueB;
+			return _targetString;
 		}
+
+		return format("%s%s%s", _targetString.slice(0, startIndex), _newSubstring, _targetString.slice(startIndex + _substring.len()));
 	}
 
 	function setCase( _string, _case )
@@ -387,5 +351,19 @@
 	{
 		local flag = _isNative ? format("%s", _string) : format("%s.%s", ::PRM.ID, _string);
 		_object.getFlags().set(flag, _value);
+	}
+
+	function shuffleArray( _array )
+	{	# This method uses the Fisher-Yates shuffle algorithm.
+		local sequenceLength = _array.len();
+
+		for( local i = 0; i < sequenceLength - 1; i++ )
+		{
+			local j = ::Math.rand(i, sequenceLength - 1);
+			local valueA = _array[i];
+			local valueB = _array[j];
+			_array[j] = valueA;
+			_array[i] = valueB;
+		}
 	}
 };
