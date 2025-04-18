@@ -7,7 +7,7 @@
 	},
 	ContractPaymentMult =
 	{
-		Range = [25, 200],
+		Range = [25, 250],
 		Interval = 1
 	},
 	DailyWageMult =
@@ -22,7 +22,7 @@
 	},
 	HitpointsPerHourMult =
 	{
-		Range = [25, 150],
+		Range = [25, 200],
 		Interval = 1
 	},
 	RepairSpeedMult =
@@ -32,7 +32,7 @@
 	},
 	XPMult =
 	{
-		Range = [25, 150],
+		Range = [25, 200],
 		Interval = 1
 	}
 };

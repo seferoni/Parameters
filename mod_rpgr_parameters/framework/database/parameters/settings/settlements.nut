@@ -2,7 +2,7 @@
 {
 	BeastPartsPriceMult =
 	{
-		Range = [25, 200],
+		Range = [25, 250],
 		Interval = 1
 	},
 	BuyPriceMult =
@@ -22,7 +22,7 @@
 	},
 	RecruitsMult =
 	{
-		Range = [25, 150],
+		Range = [25, 200],
 		Interval = 1
 	}
 };
