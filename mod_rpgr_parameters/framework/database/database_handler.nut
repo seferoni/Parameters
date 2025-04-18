@@ -21,6 +21,39 @@
 		this.loadFolder("parameters/settings");
 	}
 
+	function getDefaults( _presetKey )
+	{
+		return this.Defaults[_presetKey];
+	}
+
+	function getDefaultValueByPreset( _defaultKey, _presetKey )
+	{
+		local defaults = this.getDefaults(_presetKey);
+
+		if (_defaultKey in defaults)
+		{
+			return defaults[_defaultKey];
+		}
+
+		foreach( settingCategory, settingTable in this.Settings )
+		{
+			if (!(_defaultKey in settingTable))
+			{
+				continue;
+			}
+
+			local settingProperties = settingTable[_defaultKey];
+
+			if (!("Default" in settingProperties))
+			{
+				::PRM.Standard.log(format("Could not find default value for %s.", _defaultKey), true);
+				return null;
+			}
+
+			return settingProperties.Default;
+		}
+	}
+
 	function getExactField( _tableName, _subTableName, _fieldName )
 	{
 		return this[_tableName][_subTableName][_fieldName];
@@ -72,39 +105,6 @@
 	function getWorldKeys()
 	{
 		return ::PRM.Standard.getKeys(this.Settings.World);
-	}
-
-	function getDefaultValueByPreset( _defaultKey, _presetKey )
-	{
-		local defaults = this.getDefaults(_presetKey);
-
-		if (_defaultKey in defaults)
-		{
-			return defaults[_defaultKey];
-		}
-
-		foreach( settingCategory, settingTable in this.Settings )
-		{
-			if (!(_defaultKey in settingTable))
-			{
-				continue;
-			}
-
-			local settingProperties = settingTable[_defaultKey];
-
-			if (!("Default" in settingProperties))
-			{
-				::PRM.Standard.log(format("Could not find default value for %s.", _defaultKey), true);
-				return null;
-			}
-
-			return settingProperties.Default;
-		}
-	}
-
-	function getDefaults( _presetKey )
-	{
-		return this.Defaults[_presetKey];
 	}
 
 	function initialise()

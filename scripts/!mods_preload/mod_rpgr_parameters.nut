@@ -5,7 +5,7 @@
 	Version = "1.0.1",
 	Internal =
 	{
-		DefaultPreset = "Challenging",
+		DefaultPreset = "Vanilla",
 		ManagerPath = "mod_rpgr_parameters/framework/internal/manager.nut",
 		TERMINATE = "__end"
 	}
