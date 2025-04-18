@@ -37,16 +37,6 @@
 		::PRM.Version = this.parseSemVer(::PRM.Version);
 	}
 
-	function isMSUInstalled()
-	{
-		return ::PRM.Internal.MSUFound;
-	}
-
-	function isModernHooksInstalled()
-	{
-		return ::PRM.Internal.ModernHooksFound;
-	}
-
 	function initialise()
 	{
 		this.createMSUInterface();
@@ -72,6 +62,16 @@
 		{
 			::include(file);
 		}
+	}
+
+	function isMSUInstalled()
+	{
+		return ::PRM.Internal.MSUFound;
+	}
+
+	function isModernHooksInstalled()
+	{
+		return ::PRM.Internal.ModernHooksFound;
 	}
 
 	function loadHandlers()
@@ -123,11 +123,11 @@
 
 		if (this.isModernHooksInstalled())
 		{
-			::PRM.Interfaces.ModernHooks.queue(">mod_msu", queued);
+			::PRM.Interfaces.ModernHooks.queue(">mod_msu", ">mod_legends", ">mod_reforged", queued);
 			return;
 		}
 
-		::mods_queue(::PRM.ID, ">mod_msu", queued);
+		::mods_queue(::PRM.ID, ">mod_msu, >mod_legends, >mod_reforged", queued);
 	}
 
 	function register()
