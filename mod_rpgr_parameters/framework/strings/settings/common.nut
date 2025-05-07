@@ -26,6 +26,9 @@
 	BeastPartsPriceMultName = "Beast Parts Price Multiplier",
 	BeastPartsPriceMultDescription = "Determines the base percentage multiplier for the value of beast parts. Higher values result in more valuable beast parts.",
 
+	BusinessReputationRateName = "Renown Multiplier",
+	BusinessReputationRateDescription = "Determines the base percentage multiplier on Renown gain and loss. Higher values yield greater magnitudes of Renown changes.",
+
 	BuyPriceMultName = "Buy Price Multiplier",
 	BuyPriceMultDescription = "Determines the base percentage multiplier for the purchase prices of goods sold at all settlements. Higher values lead to more expensive goods sold in marketplaces.",
 

@@ -1,6 +1,7 @@
 ::PRM.Database.Defaults.Challenging <-
 {
 	BeastPartsPriceMult = 150,
+	BusinessReputationRate = 85,
 	BuyPriceMult = 150,
 	ChampionChanceAdditional = 3,
 	ContractPaymentMult = 120,

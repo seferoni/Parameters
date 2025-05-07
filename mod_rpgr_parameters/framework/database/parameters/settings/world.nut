@@ -1,5 +1,10 @@
 ::PRM.Database.Settings.World <-
 {
+	BusinessReputationRate =
+	{
+		Range = [25, 250],
+		Interval = 1
+	},
 	ChampionChanceAdditional =
 	{
 		Range = [0, 10],

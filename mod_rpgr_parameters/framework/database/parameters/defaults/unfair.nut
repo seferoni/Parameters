@@ -1,6 +1,7 @@
 ::PRM.Database.Defaults.Unfair <-
 {
 	BeastPartsPriceMult = 150,
+	BusinessReputationRate = 60,
 	BuyPriceMult = 180,
 	ChampionChanceAdditional = 6,
 	ContractPaymentMult = 100,

@@ -1,6 +1,7 @@
 ::PRM.Database.Defaults.Vanilla <-
 {
 	BeastPartsPriceMult = 100,
+	BusinessReputationRate = 100,
 	BuyPriceMult = 100,
 	ChampionChanceAdditional = 0,
 	ContractPaymentMult = 100,

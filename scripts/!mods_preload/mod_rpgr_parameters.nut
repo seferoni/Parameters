@@ -2,7 +2,7 @@
 {
 	ID = "mod_rpgr_parameters",
 	Name = "RPG Rebalance - Parameters",
-	Version = "1.0.1",
+	Version = "1.1.0",
 	Internal =
 	{
 		DefaultPreset = "Vanilla",
