@@ -7,12 +7,12 @@
 	},
 	BuyPriceMult =
 	{
-		Range = [25, 250],
+		Range = [25, 500],
 		Interval = 1
 	},
 	SellPriceMult =
 	{
-		Range = [25, 250],
+		Range = [25, 500],
 		Interval = 1
 	},
 	RarityMult =

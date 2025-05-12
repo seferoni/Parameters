@@ -44,6 +44,7 @@
 		switch (typeof _settingValues.Default)
 		{
 			case ("bool"): settingElement = this.createBooleanSetting(_settingID, _settingValues); break;
+			case ("string"): settingElement = this.createStringSetting(_settingID, _settingValues); break;
 			case ("float"):
 			case ("integer"): settingElement = this.createNumericalSetting(_settingID, _settingValues); break;
 		}
@@ -94,6 +95,16 @@
 			_settingValues.Range[0],
 			_settingValues.Range[1],
 			_settingValues.Interval,
+			::PRM.Integrations.MSU.getElementName(_settingID)
+		);
+	}
+
+	function createStringSetting( _settingID, _settingValues )
+	{
+		return ::MSU.Class.StringSetting
+		(
+			_settingID,
+			_settingValues.Default,
 			::PRM.Integrations.MSU.getElementName(_settingID)
 		);
 	}

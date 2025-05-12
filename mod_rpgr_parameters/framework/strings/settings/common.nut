@@ -72,10 +72,16 @@
 	RemovableStashItemsDescription = "When enabled, this setting permits the use of CTRL + Left Click to remove any hovered-over stash items, and modifies the tooltip for each item to indicate the presence of this functionality. Legendary & quest items are never eligible for removal.",
 
 	RemovableStashItemValueThresholdName = "Removable Stash Item Value Threshold",
-	RemovableStashItemValueThresholdDescription = "Determines the item value, in crowns, at and below which a given stash item can be made removable from the inventory screen. Items above this threshold can only be removed as per vanilla functionality. Does nothing if Removable Stash Items is disabled."
+	RemovableStashItemValueThresholdDescription = "Determines the item value, in crowns, at and below which a given stash item can be made removable from the inventory screen. Items above this threshold can only be removed as per vanilla functionality. Does nothing if Removable Stash Items is disabled.",
 
 	RepairSpeedMultName = "Repair Speed Multiplier",
 	RepairSpeedMultDescription = "Determines how quickly items are repaired in the player's stash, if tools are present. Higher values lead to faster repairs.",
+
+	ReplacePlayerCharacterNameInScreensName = "Replace References to Player Character",
+	ReplacePlayerCharacterNameInScreensDescription = "In the vanilla game, when the only brother in the company is the player character, certain contracts and events will erroneously refer to the player character, by name, in the third person perspective. This setting replaces such references with a configurable alternate name. Has cosmetic effects only.",
+
+	PlayerCharacterScreenNameReplacementName = "Player Character Screen Name Replacement",
+	PlayerCharacterScreenNameReplacementDescription = "Determines what alternate name replaces references to the player character within event and contract screens. Does nothing if Replace References to Player Character is disabled.",
 
 	SellPriceMultName = "Sell Price Multiplier",
 	SellPriceMultDescription = "Determines the base percentage multiplier for the sale prices of goods at all settlements. Higher values lead to greater returns on sold goods.",
