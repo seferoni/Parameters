@@ -62,11 +62,17 @@
 	PartyResourcesMultName = "Party Difficulty Scaling Multiplier",
 	PartyResourcesMultDescription = "Flat percentage multiplier on resources allocated to all non-player spawns. Higher values lead to significantly stronger enemies across the board.",
 
+	PlayerCharacterScreenNameReplacementName = "Player Character Screen Name Replacement",
+	PlayerCharacterScreenNameReplacementDescription = "Determines what alternate name replaces references to the player character within event and contract screens. Does nothing if Replace References to Player Character is disabled.",
+
 	RarityMultName = "Item Abundance Multiplier",
 	RarityMultDescription = "Determines the base number of items available for sale in settlements. Higher values allow for a greater number and variety of items.",
 
 	RecruitsMultName = "Recruits Multiplier",
 	RecruitsMultDescription = "Determines the base percentage multiplier for the number of prospective recruits found across all settlements. Higher values lead to more recruits across the board for all settlements.",
+
+	RelationChangeMultName = "Faction Relation Multiplier",
+	RelationChangeMultDescription = "Determines the base percentage multiplier for faction relation changes. Higher values lead to a greater magnitude of both positive and negative relation changes.",
 
 	RemovableStashItemsName = "Removable Stash Items",
 	RemovableStashItemsDescription = "When enabled, this setting permits the use of CTRL + Left Click to remove any hovered-over stash items, and modifies the tooltip for each item to indicate the presence of this functionality. Legendary & quest items are never eligible for removal.",
@@ -79,9 +85,6 @@
 
 	ReplacePlayerCharacterNameInScreensName = "Replace References to Player Character",
 	ReplacePlayerCharacterNameInScreensDescription = "In the vanilla game, when the only brother in the company is the player character, certain contracts and events will erroneously refer to the player character, by name, in the third person perspective. This setting replaces such references with a configurable alternate name. Has cosmetic effects only.",
-
-	PlayerCharacterScreenNameReplacementName = "Player Character Screen Name Replacement",
-	PlayerCharacterScreenNameReplacementDescription = "Determines what alternate name replaces references to the player character within event and contract screens. Does nothing if Replace References to Player Character is disabled.",
 
 	SellPriceMultName = "Sell Price Multiplier",
 	SellPriceMultDescription = "Determines the base percentage multiplier for the sale prices of goods at all settlements. Higher values lead to greater returns on sold goods.",
