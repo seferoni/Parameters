@@ -366,4 +366,30 @@
 			_array[i] = valueB;
 		}
 	}
+
+	function sortArrayAlphabetically( _array, _comparableMember = null, _isAscending = true )
+	{
+		local comparableValue = @(_value) _comparableMember == null ? _value : _value[_comparableMember];
+		local orderPrefactor = _isAscending ? 1 : -1;
+
+		_array.sort(function( _firstMember, _secondMember )
+		{
+			local firstValue = comparableValue(_firstMember);
+			local secondValue = comparableValue(_secondMember);
+
+			if (firstValue > secondValue)
+			{
+				return 1 * orderPrefactor;
+			}
+
+			if (firstValue < secondValue)
+			{
+				return -1 * orderPrefactor;
+			}
+
+			return 0;
+		});
+
+		return _array;
+	}
 };
