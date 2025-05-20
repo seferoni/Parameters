@@ -2,11 +2,11 @@
 {
 	::PRM.Patcher.wrap(p, "setCampaignSettings", function( _settings )
 	{
-		::PRM.Mapper.initialiseWorldParameters(this);
+		::PRM.Mapper.mapToWorldParameters(this);
 	});
 
 	::PRM.Patcher.wrap(p, "resetToDefaults", function()
 	{
-		::PRM.Mapper.initialiseWorldParameters(this);
+		::PRM.Mapper.mapToWorldParameters(this);
 	});
 });

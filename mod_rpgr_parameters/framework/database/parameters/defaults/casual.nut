@@ -13,6 +13,9 @@
 	PartyResourcesMult = 110
 	RarityMult = 120,
 	RecruitsMult = 110,
+	RelationChangeMult = 100,
+	RelationDecayGoodMult = 100,
+	RelationDecayBadMult = 100,
 	RepairSpeedMult = 100,
 	StashSize = 99,
 	SellPriceMult = 120,

@@ -2,11 +2,11 @@
 {
 	::PRM.Patcher.wrap(p, "create", function()
 	{
-		::PRM.Mapper.initialiseSettlementParameters(this);
+		::PRM.Mapper.mapToSettlementParameters(this);
 	});
 
 	::PRM.Patcher.wrap(p, "reset", function()
 	{
-		::PRM.Mapper.initialiseSettlementParameters(this);
+		::PRM.Mapper.mapToSettlementParameters(this);
 	});
 });

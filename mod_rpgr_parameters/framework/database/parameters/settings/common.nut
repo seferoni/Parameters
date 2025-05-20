@@ -15,11 +15,6 @@
 		Range = [100, 250],
 		Interval = 10
 	},
-	RelationChangeMult =
-	{
-		Range = [50, 250],
-		Interval = 10
-	},
 	LocationResourcesMult =
 	{
 		Range = [100, 250],

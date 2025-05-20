@@ -74,6 +74,12 @@
 	RelationChangeMultName = "Faction Relation Multiplier",
 	RelationChangeMultDescription = "Determines the base percentage multiplier for faction relation changes. Higher values lead to a greater magnitude of both positive and negative relation changes.",
 
+	RelationDecayGoodMultName = "Positive Relation Decay Multiplier",
+	RelationDecayGoodMultDescription = "Determines the base percentage multiplier for faction relation decay, to be used when current relations are above the equilibrium value. Higher values lead to greater magnitudes of decay, and therefore a greater loss of positive relations.",
+
+	RelationDecayBadMultName = "Negative Relation Decay Multiplier",
+	RelationDecayBadMultDescription = "Determines the base percentage multiplier for faction relation decay, to be used when current relations are below the equilibrium value. Higher values lead to greater magnitudes of decay; affected factions will harbour negative relations with the player for shorter periods of time.",
+
 	RemovableStashItemsName = "Removable Stash Items",
 	RemovableStashItemsDescription = "When enabled, this setting permits the use of CTRL + Left Click to remove any hovered-over stash items, and modifies the tooltip for each item to indicate the presence of this functionality. Legendary & quest items are never eligible for removal.",
 

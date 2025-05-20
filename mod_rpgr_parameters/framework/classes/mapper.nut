@@ -1,5 +1,10 @@
 ::PRM.Mapper <-
 {
+	function getParameterDatabase( _databaseKey )
+	{
+		return ::PRM.Database.getField("Settings", _databaseKey);
+	}
+
 	function mapToDatabase( _classAttribute, _getPercentage = false )
 	{
 		if (_getPercentage)
@@ -10,31 +15,34 @@
 		return ::PRM.Standard.getParameter(_classAttribute);
 	}
 
-	function initialiseSettlementParameters( _settlementModifiers )
+	function mapToSettlementParameters( _settlementModifiers )
 	{
-		foreach( key in ::PRM.Database.getSettlementKeys() )
-		{
-			if (!(key in _settlementModifiers))
-			{
-				::PRM.Standard.log(format("Could not find %s in settlement modifiers table, aborting patch.", key), true);
-				continue;
-			}
-
-			_settlementModifiers[key] = this.mapToDatabase(key, true);
-		}
+		this.mapToGameObject(_settlementModifiers, "Settlements");
 	}
 
-	function initialiseWorldParameters( _worldObject )
+	function mapToWorldParameters( _worldObject )
 	{
-		foreach( key in ::PRM.Database.getWorldKeys() )
+		this.mapToGameObject(_worldObject, "World");
+	}
+
+	function mapToGameObject( _propertyTable, _databaseKey )
+	{
+		local database = this.getParameterDatabase(_databaseKey);
+
+		foreach( key, dataTable in database )
 		{
-			if (!(key in _worldObject.m))
+			if ("IgnoreForImplicitMapping" in dataTable && dataTable.IgnoreForImplicitMapping)
 			{
-				::PRM.Standard.log(format("Could not find %s in asset manager table, aborting patch.", key), true);
 				continue;
 			}
 
-			_worldObject.m[key] = this.mapToDatabase(key, true);
+			if (!(key in _propertyTable))
+			{
+				::PRM.Standard.log(format("Could not find %s in target table, aborting patch.", key), true);
+				continue;
+			}
+
+			_propertyTable[key] = this.mapToDatabase(key, true);
 		}
 	}
 };
