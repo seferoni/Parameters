@@ -4,9 +4,9 @@
 	{
 		local elements = [];
 		local booleanSettings = [];
-		local sortedKeys = this.sortSettingIDsByName(::PRM.Standard.getKeys(_settingGroup));
+		local settingIDs = this.getSettingIDsFromGroup(_settingGroup);
 
-		foreach( settingID in sortedKeys )
+		foreach( settingID in settingIDs )
 		{
 			local settingValues = _settingGroup[settingID];
 
@@ -112,11 +112,13 @@
 		);
 	}
 
-	function sortSettingIDsByName( _settingIDArray )
+	function getSettingIDsFromGroup( _settingGroup )
 	{
-		return ::PRM.Standard.sortArrayAlphabetically(_settingIDArray, function( _settingID )
+		local settingIDs = ::PRM.Standard.getKeys(_settingGroup);
+		::PRM.Standard.sortArrayAlphabetically(settingIDs, function( _settingID )
 		{
 			return ::PRM.Integrations.MSU.getElementName(_settingID);
 		});
+		return settingIDs;
 	}
 };

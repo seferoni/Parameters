@@ -371,7 +371,6 @@
 	{
 		local comparableValue = @(_value) _comparableFunction == null ? _value : _comparableFunction(_value);
 		local orderPrefactor = _isAscending ? 1 : -1;
-
 		_array.sort(function( _firstMember, _secondMember )
 		{
 			local firstValue = comparableValue(_firstMember);
@@ -389,7 +388,5 @@
 
 			return 0;
 		});
-
-		return _array;
 	}
 };
