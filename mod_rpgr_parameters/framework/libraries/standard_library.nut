@@ -367,9 +367,9 @@
 		}
 	}
 
-	function sortArrayAlphabetically( _array, _comparableMember = null, _isAscending = true )
+	function sortArrayAlphabetically( _array, _comparableFunction = null, _isAscending = true )
 	{
-		local comparableValue = @(_value) _comparableMember == null ? _value : _value[_comparableMember];
+		local comparableValue = @(_value) _comparableFunction == null ? _value : _comparableFunction(_value);
 		local orderPrefactor = _isAscending ? 1 : -1;
 
 		_array.sort(function( _firstMember, _secondMember )

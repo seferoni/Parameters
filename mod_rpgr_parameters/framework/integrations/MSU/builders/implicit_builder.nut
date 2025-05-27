@@ -4,7 +4,7 @@
 	{
 		local elements = [];
 		local booleanSettings = [];
-		local sortedKeys = ::PRM.Standard.sortArrayAlphabetically(::PRM.Standard.getKeys(_settingGroup)); // TODO: should not be sorting by setting IDs, but rather by their user-facing string names.
+		local sortedKeys = this.sortSettingIDsByName(::PRM.Standard.getKeys(_settingGroup));
 
 		foreach( settingID in sortedKeys )
 		{
@@ -40,6 +40,17 @@
 		}
 	}
 
+	function build()
+	{
+		local pageOrder = ::PRM.Integrations.MSU.getPageOrder();
+
+		foreach( pageKey in pageOrder )
+		{
+			this.buildPage(pageKey);
+			this.addSettingsImplicitly(::PRM.Database.Settings[pageKey], pageKey);
+		}
+	}
+
 	function buildSettingElement( _settingID, _settingValues )
 	{
 		local settingElement = null;
@@ -60,26 +71,6 @@
 
 		::PRM.Integrations.MSU.buildDescription(settingElement);
 		return settingElement;
-	}
-
-	function build()
-	{
-		local pageOrder = ::PRM.Integrations.MSU.getPageOrder();
-
-		foreach( pageKey in pageOrder )
-		{
-			this.buildPage(pageKey);
-			this.addSettingsImplicitly(::PRM.Database.Settings[pageKey], pageKey);
-		}
-	}
-
-	function buildSettingOrderedMap( _settingGroup )
-	{
-		local orderedMap =
-		{
-			table = _settingGroup
-		};
-
 	}
 
 	function buildPage( _pageID )
@@ -123,6 +114,9 @@
 
 	function sortSettingIDsByName( _settingIDArray )
 	{
-		// TODO: figure this out.
+		return ::PRM.Standard.sortArrayAlphabetically(_settingIDArray, function( _settingID )
+		{
+			return ::PRM.Integrations.MSU.getElementName(_settingID);
+		});
 	}
 };
