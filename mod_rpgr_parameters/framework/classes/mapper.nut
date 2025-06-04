@@ -22,7 +22,7 @@
 
 	function mapToWorldParameters( _worldObject )
 	{
-		this.mapToGameObject(_worldObject, "World");
+		this.mapToGameObject(_worldObject.m, "World");
 	}
 
 	function mapToGameObject( _propertyTable, _databaseKey )
