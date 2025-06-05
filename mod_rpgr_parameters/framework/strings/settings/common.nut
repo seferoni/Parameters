@@ -26,8 +26,11 @@
 	BeastPartsPriceMultName = "Beast Parts Price Multiplier",
 	BeastPartsPriceMultDescription = "Determines the base percentage multiplier for the value of beast parts. Higher values result in more valuable beast parts.",
 
-	BusinessReputationRateName = "Renown Multiplier",
-	BusinessReputationRateDescription = "Determines the base percentage multiplier on Renown gain and loss. Higher values yield greater magnitudes of Renown changes.",
+	BusinessReputationGoodRateName = "Renown Gain Multiplier",
+	BusinessReputationGoodRateDescription = "Determines the base percentage multiplier on Renown gain. Higher values yield greater magnitudes of positive Renown changes.",
+
+	BusinessReputationBadRateName = "Renown Loss Multiplier",
+	BusinessReputationBadRateDescription = "Determines the base percentage multiplier on Renown loss. Higher values yield greater magnitudes of negative Renown changes.",
 
 	BuyPriceMultName = "Buy Price Multiplier",
 	BuyPriceMultDescription = "Determines the base percentage multiplier for the purchase prices of goods sold at all settlements. Higher values lead to more expensive goods sold in marketplaces.",
@@ -71,8 +74,11 @@
 	RecruitsMultName = "Recruits Multiplier",
 	RecruitsMultDescription = "Determines the base percentage multiplier for the number of prospective recruits found across all settlements. Higher values lead to more recruits across the board for all settlements.",
 
-	RelationChangeMultName = "Faction Relation Multiplier",
-	RelationChangeMultDescription = "Determines the base percentage multiplier for faction relation changes. Higher values lead to a greater magnitude of both positive and negative relation changes.",
+	RelationChangeGoodMultName = "Faction Relation Gain Multiplier",
+	RelationChangeGoodMultDescription = "Determines the base percentage multiplier for positive faction relation changes. Higher values lead to a greater magnitude of positive relation changes.",
+
+	RelationChangeBadMultName = "Faction Relation Loss Multiplier",
+	RelationChangeBadMultDescription = "Determines the base percentage multiplier for negative faction relation changes. Higher values lead to a greater magnitude of negative relation changes.",
 
 	RelationDecayGoodMultName = "Positive Relation Decay Multiplier",
 	RelationDecayGoodMultDescription = "Determines the base percentage multiplier for faction relation decay, to be used when current relations are above the equilibrium value. Higher values lead to greater magnitudes of decay, and therefore a greater loss of positive relations.",

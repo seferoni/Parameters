@@ -8,7 +8,7 @@
 
 	::PRM.Patcher.wrap(p, "addPlayerRelationEx", function( _r, _reason = "" )
 	{
-		local relationScalar = ::PRM.Mapper.mapToDatabase("RelationChangeMult", true);
+		local relationScalar = ::PRM.Mapper.mapToDatabase(_r > 0 ? "RelationChangeGoodMult" : "RelationChangeBadMult", true);
 		return [_r * relationScalar, _reason];
 	}, "overrideArguments");
 });

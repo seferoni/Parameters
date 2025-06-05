@@ -1,7 +1,8 @@
 ::PRM.Database.Defaults.Unfair <-
 {
 	BeastPartsPriceMult = 150,
-	BusinessReputationRate = 60,
+	BusinessReputationBadRate = 140,
+	BusinessReputationGoodRate = 60,
 	BuyPriceMult = 180,
 	ChampionChanceAdditional = 6,
 	ContractPaymentMult = 100,
@@ -13,9 +14,10 @@
 	PartyResourcesMult = 170,
 	RarityMult = 40,
 	RecruitsMult = 25,
-	RelationChangeMult = 140,
-	RelationDecayGoodMult = 150,
+	RelationChangeBadMult = 130,
+	RelationChangeGoodMult = 80,
 	RelationDecayBadMult = 60,
+	RelationDecayGoodMult = 150,
 	RepairSpeedMult = 25,
 	StashSize = 30,
 	SellPriceMult = 80,

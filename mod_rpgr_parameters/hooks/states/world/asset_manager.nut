@@ -9,4 +9,10 @@
 	{
 		::PRM.Mapper.mapToWorldParameters(this);
 	});
+
+	::PRM.Patcher.wrap(p, "addBusinessReputation", function( _f )
+	{
+		local reputationScalar = ::PRM.Mapper.mapToDatabase(_f > 0 ? "BusinessReputationGoodRate" : "BusinessReputationBadRate", true);
+		return [_f * reputationScalar];
+	}, "overrideArguments");
 });

@@ -1,9 +1,16 @@
 ::PRM.Database.Settings.World <-
 {
-	BusinessReputationRate =
+	BusinessReputationBadRate =
 	{
 		Range = [25, 250],
-		Interval = 1
+		Interval = 1,
+		IgnoreForImplicitMapping = true
+	},
+	BusinessReputationGoodRate =
+	{
+		Range = [25, 250],
+		Interval = 1,
+		IgnoreForImplicitMapping = true
 	},
 	ChampionChanceAdditional =
 	{
@@ -30,10 +37,16 @@
 		Range = [25, 200],
 		Interval = 1
 	},
-	RelationChangeMult =
+	RelationChangeBadMult =
 	{
 		Range = [50, 250],
-		Interval = 10,
+		Interval = 1,
+		IgnoreForImplicitMapping = true
+	},
+	RelationChangeGoodMult =
+	{
+		Range = [50, 250],
+		Interval = 1,
 		IgnoreForImplicitMapping = true
 	},
 	RelationDecayGoodMult =

@@ -1,7 +1,8 @@
 ::PRM.Database.Defaults.Vanilla <-
 {
 	BeastPartsPriceMult = 100,
-	BusinessReputationRate = 100,
+	BusinessReputationBadRate = 100,
+	BusinessReputationGoodRate = 100,
 	BuyPriceMult = 100,
 	ChampionChanceAdditional = 0,
 	ContractPaymentMult = 100,
@@ -13,9 +14,10 @@
 	PartyResourcesMult = 100,
 	RarityMult = 100,
 	RecruitsMult = 100,
-	RelationChangeMult = 100,
-	RelationDecayGoodMult = 100,
+	RelationChangeBadMult = 100,
+	RelationChangeGoodMult = 100,
 	RelationDecayBadMult = 100,
+	RelationDecayGoodMult = 100,
 	RepairSpeedMult = 100,
 	StashSize = 99,
 	SellPriceMult = 100,
