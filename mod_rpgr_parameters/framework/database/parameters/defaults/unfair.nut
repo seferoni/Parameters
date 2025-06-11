@@ -19,7 +19,7 @@
 	RelationDecayBadMult = 60,
 	RelationDecayGoodMult = 150,
 	RepairSpeedMult = 25,
-	StashSize = 30,
 	SellPriceMult = 80,
+	StashSize = 30,
 	XPMult = 30,
 };
