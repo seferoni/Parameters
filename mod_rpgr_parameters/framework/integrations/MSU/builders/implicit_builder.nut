@@ -51,6 +51,12 @@
 		}
 	}
 
+	function buildPage( _pageID )
+	{
+		local pageName = ::PRM.Integrations.MSU.getPageName(_pageID);
+		::PRM.Integrations.MSU.addPage(_pageID, pageName);
+	}
+
 	function buildSettingElement( _settingID, _settingValues )
 	{
 		local settingElement = null;
@@ -71,12 +77,6 @@
 
 		::PRM.Integrations.MSU.buildDescription(settingElement);
 		return settingElement;
-	}
-
-	function buildPage( _pageID )
-	{
-		local pageName = ::PRM.Integrations.MSU.getPageName(_pageID);
-		::PRM.Integrations.MSU.addPage(_pageID, pageName);
 	}
 
 	function createBooleanSetting( _settingID, _settingValues )
