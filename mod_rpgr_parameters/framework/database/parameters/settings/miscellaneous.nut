@@ -2,7 +2,7 @@
 {
 	DisableKraken =
 	{
-		Default = false
+		Default = true
 	},
 	FixBeastSpawns =
 	{
@@ -24,6 +24,6 @@
 	},
 	ReplacePlayerCharacterNameInScreens =
 	{
-		Default = false
+		Default = true
 	}
 };

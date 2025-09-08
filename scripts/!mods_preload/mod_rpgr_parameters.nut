@@ -5,7 +5,7 @@
 	Version = "1.1.0",
 	Internal =
 	{
-		DefaultPreset = "Vanilla",
+		DefaultPreset = "Unfair",
 		ManagerPath = "mod_rpgr_parameters/framework/internal/manager.nut",
 		TERMINATE = "__end"
 	}
