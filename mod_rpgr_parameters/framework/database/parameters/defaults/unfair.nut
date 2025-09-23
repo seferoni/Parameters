@@ -7,6 +7,7 @@
 	ChampionChanceAdditional = 6,
 	ContractPaymentMult = 100,
 	DailyWageMult = 170,
+	EntityScaleChance = 75,
 	FoodConsumptionMult = 120,
 	HitpointsPerHourMult = 40,
 	LocationResourcesMult = 250,

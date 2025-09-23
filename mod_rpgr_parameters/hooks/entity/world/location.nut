@@ -7,6 +7,11 @@
 			return;
 		}
 
+		if (::Math.rand(1, 100) > ::PRM.Mapper.mapToDatabase("EntityScaleChance"))
+		{
+			return;
+		}
+
 		local scalar = ::PRM.Mapper.mapToDatabase("LocationResourcesMult", true);
 		this.m.Resources = ::Math.floor(this.m.Resources * scalar);
 	}, "overrideArguments");

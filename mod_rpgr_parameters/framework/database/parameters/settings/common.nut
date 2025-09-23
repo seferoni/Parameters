@@ -1,5 +1,10 @@
 ::PRM.Database.Settings.Common <-
 {
+	EntityScaleChance =
+	{
+		Range = [0, 100],
+		Interval = 1
+	},
 	LootRemovalChance =
 	{
 		Range = [0, 100],
