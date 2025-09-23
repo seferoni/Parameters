@@ -48,7 +48,7 @@
 	DisableKrakenDescription = "Prevents the legendary Stone Pillars location from generating when starting a new campaign, and adds the Reproach's blade to the loot tables of all undead lairs. Prevents the associated ambition from firing. Does nothing if Beasts & Exploration is not installed. Requires a new game - has no effect on ongoing playthroughs.",
 
 	EntityScaleChanceName = "Entity Difficulty Scaling Chance",
-	EntityScaleChanceDescription = "Determines the chance for eligible entities to be scaled up in resources by the Location Resources Multiplier and the Party Difficulty Scaling Multiplier setting controls. Higher values lead to a greater chance for eligible entities to be scaled up.",
+	EntityScaleChanceDescription = "Determines the chance for eligible entities to be scaled up in resources by the location and party difficulty scaling multiplier setting controls. Higher values lead to a greater chance for eligible entities to be scaled up.",
 
 	FixBeastSpawnsName = "Despawn Discovered Beasts",
 	FixBeastSpawnsDescription = "In the vanilla game, discovered beast parties are never despawned, and since a spawn limit is enforced, new spawns are therefore left bottlenecked or entirely prohibited. When enabled, this setting permits the despawning of discovered beast parties in accordance with other factions, thereby allowing fresh spawns on a periodic basis. Does not affect contract targets.",
