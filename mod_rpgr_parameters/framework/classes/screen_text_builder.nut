@@ -41,11 +41,6 @@
 
 	function isNaivelyViableForTextAmendment()
 	{
-		if (::PRM.Utilities.getCurrentRosterSize() > 1)
-		{
-			return false;
-		}
-
 		if (!::PRM.Standard.getParameter("ReplacePlayerCharacterNameInScreens"))
 		{
 			return false;
