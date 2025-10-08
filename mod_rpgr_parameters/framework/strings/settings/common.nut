@@ -57,7 +57,7 @@
 	FoodConsumptionMultDescription = "Determines how quickly food is consumed. Higher values lead to greater food consumption within a given period of time.",
 
 	HitpointsPerHourMultName = "Heal Rate Multiplier",
-	HitpointsPerHourMultDescription = "Determines how quickly missing hitpoints are recovered for all hired brothers, if medical supplies are present.",
+	HitpointsPerHourMultDescription = "Determines how quickly missing hitpoints are recovered for all hired brothers. Note that due to rounding behaviour, values lower than 50 disable healing unless the party is encamped.",
 
 	LocationResourcesMultName = "Location Difficulty Scaling Multiplier",
 	LocationResourcesMultDescription = "Flat percentage multiplier on resources allocated to most locations. Higher values lead to significantly stronger garrisoned troop compositions, and raises the chance for the location to store named items. Does not affect legendary locations. Has limited effect on contract targets.",
